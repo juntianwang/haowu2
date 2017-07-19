@@ -1,5 +1,5 @@
 <template>
-	<div>community</div>
+	<div>community123</div>
 </template>
 
 <script>
