@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<swiper :options="swiperOption">
-			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides" :key="index"><img class="slideImg" :src="slide" /></swiper-slide>
+			<swiper-slide v-for="(slide,index) in swiperSlides" :key="index"><img class="slideImg" :src="slide" /></swiper-slide>
 			<div class="swiper-pagination" slot="pagination"></div>
 		</swiper>
 	</div>
@@ -40,20 +40,8 @@
 <style>
 	/*如果要引入一些css样式，也是通过import引入*/
 	
-	.slideImg {
-		width: 100%;
-	}
-	
-	.divS {
-		height: 6rem;
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
-	.swiper-pagination-bullet-active {
-		background: orange;
-	}
-
+.swiper-container {
+    width: 600px;
+    height: 300px;
+}  
 </style>

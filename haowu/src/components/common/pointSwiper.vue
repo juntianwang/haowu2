@@ -1,7 +1,7 @@
 <template>
 	<div id="pointSwiper">
 		<swiper :options="swiperOption">
-			<swiper-slide v-for="slide in swiperSlides">I'm Slide {{ slide }}</swiper-slide>
+			<swiper-slide v-for="slide in banner">I'm Slide {{ slide }}</swiper-slide>
 			<div class="swiper-pagination" slot="pagination"></div>
 		</swiper>
 	</div>
@@ -34,5 +34,5 @@
 </script>
 
 <style lang="scss" scoped="" type="text/css">
-
+ 
 </style>
