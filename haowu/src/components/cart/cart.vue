@@ -1,8 +1,8 @@
 <template>
 	<div class="cart">
-		<div>
+		<div class="cart_head">
 			<h6>我的购物车</h6>
-			<ul>
+			<ul class="u1">
 				<li v-for="item in cartArr">
 					<img src="../../../static/cart_img/gou.png"/>
 					<div>{{item}}</div>
@@ -14,9 +14,18 @@
 			<p>购物车该捕获啦</p>
 			<button @click="home">去首页挑选</button>
 		</div>
-		<div>
+		<div id="cart_goods">
 			<p>——————<span>看看这些精品</span>——————</p>
+			<ul>
+				<li v-for="item in cartshowpic">
+					<!--{{item.showpic}}-->
+					<img :src="item.showpic" alt="" />
+					<p>{{item.goods}}</p>
+					<span>￥{{item.price}}</span>
+				</li>
+			</ul>
 		</div>
+		
 	
 		
 	</div>
@@ -27,7 +36,8 @@
 	export default {
 		data () {
 			return {
-				cartArr: ["30天无忧退货","24小时快速发货","全场88包邮"]
+				cartArr: ["30天无忧退货","24小时快速发货","全场88包邮"],
+				cartshowpic: []
 			}
 		},
 		methods: {
@@ -36,7 +46,11 @@
 			}
 		},
 		mounted: function () {
-			
+			axios.get("/cart/pic")
+				 .then((response)=>{
+				 	console.log(response.data.cartpic[0]);
+				 	this.cartshowpic = response.data.cartpic;
+			});
 		}
 	}
 </script>
@@ -50,7 +64,7 @@
 		line-height: 1rem;
 		font-size: 0.533333rem;
 	}
-	ul:nth-of-type(1){
+	.cart_head ul:nth-of-type(1){
 		width: 100%;
 		border-top: 0.026666rem solid gray;
 		border-bottom: 0.026666rem solid gray;
@@ -75,8 +89,7 @@
 	div:nth-of-type(2){
 		text-align: center;
 		img{
-			width: 4rem;
-			height: 5rem;
+			width: 40%;
 			margin-top: 1.01rem;
 		}
 		p{
@@ -103,6 +116,29 @@
 		span{
 			font-size: 0.41rem;
 			margin: 0.4rem;
+		}
+	}
+	#cart_goods{
+		ul{
+			border-top: none;
+			border-bottom: none;
+			margin-bottom: 1.4rem;
+			li{
+				display: inline-block;
+				width: 50%;
+				margin-top: 4%;
+				img{
+					width: 80%;
+				}
+				p{
+					margin: 0.26rem;
+					font-size: 0.35rem;
+				}
+				span{
+					color: red;
+					font-size: 0.35rem;
+				}
+			}
 		}
 	}
 	
