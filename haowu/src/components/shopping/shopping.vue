@@ -1,5 +1,5 @@
 <template>
-	<div>shop123asdasds
+	<div>shop456
 		<swiper :swiperSlides="swiperSlides"></swiper>
 	</div>
 	

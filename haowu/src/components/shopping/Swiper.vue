@@ -45,7 +45,7 @@
 	}
 	
 	.divS {
-		height: 4rem;
+		height: 6rem;
 		overflow: hidden;
 		display: flex;
 		justify-content: center;
