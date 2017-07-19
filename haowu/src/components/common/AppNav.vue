@@ -21,7 +21,7 @@
 						bol: true
 					},
 					{
-						"name": "社区",
+						"name": "社区123456",
 						url: "/community",
 //						src: "../static/img/explore.png",
 //						sel: "../static/img/explore-s.png",
