@@ -1,5 +1,7 @@
 <template>
-	<div>community123</div>
+
+	<div>ljq</div>
+
 </template>
 
 <script>
