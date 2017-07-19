@@ -9,6 +9,12 @@ var mock = new MockAdapter(axios);
 //如何拦截ajax的请求
 //.onGet("拦截的地址").reply(200,json数据)
 mock.onGet('/cart/pic').reply(200, {
+<<<<<<< HEAD
+=======
+//	'cartpic': [
+//		{}
+//	]
+>>>>>>> zp
 	'swiperBanner': [
 		"static/img/list1.png",
 		"static/img/list2.png",
