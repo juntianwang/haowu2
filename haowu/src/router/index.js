@@ -5,6 +5,7 @@ import shopping from '@/components/shopping/shopping'
 import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
+import entrance from '@/components/entrance/entrance'
 
 Vue.use(Router)
 
@@ -30,5 +31,10 @@ export default new Router({
       name: 'community',
       component: community
     },
+    {
+      path: '/entrance',
+      name: 'entrance',
+      component: entrance
+    }
   ]
 })
