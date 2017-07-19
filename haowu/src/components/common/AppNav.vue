@@ -16,29 +16,29 @@
 				arr: [{
 						"name": "商城",
 						url: "/",
-//						src: "../static/img/home.png",
-//						sel: "../static/img/home-s.png",
+						src: "../static/img/shopping.png",
+						sel: "../static/img/shopping-s.png",
 						bol: true
 					},
 					{
 						"name": "社区",
 						url: "/community",
-//						src: "../static/img/explore.png",
-//						sel: "../static/img/explore-s.png",
+						src: "../static/img/community.png",
+						sel: "../static/img/community-s.png",
 						bol: false
 					},
 					{
 						"name": "购物车",
 						url: "/cart",
-//						src: "../static/img/point.png",
-//						sel: "../static/img/point-s.png",
+						src: "../static/img/cart.png",
+						sel: "../static/img/cart-s.png",
 						bol: false
 					},
 					{
 						"name": "我的",
 						url: "/my",
-//						src: "../static/img/my.png",
-//						sel: "../static/img/my-s.png",
+						src: "../static/img/my.png",
+						sel: "../static/img/my-s.png",
 						bol: false
 					}
 				]
@@ -71,33 +71,34 @@
 	
 	footer {
 		width: 100%;
-		height: 100px;
+		height: 1.333333rem;
 		position: fixed;
 		bottom: 0;
-		font-size: 30px;
+		font-size: 0.34rem;
 		display: flex;
 		justify-content: space-around;
 		text-align: center;
-		background: #48382b;
+		background:#f9f9f9;
 		align-items: center;
-		z-index: 999;
+		z-index: 100;
+		border-top: 0.026666rem solid #ededed;
 	}
 	
 	footer a {
 		display: block;
-		color: #c3ad88;
+		color: #828282;
 		text-decoration: none;
 	}
 	
 	img {
-		width: 45px;
+		width: 0.6rem;
 	}
 	
 	.red {
-		color: #6bb53a;
+		color: #dbd11f;
 	}
 	
 	p {
-		margin-top: 10px;
+		margin-top: 0.133333rem
 	}
 </style>
