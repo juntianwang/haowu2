@@ -36,10 +36,7 @@
 			}
 		},
 		mounted: function () {
-			axios.get("/cart/pic")
-				 .then(function(response){
-				 	console.log(response.data);
-			});
+			
 		}
 	}
 </script>
