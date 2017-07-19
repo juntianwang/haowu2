@@ -23,6 +23,7 @@
 </template>
 
 <script>
+	import axios from 'axios'
 	export default {
 		data () {
 			return {
@@ -33,6 +34,12 @@
 			home () {
 				alert("跳到首页");
 			}
+		},
+		mounted: function () {
+			axios.get("/cart/pic")
+				 .then(function(response){
+				 	console.log(response.data);
+			});
 		}
 	}
 </script>
