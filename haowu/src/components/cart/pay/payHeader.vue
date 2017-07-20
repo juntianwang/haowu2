@@ -5,6 +5,7 @@
 				<span id="hah">返回</span>
 			</div>
 			<span>{{headerMsg}}</span>
+			<slot></slot>
 		</header>
 </template>
 

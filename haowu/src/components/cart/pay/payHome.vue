@@ -1,7 +1,7 @@
 <template>
 	<div class="payhome">
 		<pay-header :headerMsg="title"></pay-header>
-		<div class="address" v-show="addmsg">
+		<div class="address" v-show="addmsg" @click = "shopaddr">
 			<span>收货地址</span>
 			<div>
 				<span>请填写收货地址</span>
@@ -40,6 +40,12 @@
 			    addmsg: true
 			}
 		
+		},
+		methods: {
+			shopaddr () {
+				console.log("aaa")
+				this.$router.push({name:"shopAddr"})
+			}
 		},
 		components: { payHeader,payGoods }
 	}

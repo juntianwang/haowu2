@@ -115,6 +115,7 @@
 				if (this.goodsArr[k].goodsbol) {
 					this.allPrice -= this.goodsArr[k].price*this.goodsArr[k].num;
 				}
+				this.countnum--;
 				this.goodsArr.splice(k,1);
 			}
 			
