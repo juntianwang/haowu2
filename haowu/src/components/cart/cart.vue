@@ -9,6 +9,7 @@
 				</li>			
 			</ul>
 		</div>
+		
 		<div>
 			<img src="../../../static/cart_img/default_shopping_cart.png" alt="" />
 			<p>购物车该捕获啦</p>
@@ -18,11 +19,12 @@
 			<p>——————<span>看看这些精品</span>——————</p>
 		</div>
 	
-		
+		<app-nav></app-nav>
 	</div>
 </template>
 
 <script>
+	import AppNav from "../common/AppNav"
 	import axios from 'axios'
 	export default {
 		data () {
@@ -37,7 +39,10 @@
 		},
 		mounted: function () {
 			
-		}
+		},
+		components:{
+  			AppNav,
+  		}
 	}
 </script>
 
