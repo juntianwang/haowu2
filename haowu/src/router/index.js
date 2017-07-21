@@ -20,6 +20,12 @@ import debark from '@/components/login/loginchild/debark'
 
 //my
 import mychild from '@/components/my/mychild/mychild'
+import myOrder from '@/components/my/mychild/myOrder'
+import mywallet from '@/components/my/mychild/mywallet'
+import commonP from '@/components/my/mychild/commonP'
+import mywithdrawal from '@/components/my/mychild/mywithdrawal'
+import mybookeddetails from '@/components/my/mychild/mybookeddetails'
+import mystrategy from '@/components/my/mychild/mystrategy'
 
 Vue.use(Router)
 
@@ -40,8 +46,39 @@ export default new Router({
 			component: my,
 			children: [{
 					path: "/my/",
+					name: "mychild",
 					component: mychild
-			},
+				},
+				{
+					path: "/my/mychild/myOrder",
+					name: "myOrder",
+					component: myOrder
+				},
+				{
+					path: "/my/mychild/mywallet",
+					name: "mywalletr",
+					component: mywallet,
+				},
+				{
+					path: "/my/mychild/commonP",
+					name: "commonP",
+					component: commonP,
+				},
+				{
+					path: "/my/mychild/mywithdrawal",
+					name: "mywithdrawal",
+					component: mywithdrawal,
+				},
+				{
+					path: "/my/mychild/mybookeddetails",
+					name: "mybookeddetails",
+					component: mybookeddetails,
+				},
+				{
+					path: "/my/mychild/mystrategy",
+					name: "mystrategy",
+					component: mystrategy,
+				}
 			]
 		},
 		{

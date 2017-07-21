@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<header>
-			<div class="go">
+			<div class="go" @click ="go">
 				<span>返回</span>
 			</div>
 			{{txt}}
@@ -11,10 +11,18 @@
 
 <script>
 	export default {
-		props:["txt"],
+		data () {
+			return {
+				txt:""
+			}
+		},
+		mounted () {
+			this.txt = this.$route.params.name;
+		}
+		,
 		methods: {
 			go() {
-				Window.history.go(-1);	
+				window.history.go(-1);	
 			}
 		}
 	}
@@ -22,14 +30,18 @@
 
 <style lang="scss" type="text/css">
 	header {
-		position: relative;
+		position: fixed;
+		top:0;
+		left: 0;
 		height: 1.06rem;
 		width: 100%;
 		text-align: center;
 		line-height: 1.06rem;
-		color: #4A4A4A;
+		color: #818181;
 		font-size: 0.4rem;
 		border-bottom:0.026666rem solid #ededed;
+		background: #fff;
+		z-index: 1000;
 		>div:nth-of-type(1) {
 			position: absolute;
 			top: 0;

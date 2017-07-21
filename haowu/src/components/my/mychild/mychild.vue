@@ -23,17 +23,19 @@
 			</p>
 		</div>
 		<div class="my-list">
-			<p v-for="item in list" @click="to(item.to)">	
+			<p v-for="item in list" @click="to(item.to,item.txt)">	
 				{{item.txt}}
 				<span></span>
 				<em>{{item.span}}</em>
 				
 			</p>
 		</div>
-		
+		<app-nav></app-nav>
 	</div>
+	
 </template>
 <script>
+import AppNav from "../../common/AppNav"
 export default {
 	data () {
 		return {
@@ -41,7 +43,7 @@ export default {
 			{txt:'退货 / 售后',span:"",to:"/1"},
 			{txt:'商城客服',span:"",to:"/2"},
 			{txt:'',span:"",to:""},
-			{txt:'我的钱包',span:"￥0.00",to:"/3"},
+			{txt:'我的钱包',span:"￥0.00",to:"mywalletr"},
 			{txt:'我的积分',span:"0",to:"/4"},
 			{txt:'我的优惠卷',span:"2张",to:"/5"},
 			{txt:'',span:"",to:""},
@@ -65,17 +67,19 @@ export default {
 			
 		},
 		myOrder (i) {
-			console.log(i)
-			this.$router.push({name:'',params:{name:i}})
+			this.$router.push({name:'myOrder',params:{name:i}})
 		},
-		to (i) {
-			console.log(i)
+		to (to,txt) {
+			this.$router.push({name:to,params:{name:txt}})
 		}
 	},
 	mounted (){
 		if(window.sessionStorage.ures == undefined){
 			this.loginBol = false;
 		}
+	},
+	components: {
+			AppNav,
 	}
 }
 </script>
@@ -100,7 +104,7 @@ export default {
 			span{
 				float: right;
 				height: 1.333333rem;
-				padding-right: 80px;
+				padding-right: 1.06rem;
 				background: url(../../../../static/my/right.png) no-repeat;
 				background-size: 0.253333rem 0.426666rem;
 				background-position: 0.773333rem 0.4rem;
@@ -202,28 +206,28 @@ export default {
 				text-align: center;
 				flex: 1;
 				font-size: 0.32rem;
-				height: 130px;
-				line-height: 180px;
+				height: 1.73rem;
+				line-height: 2.4rem;
 			}
 			span:nth-child(1){
 				background:url(../../../../static/my/order1.png) no-repeat;
-				background-position: 55px 20px;
+				background-position: 0.73rem 0.26rem;
 				background-size: 0.933333rem 0.666666rem;
 				
 			}
 			span:nth-child(2){
 				background: url(../../../../static/my/order2.png) no-repeat;
-				background-position: 55px 20px;
+				background-position: 0.73rem 0.26rem;
 				background-size: 0.933333rem 0.666666rem;
 			}
 			span:nth-child(3){
 				background: url(../../../../static/my/order3.png) no-repeat;
-				background-position: 55px 20px;
+				background-position: 0.73rem 0.26rem;
 				background-size: 0.933333rem 0.666666rem;
 			}
 			span:nth-child(4){
 				background: url(../../../../static/my/order4.png) no-repeat;
-				background-position: 55px 20px;
+				background-position: 0.73rem 0.26rem;
 				background-size: 0.933333rem 0.666666rem;
 			}
 		}
@@ -239,7 +243,7 @@ export default {
 			width: 3.6rem;
 			height: 1.066666rem;
 			background-color: #f9cf18;
-			margin-top: 50px;
+			margin-top: 0.66rem;
 			border-radius: 0.106666rem;
 			font-size: 0.346666rem;
 			line-height: 1.066666rem;
@@ -271,13 +275,13 @@ export default {
 			text-align: center;
 			font-size: 0.4rem;
 			color: #fff;
-			margin-top: 20px;
+			margin-top: 0.26rem;
 		}
 		.fans{
 			font-size: 0.346666rem;
 			text-align: center;
 			color: #fff;
-			margin-top: 10px;
+			margin-top: 0.13rem;
 		}
 	}
 }
