@@ -8,7 +8,7 @@
 				<img src="../../../../static/cart_img/more.png"/>
 			</div>
 		</div>
-		<div class="coupon">
+		<div class="coupon" @click="paycoupon">
 			<span>选择优惠券</span>
 			<div>
 				<span>0张可用</span>
@@ -33,6 +33,7 @@
 <script>
 	import payHeader from './payHeader'
 	import payGoods from './payGoods'
+	import payCoupon from './payCoupon'
 	export default {
 		data () {
 			return {
@@ -45,9 +46,12 @@
 			shopaddr () {
 				console.log("aaa")
 				this.$router.push({name:"shopAddr"})
+			},
+			paycoupon () {
+				this.$router.push({name:"payCoupon"})
 			}
 		},
-		components: { payHeader,payGoods }
+		components: { payHeader,payGoods,payCoupon }
 	}
 </script>
 

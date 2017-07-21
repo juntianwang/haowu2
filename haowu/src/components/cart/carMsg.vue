@@ -48,7 +48,7 @@
 		},
 		watch: {
 			goods () {
-				console.log(this.$store.state.cargoods);
+				this.countnum = this.$store.state.cargoods;
 			}
 		},
 		methods: {
@@ -83,7 +83,7 @@
 					if (this.countnum == this.goodsArr.length) {
 						this.allgoodsbol = true;	
 					}
-					console.log(this.countnum)
+//					console.log(this.countnum)
 				}else{
 					this.countnum--;
 					this.allgoodsbol = false;
@@ -92,8 +92,8 @@
 			},
 			selectAll () {
 				this.allPrice = 0;
-				this.countnum = this.goodsArr.length;
-				console.log(this.countnum);
+//				this.countnum = this.goodsArr.length;
+//				console.log(this.countnum);
 				this.allgoodsbol = !this.allgoodsbol;
 				if (this.allgoodsbol) {
 					for (var i = 0;i<this.goodsArr.length;i++) {
@@ -102,7 +102,7 @@
 					}
 				}else{
 					this.countnum = 0;
-					console.log(this.countnum)
+//					console.log(this.countnum)
 					this.allPrice = 0;					
 					for (var i = 0;i<this.goodsArr.length;i++) {
 						this.goodsArr[i].goodsbol = false;					
@@ -115,8 +115,16 @@
 				if (this.goodsArr[k].goodsbol) {
 					this.allPrice -= this.goodsArr[k].price*this.goodsArr[k].num;
 				}
-				this.countnum--;
 				this.goodsArr.splice(k,1);
+				console.log(this.countnum)
+				console.log(this.goodsArr.length)
+				if (this.goodsArr.length==0) {
+					this.allgoodsbol = false;	
+				}
+				if (this.countnum == this.goodsArr.length&&this.goodsArr.length>0) {
+					this.allgoodsbol = true;	
+				}
+				
 			}
 			
 		},
