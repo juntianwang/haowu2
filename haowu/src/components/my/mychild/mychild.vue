@@ -62,6 +62,7 @@ export default {
 	methods:{
 		login () {
 			this.$router.push({name:'login'})
+			
 		},
 		myOrder (i) {
 			console.log(i)
