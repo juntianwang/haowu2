@@ -9,7 +9,7 @@
 			<p>您还没有添加收货地址</p>
 
 		</div>
-		<addr-arr></addr-arr>
+		<addr-arr v-show="!haveaddr"></addr-arr>
 		<div class="addnew">
 			<p @click="edit"><span>+</span>添加新地址</p>
 		</div>
@@ -23,12 +23,30 @@
 		data () {
 			return {
 				title: '管理地址',
-				haveaddr: false
+				haveaddr: true
 			}
 		},
 		computed: {
 			addrArr () {
 				return this.$store.state.addrArr
+			}
+		},
+		watch: {
+			addrArr () {
+				console.log("改变了");
+				if (this.addrArr.length==0) {
+					this.haveaddr = true;
+				}else{
+					this.haveaddr = false;
+				}
+			}
+		},
+		mounted: function(){
+//			console.log(this.$store.state.showAddr)
+			if (this.addrArr.length==0) {
+				this.haveaddr = true;
+			}else{
+				this.haveaddr = false;
 			}
 		},
 		methods: {
@@ -47,7 +65,7 @@
 	.noaddr{
 		text-align: center;
 
-		img:nth-child(2){
+		img:nth-child(1){
 			width: 4rem;
 			margin: 2.66rem 0 0.66rem;
 		}

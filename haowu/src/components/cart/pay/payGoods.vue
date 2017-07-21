@@ -1,7 +1,7 @@
 <template>
 	<div class="paygoods">
 		<ul>
-			<li class="clear" v-for="item in paygoodsArr">
+			<li class="clear" v-for="item in payGoods">
 				<div><img :src="item.cartsrc"/></div>
 				<div>
 					<p>{{item.cartgoods}}</p>
@@ -14,7 +14,7 @@
 			</li>
 		</ul>
 		<footer>
-			<div>实际付款：<span>￥518</span></div>
+			<div>实际付款：<span>￥{{allprice}}</span></div>
 			<button>立即付款</button>
 		</footer>
 	</div>
@@ -28,9 +28,15 @@
 			}
 		},
 		computed: {
-//			cargoods () {
-//				return this.$store.state.cargoods
-//			}
+			allprice () {
+				return this.$store.state.aa
+			},
+			cargoods () {
+				return this.$store.state.cargoods
+			},
+			payGoods () {
+				return this.$store.state.payGoods
+			}
 		},
 		mounted: function () {
 			this.paygoodsArr = this.$store.state.cargoods;
@@ -41,7 +47,9 @@
 <style lang="scss" scoped="" type="text/css">
 .paygoods{
 	ul{
+		margin-bottom: 1.37rem;
 		li{
+			position: relative;
 			padding-top: 0.5rem;
 			padding-bottom: 0.5rem;
 			border-bottom: 0.02rem solid darkgray;
@@ -87,6 +95,8 @@
 				}
 			}
 			div:nth-child(3){
+				position: absolute;
+				right:0.53rem;
 				padding-top:1.61rem;
 				color: darkgray;
 				margin-left: 0.6rem;

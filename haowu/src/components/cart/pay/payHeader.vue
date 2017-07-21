@@ -12,9 +12,16 @@
 <script>
 	export default {
 		props: ['headerMsg'],
-		methods: {
+		methods: {			
 			goback () {
-				window.history.go(-1);
+				console.log(this.headerMsg)
+				if (this.headerMsg=="填写订单") {
+					this.$router.push({name:"cart"})
+				}else if (this.headerMsg=="管理地址") {
+					this.$router.push({name:"payHome"})
+				}else{
+					window.history.go(-1);	
+				}							
 			}
 		}
 	}

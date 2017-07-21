@@ -29,11 +29,13 @@
 		computed: {
 			title () {
 				return this.$route.query.data;
+			},
+			addrArr () {
+				return this.$store.state.addrArr;
 			}
 		},
 		mounted: function() {
 			console.log(this.$route.query.data)	
-
 		},
 		methods: {
 			keepaddr () {
@@ -41,14 +43,15 @@
 					alert("请输入正确信息");
 
 				}else{
+					this.$router.push({name:"shopAddr"});
 //					console.log("新建页面");
 					if(this.editbol){
-						this.$store.state.addrArr.unshift({"name":$("input").eq(0).val(),"phone":$("input").eq(1).val(),"address":$("textarea").val()});
+						this.addrArr.unshift({"name":$("input").eq(0).val(),"phone":$("input").eq(1).val(),"address":$("textarea").val()});
 						}else{
-							this.$store.state.addrArr.push({"name":$("input").eq(0).val(),"phone":$("input").eq(1).val(),"address":$("textarea").val()});
+						this.addrArr.push({"name":$("input").eq(0).val(),"phone":$("input").eq(1).val(),"address":$("textarea").val()});
 						}
 					}
-					this.$router.push({name:"shopAddr"});
+					
 								
 			},
 			select () {

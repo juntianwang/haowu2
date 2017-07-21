@@ -6,6 +6,7 @@ import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
 
+
 import goodsDetails from '@/components/common/goodsDetails';
 
 import entrance from '@/components/entrance/entrance'
@@ -21,12 +22,12 @@ import debark from '@/components/login/loginchild/debark'
 //my
 import mychild from '@/components/my/mychild/mychild'
 
+
 import setting from '@/components/my/mychild/setting'
 import setserve from '@/components/my/mychild/setserve'
 import me from '@/components/my/mychild/me'
 import idea from '@/components/my/mychild/idea'
 import changingname from '@/components/my/mychild/changingname'
-
 
 
 import pay from '@/components/cart/pay'
@@ -35,6 +36,7 @@ import payHome from '@/components/cart/pay/payHome'
 import shopAddr from '@/components/cart/pay/shopAddr'
 import editAddr from '@/components/cart/pay/editAddr'
 import reviseAddr from '@/components/cart/pay/reviseAddr'
+import payCoupon from '@/components/cart/pay/payCoupon'
 
 
 import myOrder from '@/components/my/mychild/myOrder'
@@ -68,7 +70,8 @@ export default new Router({
       		{ path: '/pay/order', component: order, name: 'order'},
       		{ path: '/pay/shopAddr', component: shopAddr, name: 'shopAddr'},
       		{ path: '/pay/editAddr', component: editAddr, name: 'editAddr'},
-      		{ path: '/pay/reviseAddr', component: reviseAddr, name: 'reviseAddr'}
+      		{ path: '/pay/reviseAddr', component: reviseAddr, name: 'reviseAddr'},
+      		{ path: '/pay/payCoupon', component: payCoupon, name: 'payCoupon'}
       ]
     },
     {

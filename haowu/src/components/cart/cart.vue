@@ -75,7 +75,7 @@
 			axios.get("/cart/pic")
 				 .then((response)=>{
 //				 	console.log(response.data.cartpic[0]);
-//				 	this.cartshowpic = response.data.cartpic;
+				 	this.cartshowpic = response.data.cartpic;
 			});
 		}
 	}

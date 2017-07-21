@@ -20,7 +20,7 @@
 			</li>
 		</ul>
 		<div class="buy">
-			<div @click.stop="selectAll" :class="{selected:allgoodsbol}"><p></p></div>
+			<div @click.stop="selectAll"><p :class="{selected:allgoodsbol}"></p></div>
 			<div>全选</div>
 			<div>总计(不含运费)：<span id="ap">￥{{allPrice}}</span></div>
 			<button @click="pay">立即下单</button>
@@ -43,17 +43,43 @@
 		computed: {
 			goods () {
 				return this.$store.state.cargoods
+			},
+			aa () {
+				return this.$store.state.aa	
+			},
+			payGoods () {
+				return this.$store.state.payGoods	
 			}
 				
 		},
 		watch: {
 			goods () {
-				console.log(this.$store.state.cargoods);
+				this.goodsArr = this.$store.state.cargoods;
+//				this.countnum = this.$store.state.cargoods.length;
+				console.log(this.countnum)
+				
 			}
 		},
 		methods: {
 			pay () {
-				this.$router.push({name:'pay'});
+				
+				if (this.countnum!=0) {
+					this.payGoods.splice(0,this.payGoods.length);
+					this.$store.state.aa	 = this.allPrice;
+					
+					for (var i = 0; i < this.goodsArr.length;i++) {
+						if (this.goodsArr[i].goodsbol) {							
+							this.payGoods.push(this.goodsArr[i]);						
+						}
+//						this.goodsArr[i].goodsbol = false;
+						
+					}
+					
+					this.$router.push({name:'pay',query:{data:this.allPrice}});
+				}else{
+					alert("请勾选物品");
+				}
+				
 			},
 			gotodetail () {
 				alert("进去物品详情页");
@@ -80,10 +106,11 @@
 				if (this.goodsArr[k].goodsbol) {
 					this.allPrice += this.goodsArr[k].price*this.goodsArr[k].num;
 					this.countnum++;
+					console.log(this.countnum)
 					if (this.countnum == this.goodsArr.length) {
 						this.allgoodsbol = true;	
 					}
-					console.log(this.countnum)
+//					console.log(this.countnum)
 				}else{
 					this.countnum--;
 					this.allgoodsbol = false;
@@ -93,7 +120,7 @@
 			selectAll () {
 				this.allPrice = 0;
 				this.countnum = this.goodsArr.length;
-				console.log(this.countnum);
+//				console.log(this.countnum);
 				this.allgoodsbol = !this.allgoodsbol;
 				if (this.allgoodsbol) {
 					for (var i = 0;i<this.goodsArr.length;i++) {
@@ -102,7 +129,7 @@
 					}
 				}else{
 					this.countnum = 0;
-					console.log(this.countnum)
+//					console.log(this.countnum)
 					this.allPrice = 0;					
 					for (var i = 0;i<this.goodsArr.length;i++) {
 						this.goodsArr[i].goodsbol = false;					
@@ -114,14 +141,28 @@
 			del (k) {
 				if (this.goodsArr[k].goodsbol) {
 					this.allPrice -= this.goodsArr[k].price*this.goodsArr[k].num;
+					this.countnum--;
 				}
-				this.countnum--;
+				console.log(this.countnum)
 				this.goodsArr.splice(k,1);
+				
+				
+				console.log(this.goodsArr.length)
+				if (this.goodsArr.length==0) {
+					this.allgoodsbol = false;	
+				}
+				if (this.countnum == this.goodsArr.length&&this.goodsArr.length>0) {
+					this.allgoodsbol = true;	
+				}
+				
 			}
 			
 		},
 		mounted: function(){
 			this.goodsArr = this.$store.state.cargoods;
+			for (var i = 0; i < this.goodsArr.length;i++) {
+				this.goodsArr[i].goodsbol = false;					
+			}
 		}
 	}
 </script>
@@ -137,9 +178,10 @@
 }
 .goods{
 	li{
+		position: relative;
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid darkgray;
+		border-bottom: 0.02rem solid darkgray;
 		div{
 			float: left;
 		}
@@ -147,10 +189,11 @@
 		/*justify-content: center;水平居中*/
 		/*flex-wrap: wrap;里面内容超出自动换行*/
 		align-items: center;
-		div:nth-child(1){			
+		div:nth-child(1){	
+			margin-left: 0.17rem;		
 			width: 0.8rem;
 			height: 0.8rem;
-			border: 1px solid black;
+			border: 0.02rem solid black;
 			border-radius: 50%;
 			p{
 				width: 0.6rem;
@@ -194,8 +237,8 @@
 		}
 		div:nth-child(4){
 			color: darkgray;
-			margin-left: 0.17rem;
-			text-align: right;
+			position: absolute;
+			right: 0.2rem;
 			font-size: 0.5rem;
 			img{
 				margin-bottom: 1rem;
