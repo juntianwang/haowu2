@@ -111,7 +111,7 @@ export default {
 		position: relative;
 		width: 100%;
 		height: 1.2rem;
-		border-bottom: 2px solid #eee;
+		border-bottom: 0.02rem solid #eee;
 		text-align: center;
 		span{
 			position: absolute;

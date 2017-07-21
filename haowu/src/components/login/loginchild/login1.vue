@@ -81,10 +81,10 @@ methods:{
 			background-color: #fdda2c;
 		}
 		div{
-			margin-top: 30px;
+			margin-top: 0.4rem;
 			box-sizing: border-box;
 			width: 7.733333rem;
-			border: 4px solid #989898;
+			border: 0.05rem solid #989898;
 			height: 1.066666rem;	
 			line-height: 1.066666rem;
 			background-color: #fff;

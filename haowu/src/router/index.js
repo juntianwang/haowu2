@@ -18,6 +18,12 @@ import debark from '@/components/login/loginchild/debark'
 
 //my
 import mychild from '@/components/my/mychild/mychild'
+import setting from '@/components/my/mychild/setting'
+import setserve from '@/components/my/mychild/setserve'
+import me from '@/components/my/mychild/me'
+import idea from '@/components/my/mychild/idea'
+import changingname from '@/components/my/mychild/changingname'
+
 
 
 import pay from '@/components/cart/pay'
@@ -60,7 +66,13 @@ export default new Router({
       component: my,
       children: [
       		{ path: "/my/", component: mychild },
-//          { path: "/login/register",name:"register",component: register }, 
+            { path: "/mychild/setting",name:"setting",component:setting },
+            { path: "/mychild/setserve",name:"setserve",component:setserve },
+            { path: "/mychild/me",name:"me",component:me },
+            { path: "/mychild/idea",name:"idea",component:idea },
+            { path: "/mychild/changingname",name:"changingname",component:changingname },
+            
+            
         ]
     },
     {
