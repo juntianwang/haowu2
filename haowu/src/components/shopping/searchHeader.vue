@@ -9,7 +9,7 @@
 <script>
 </script>
 
-<style scoped="scoped">
+<style lang="scss" scoped="scoped">
 	.wrap{
 		display: flex;
 		justify-content: space-around;

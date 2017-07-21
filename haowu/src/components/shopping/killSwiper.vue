@@ -56,7 +56,7 @@
 	}
 </script>
 
-<style scoped="scoped">
+<style lang="scss" scoped="scoped">
 	#killSwiper{
 	}
 	.slideImg {
@@ -101,7 +101,7 @@
 		height: 0;
 		border: 0.02rem solid #494949;
 		left: 1.13rem;
-		top: 0.86rem
+		top: 67.5%;
 	}
 	.begin {
 		width: 2.66rem;

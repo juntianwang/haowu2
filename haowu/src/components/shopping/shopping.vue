@@ -9,7 +9,7 @@
 		</nav>
 		<mt-tab-container v-model="active" :swipeable="true">
 			<mt-tab-container-item id="tab0">
-				<div class="content">
+				<div class="content" v-show="navBol[0]">
 					<!---->
 					<swiper :swiperSlides="banner" class="banner_swiper"></swiper>
 					<div class="notice">
@@ -69,20 +69,50 @@
 					<!---->
 					<div class="show">
 						<p>达人SHOW</p>
+						<show-swiper :swiperSlides="show"></show-swiper>
+						<div class="progress">
+							<div class="proLine"></div>
+							<div class="proLine" id="proLine" :style="{width: progress_s + '%',background: showColor}"></div>
+						</div>
+					</div>
+					<!---->
+					<div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+						<p>猜你喜欢</p>
+						<div v-for="(item,inex) in moreList" class="shopList">
+							<swiper :swiperSlides="item.list"></swiper>
+							<p class="list_name">{{item.name}}</p>
+							<p class="list_txt">{{item.txt}}</p>
+							<div class="buy">
+								<span>￥{{item.money}}</span>
+								<div id="buy">购买</div>
+							</div>
+						</div>
+					</div>
+					<!---->
+					<div class="nomore" v-if="moreBol">
+			   			 <span class="text">暂无更多</span>
 					</div>
 				</div>
 			</mt-tab-container-item>
 			<mt-tab-container-item id="tab1">
-				<div class="content">2</div>
+				<div class="content" v-show="navBol[1]">
+					<shop-other :otherContent="decoration"></shop-other>
+				</div>
 			</mt-tab-container-item>
 			<mt-tab-container-item id="tab2">
-				<div class="content">3</div>
+				<div class="content" v-show="navBol[2]">
+					<shop-other :otherContent="accept"></shop-other>
+				</div>
 			</mt-tab-container-item>
 			<mt-tab-container-item id="tab3">
-				<div class="content">4</div>
+				<div class="content" v-show="navBol[3]">
+					<shop-other :otherContent="kitchen"></shop-other>
+				</div>
 			</mt-tab-container-item>
 			<mt-tab-container-item id="tab4">
-				<div class="content">5</div>
+				<div class="content" v-show="navBol[4]">
+					<shop-other :otherContent="textiles"></shop-other>
+				</div>
 			</mt-tab-container-item>
 		</mt-tab-container>
 	</div>
@@ -94,7 +124,10 @@
 	import Swiper from "./Swiper";
 	import searchHeader from "./searchHeader";
 	import killSwiper from './killSwiper';
-	//引入tab-container
+	import showSwiper from './showSwiper';
+	import shopOther from './shopOther';
+	//引入tab-container和Indicator
+	import { Indicator } from 'mint-ui';
 	import { TabContainer, TabContainerItem } from 'mint-ui';
 
 	//引入图片资源
@@ -105,11 +138,16 @@
 	import new1 from '../../../static/shopping/new1.png';
 	import timeOut from '../../../static/shopping/timeOut.png';
 	import kill1 from '../../../static/shopping/kill1.png';
-
+	import show1 from '../../../static/shopping/show1.jpg';
+	import showHead from '../../../static/shopping/headImg.jpg';
+	import otherBanner from '../../../static/shopping/otherBanner.png';
+	import otherList from '../../../static/shopping/otherList.png';
+	
 	export default {
 		data() {
 			return {
 				navBefore: 0,
+				navBol: [true,false,false,false,false],
 				//导航栏
 				tab: [{
 						nav: '推荐',
@@ -173,12 +211,80 @@
 				},
 				progress_kill: 0,
 				killColor: '#191919',
+				//展示
+				show: {
+					content: [{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead}]
+				},
+				progress_show: 0,
+				showColor: '#191919',
+				//商品列表
+				begin: 0,
+				shopList: [{
+					pic: [show1,show1],
+					name: '小清新客厅套',
+					money: 200,
+					txt: '用自然的元素点缀，简雅秀气，随处可见心思',
+					list: {
+						content: [show1,show1],
+						pagination: '.swiper-pagination'
+					}
+				}],
+				loading: false,
+				moreShopList: [],
+				moreBol : false,
+				//其他导航
+				decoration: {
+					index: 1,
+					title: 'decoration',
+					banner:otherBanner,
+					list:[
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					]
+				},
+				textiles: {
+					index: 4,
+					title: 'textiles',
+					banner:otherBanner,
+					list:[
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					]
+				},
+				kitchen: {
+					index: 3,
+					title: 'kitchen',
+					banner:otherBanner,
+					list:[
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					]
+				},
+				accept: {
+					index: 2,
+					title: 'accept',
+					banner:otherBanner,
+					list:[
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28},
+						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					]
+				}
 			}
 		},
 		components: {
 			Swiper,
 			searchHeader,
-			killSwiper
+			killSwiper,
+			showSwiper,
+			shopOther	
 		},
 		methods: {
 			tabNav(index) {
@@ -188,15 +294,50 @@
 			move() {},
 			//进度条(已废弃)
 			getProgress(msg) {},
-			//触摸
+			//上拉加载
+			loadMore() {
+				var that = this;		
+				if (this.moreBol || this.navBefore != 0) {
+					return;
+				}
+				this.loading = true;
+				Indicator.open({
+					text: '加载中...',
+					spinnerType: 'fading-circle'
+				});
+				axios.get('/api/shop/list', {
+					params: {
+						begin: this.begin,
+						num: 5
+					}
+				}).then(function(res) {
+					that.shopList = res.data.shopList;
+					console.log(res)
+					that.begin += 5;
+					setTimeout(() => {
+						Indicator.close();
+						that.loading = false;
+					}, 1000)
+				}).catch(function(error) {
+					console.log(error)
+					setTimeout(() => {
+						Indicator.close();
+						that.loading = false;
+						that.moreBol = true;
+					}, 1000)
+				});
+			}
 		},
 		computed: {
 			nav() {
 				let index = parseInt(this.active.slice(3, 4));
 				this.tabLeft = this.tab[index].left;
 				this.tab[this.navBefore].bol = false;
+				this.navBol[this.navBefore] = false;
+				this.navBol[index] = true;
 				this.tab[index].bol = true;
 				this.navBefore = index;
+				this.$store.state.navBefore = this.navBefore;
 				return this.tab;
 			},
 			progress_k() {
@@ -207,6 +348,19 @@
 					this.killColor = '#191919';
 				}
 				return this.progress_kill;
+			},
+			progress_s() {
+				this.progress_show = (this.$store.state.progress_show / this.show.content.length) * 100;
+				if (this.progress_show == 100) {
+					this.showColor = '#81dcbd';
+				} else {
+					this.showColor = '#191919';
+				}
+				return this.progress_show;
+			},
+			moreList() {
+				this.moreShopList = this.moreShopList.concat(this.shopList);
+				return this.moreShopList;
 			}
 		},
 		mounted() {
@@ -219,6 +373,24 @@
 			}).then(function(res) {
 				that.newList = res.data.newList;
 				that.kill.content = res.data.killList;
+				that.show.content = res.data.showList;
+				that.decoration = res.data.decoration;
+				that.accept = res.data.accept;
+				that.textiles = res.data.textiles;
+				that.kitchen = res.data.kitchen;
+				console.log(that.accept)
+			}).catch(function(error) {
+				console.log(error)
+			});
+			axios.get('/api/shop/list', {
+				params: {
+					begin: this.begin,
+					num: 5
+				}
+			}).then(function(res) {
+				that.shopList = res.data.shopList;
+				console.log(res)
+				that.begin += 5;
 			}).catch(function(error) {
 				console.log(error)
 			});
@@ -256,12 +428,13 @@
 	}
 </script>
 
-<style scoped="scoped">
+<style lang="scss" scoped="scoped">
 	::-webkit-scrollbar {
 		width: 0;
 		height: 0;
 		display: none;
 	}
+	
 	/*导航栏*/
 	
 	nav {
@@ -299,8 +472,10 @@
 	/*推荐内容*/
 	
 	.content {
+		width: 100%;
 		padding-bottom: 1.33rem;
 	}
+	
 	/*公告*/
 	
 	.notice {
@@ -368,23 +543,23 @@
 		position: relative;
 		left: 0;
 		top: 0;
-	}
-	
-	.foreignImg_wrap p {
-		position: absolute;
-		font-size: 0.48rem;
-		bottom: 0.13rem;
-		color: darkgray;
+		p {
+			position: absolute;
+			font-size: 0.48rem;
+			bottom: 0.13rem;
+			color: darkgray;
+		}
 	}
 	/*新品*/
 	
-	.new,.kill {
+	.new,.kill,.show {
 		background: linear-gradient(#fafafa, #ffffff);
 		padding-bottom: 0.4rem;
+		width: 100%;
 	}
 	
 	.new img {
-		width: 3.6rem;
+		width: 100%;
 		height: 3.6rem;
 	}
 	
@@ -406,16 +581,16 @@
 	
 	.new_content {
 		height: 5.46rem;
-		width: 9.46rem;
+		width: 94.7%;
 		margin: 0 auto;
-		display: flex;
-		/*justify-content: space-around;*/
-		align-items: center;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		overflow-x: scroll;
 	}
 	
 	.new_wrap {
-		width: 3.6rem;
+		width: 38%;
 		margin-right: 0.13rem;
 	}
 	
@@ -431,14 +606,14 @@
 	}
 	
 	.new_wrap div {
-		width: 3.6rem;
+		width: 100%;
 		height: 3.6rem;
 		overflow: hidden;
 		border-radius: 0.13rem;
 	}
 	
 	/*秒杀*/
-	.kill>p {
+	.kill>p,.show>p,.list>p {
 		width: 100%;
 		text-align: center;
 		color: #494949;
@@ -485,4 +660,79 @@
 		background: #191919;
 		transition: 0.3s;
 	}
+	/*猜你喜欢*/
+	.list {
+		width: 94%;
+		margin: 0 auto;
+		background: linear-gradient(#fafafa , #ffffff);
+		padding-bottom: 0.4rem;
+	}
+	.shopList {
+		margin-bottom: 0.4rem;
+	}
+	.list_name {
+		color: #494949;
+		font-size: 0.37rem;
+		padding: 0.13rem 0;
+	}
+	.list_txt {
+		color: #5b5b5b;
+		padding: 0.13rem;
+	}
+	.buy {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: 0.53rem;
+		margin-top: 0.26rem;
+	}
+	.buy span {
+		color: red;
+		font-size: 0.37rem;
+	}
+	#buy {
+		font-size: 0.37rem;
+		width: 1.6rem;
+		line-height: 0.66rem;
+		border: 0.02rem solid #494949;
+		border-radius: 0.13rem;
+		text-align: center;
+	}
+	
+	/*暂无更多*/
+	.nomore{
+        text-align:center;
+        overflow:hidden;
+        padding: 0.3rem;
+    }
+    .nomore .text{
+        padding:10px 20px;
+        position: relative;
+        font-size: 0.34rem;
+        line-height: 0.4rem;
+        color: gray;
+    }
+    .nomore .text::before,
+    .nomore .text::after{
+        position:absolute;
+        top:50%;
+        border-top:1px solid gray;
+        content:'';
+        height:0;
+        width:2.933333rem;
+    }
+    .nomore .text::before{
+        right:100%;
+    }
+    .nomore .text::after{
+        left:100%;
+    }
+	
 </style>

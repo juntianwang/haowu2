@@ -29,7 +29,7 @@
 //					autoplay: 3500,
 					setWrapperSize: true,
 					//分页器
-					pagination: this.pagination,
+					pagination: this.swiperSlides.pagination,
 					//分页器控制
 					paginationClickable: true,
 					//鼠标滑轮控制
@@ -39,14 +39,16 @@
 					//手动滑动后自动滑动
 					autoplayDisableOnInteraction: false,
 					//循环
-//					loop: true
+					loop: true
 				},
 			}
+		},
+		mounted() {
 		}
 	}
 </script>
 
-<style scoped="scoped">
+<style lang="scss" scoped="scoped">
 	
 	.slideImg {
 		width: 100%;
