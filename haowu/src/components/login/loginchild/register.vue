@@ -31,7 +31,7 @@ methods:{
 		console.log(ipt.value)
 		axios({
 			  url: '/register',
-			  method: 'post',
+			  method: 'get',
 			  params:{user:ipt.value}
 		}).then((res) => {
       		if(err == 1){
