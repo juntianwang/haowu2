@@ -1,7 +1,7 @@
 <template>
 	<div class="cart">
 		<div class="cart_head">
-			<h6>我的购物车</h6>
+			<h6>你的购物车</h6>
 			<ul class="u1">
 				<li v-for="item in cartArr">
 					<img src="../../../static/cart_img/gou.png"/>
