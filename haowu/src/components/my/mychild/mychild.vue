@@ -66,7 +66,7 @@ export default {
 		},
 		myOrder (i) {
 			console.log(i)
-			this.$router.push({name:''})
+			this.$router.push({name:'',params:{name:i}})
 		},
 		to (i) {
 			console.log(i)
