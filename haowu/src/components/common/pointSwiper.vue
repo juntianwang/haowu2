@@ -56,8 +56,7 @@
 		left:0.33rem;
 		z-index: 3;
 	}
-}
-#pointSwiper>div:nth-child(2):after{
+	>div:nth-child(2):after{
 		content: "";
 		display:inline-block;
 		width: 0.8rem;
@@ -68,6 +67,7 @@
 		background-size: 75% 75%;
 		
 	}
+}
 #pointSwiper  .swiper-container>div>div>img{
  	width: 100%;
  	height: 100%;
