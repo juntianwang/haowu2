@@ -1,22 +1,22 @@
 <template>
-	<div>shop456
-		<swiper :swiperSlides="swiperSlides"></swiper>
+	<div>
+		<app-nav></app-nav>
 	</div>
 	
 </template>
 
 <script>
+	import AppNav from "../common/AppNav"
 	import axios from 'axios'; //先引入axios数据请求模块
-	import Swiper from "./Swiper";
 	
 	export default {
 		data() {
 			return {
-				swiperSlides: [1,23,4],
+			
 			}
 		},
 		components: {
-			Swiper
+			AppNav,
 		}
 	}
 </script>

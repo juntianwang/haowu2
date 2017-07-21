@@ -6,6 +6,8 @@ import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
 
+import goodsDetails from '@/components/common/goodsDetails';
+
 import entrance from '@/components/entrance/entrance'
 
 //注册
@@ -18,6 +20,7 @@ import debark from '@/components/login/loginchild/debark'
 
 //my
 import mychild from '@/components/my/mychild/mychild'
+
 import setting from '@/components/my/mychild/setting'
 import setserve from '@/components/my/mychild/setserve'
 import me from '@/components/my/mychild/me'
@@ -32,6 +35,14 @@ import payHome from '@/components/cart/pay/payHome'
 import shopAddr from '@/components/cart/pay/shopAddr'
 import editAddr from '@/components/cart/pay/editAddr'
 import reviseAddr from '@/components/cart/pay/reviseAddr'
+
+
+import myOrder from '@/components/my/mychild/myOrder'
+import mywallet from '@/components/my/mychild/mywallet'
+import commonP from '@/components/my/mychild/commonP'
+import mywithdrawal from '@/components/my/mychild/mywithdrawal'
+import mybookeddetails from '@/components/my/mychild/mybookeddetails'
+import mystrategy from '@/components/my/mychild/mystrategy'
 
 
 Vue.use(Router)
@@ -71,6 +82,36 @@ export default new Router({
             { path: "/mychild/me",name:"me",component:me },
             { path: "/mychild/idea",name:"idea",component:idea },
             { path: "/mychild/changingname",name:"changingname",component:changingname },
+            {
+					path: "/my/mychild/myOrder",
+					name: "myOrder",
+					component: myOrder
+				},
+				{
+					path: "/my/mychild/mywallet",
+					name: "mywalletr",
+					component: mywallet,
+				},
+				{
+					path: "/my/mychild/commonP",
+					name: "commonP",
+					component: commonP,
+				},
+				{
+					path: "/my/mychild/mywithdrawal",
+					name: "mywithdrawal",
+					component: mywithdrawal,
+				},
+				{
+					path: "/my/mychild/mybookeddetails",
+					name: "mybookeddetails",
+					component: mybookeddetails,
+				},
+				{
+					path: "/my/mychild/mystrategy",
+					name: "mystrategy",
+					component: mystrategy,
+				}
             
             
         ]
@@ -96,6 +137,12 @@ export default new Router({
             { path: "/login/password",name:"password",component: pass },
             {path: "/login/debark",name:"debark",component: debark}  
         ]
-    }
+    },
+    {
+			path: '/goodsDetails',
+			name: 'goodsDetails',
+			component: goodsDetails
+		}
   ]
 })
+

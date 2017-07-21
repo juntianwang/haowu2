@@ -29,16 +29,18 @@
 			</p>
 		</div>
 		<div class="my-list">
-			<p v-for="item in list" @click="to(item.to)">	
+			<p v-for="item in list" @click="to(item.to,item.txt)">	
 				{{item.txt}}
 				<span></span>
 				<em>{{item.span}}</em>
 			</p>
 		</div>
-		
+		<app-nav></app-nav>
 	</div>
+	
 </template>
 <script>
+import AppNav from "../../common/AppNav"
 export default {
 	data () {
 		return {
@@ -46,7 +48,7 @@ export default {
 			{txt:'退货 / 售后',span:"",to:"/1"},
 			{txt:'商城客服',span:"",to:"/2"},
 			{txt:'',span:"",to:""},
-			{txt:'我的钱包',span:"￥0.00",to:"/3"},
+			{txt:'我的钱包',span:"￥0.00",to:"mywalletr"},
 			{txt:'我的积分',span:"0",to:"/4"},
 			{txt:'我的优惠卷',span:"2张",to:"/5"},
 			{txt:'',span:"",to:""},
@@ -69,23 +71,24 @@ export default {
 			this.$router.push({name:'login'})	
 		},
 		myOrder (i) {
-			console.log(i)
-			this.$router.push({name:''})
+			this.$router.push({name:'myOrder',params:{name:i}})
 		},
-		to (i) {
-			console.log(i)
+		to (to,txt) {
+			this.$router.push({name:to,params:{name:txt}})
 		},
 		set1 () {
 			this.$router.push({name:'setting',params:{name:'设置'}})
 		},
 		set2 () {
 			this.$router.push({name:'login'})
+
 		}
 	},
 	mounted (){
 		if(window.sessionStorage.ures == undefined){
 			this.loginBol = false;
 		}
+
 		//头部动画
 		window.onscroll = () =>{
 			if(this.loginBol==false){
@@ -104,6 +107,9 @@ export default {
 				span.style.backgroundImage = "url(../../../../static/my/setting1.png)"
 			}
 		}
+	},
+	components: {
+			AppNav,
 	}
 }
 </script>

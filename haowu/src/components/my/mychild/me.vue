@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import headerD from "./header"
+import headerD from "../../common/header"
 export default {
 	
 	components:{

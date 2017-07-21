@@ -10,7 +10,7 @@
 
 <script>
 import axios from 'axios'
-import headerD from "./header"
+import headerD from "../../common/header"
 export default {
 	components:{
   		headerD

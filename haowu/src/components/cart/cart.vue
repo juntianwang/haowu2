@@ -1,7 +1,7 @@
 <template>
 	<div class="cart">
 		<div class="cart_head">
-			<h6>你的购物车</h6>
+			<h6>我的购物车</h6>
 			<ul class="u1">
 				<li v-for="item in cartArr">
 					<img src="../../../static/cart_img/gou.png"/>
@@ -27,11 +27,12 @@
 		</div>
 		<car-msg v-show="!cartbol"></car-msg>
 		
-		
+		<app-nav></app-nav>
 	</div>
 </template>
 
 <script>
+	import AppNav from "../common/AppNav"
 	import axios from 'axios'
 	import carMsg from './carMsg'
 	export default {
@@ -43,11 +44,21 @@
 			}
 		},
 		computed: {
-			author () {
-
+			cargoods () {
+				return this.$store.state.cargoods
+			}
+		},
+		watch: {
+			cargoods () {
+				if (this.cargoods.length==0) {
+					this.cartbol = true;
+				}else{
+					this.cartbol = false;
+				}
 			}
 		},
 		components: {
+			AppNav,
 			carMsg	
 		},
 		methods: {
@@ -64,7 +75,7 @@
 			axios.get("/cart/pic")
 				 .then((response)=>{
 //				 	console.log(response.data.cartpic[0]);
-				 	this.cartshowpic = response.data.cartpic;
+//				 	this.cartshowpic = response.data.cartpic;
 			});
 		}
 	}

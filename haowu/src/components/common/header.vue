@@ -36,10 +36,11 @@
 		width: 100%;
 		text-align: center;
 		line-height: 1.06rem;
-		color: #4A4A4A;
+		color: #818181;
 		font-size: 0.4rem;
 		border-bottom:0.026666rem solid #ededed;
 		background: #fff;
+		z-index: 1000;
 		>div:nth-of-type(1) {
 			position: absolute;
 			top: 0;
@@ -57,7 +58,7 @@
 				height: 100%;
 				top: 0;
 				left: -90%;
-				background: url(../../../../static/my/left_chat.png) no-repeat center;
+				background: url(../../../static/entrance/left_chat.png) no-repeat center;
 				background-position-y:45%;
 				background-size: 55%;
 			}
