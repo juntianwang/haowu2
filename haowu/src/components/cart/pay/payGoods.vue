@@ -28,9 +28,9 @@
 			}
 		},
 		computed: {
-//			cargoods () {
-//				return this.$store.state.cargoods
-//			}
+			cargoods () {
+				return this.$store.state.cargoods
+			}
 		},
 		mounted: function () {
 			this.paygoodsArr = this.$store.state.cargoods;

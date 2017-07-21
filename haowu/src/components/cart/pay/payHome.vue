@@ -8,6 +8,9 @@
 				<img src="../../../../static/cart_img/more.png"/>
 			</div>
 		</div>
+		<div class="haveAdd">
+			
+		</div>
 		<div class="coupon" @click="paycoupon">
 			<span>选择优惠券</span>
 			<div>
@@ -41,6 +44,16 @@
 			    addmsg: true
 			}
 		
+		},
+		computed: {
+			addrarr () {
+//				return this.$store.state.addrArr
+			}				
+		},
+		watch: {
+			addrarr () {
+//				this.countnum = this.$store.state.addrArr;
+			}
 		},
 		methods: {
 			shopaddr () {
