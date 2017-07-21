@@ -186,10 +186,11 @@
 			margin-top: 0.26rem;
 			width: 4.66rem;
 			background: white;
-			border-radius: 0.2rem;
+			border-radius: 0.15rem;
 			.newest-content-img {
 				width: 100%;
 				img {
+					border-radius: 0.15rem 0.15rem 0 0/0.15rem 0.15rem 0 0;
 					width: 100%;
 				}
 			}
