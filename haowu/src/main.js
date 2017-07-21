@@ -17,6 +17,7 @@ import './assets/js/jquery-3.1.1.min.js'
 //mock引入
 import "../test/mock.js"
 
+
 Vue.config.productionTip = false
 
 
