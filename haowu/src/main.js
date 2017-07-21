@@ -12,6 +12,8 @@ import Vuex from 'vuex'
 import store from './vuex/store'
 Vue.use(Vuex)
 
+import './assets/js/jquery-3.1.1.min.js'
+
 //mock引入
 import "../test/mock.js"
 
@@ -22,6 +24,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
