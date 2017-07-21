@@ -5,9 +5,11 @@ import shopping from '@/components/shopping/shopping'
 import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
-
+//公共
 import goodsDetails from '@/components/common/goodsDetails';
 
+
+//
 import entrance from '@/components/entrance/entrance'
 
 //注册
@@ -26,6 +28,7 @@ import commonP from '@/components/my/mychild/commonP'
 import mywithdrawal from '@/components/my/mychild/mywithdrawal'
 import mybookeddetails from '@/components/my/mychild/mybookeddetails'
 import mystrategy from '@/components/my/mychild/mystrategy'
+import myintegral from '@/components/my/mychild/myintegral'
 
 Vue.use(Router)
 
@@ -78,7 +81,13 @@ export default new Router({
 					path: "/my/mychild/mystrategy",
 					name: "mystrategy",
 					component: mystrategy,
-				}
+				},
+				
+				{
+					path: "/my/mychild/myintegral",
+					name: "myintegral",
+					component: myintegral,
+				},
 			]
 		},
 		{

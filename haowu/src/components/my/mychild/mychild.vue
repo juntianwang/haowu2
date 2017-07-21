@@ -44,7 +44,7 @@ export default {
 			{txt:'商城客服',span:"",to:"/2"},
 			{txt:'',span:"",to:""},
 			{txt:'我的钱包',span:"￥0.00",to:"mywalletr"},
-			{txt:'我的积分',span:"0",to:"/4"},
+			{txt:'我的积分',span:"0",to:"myintegral"},
 			{txt:'我的优惠卷',span:"2张",to:"/5"},
 			{txt:'',span:"",to:""},
 			{txt:'边分享边赚钱',span:"定金金额的5%归你",to:"/6"},
