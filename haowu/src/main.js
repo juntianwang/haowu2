@@ -15,6 +15,7 @@ Vue.use(Vuex)
 //mock引入
 import "../test/mock.js"
 
+
 Vue.config.productionTip = false
 
 
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
