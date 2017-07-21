@@ -1,7 +1,7 @@
 <template>
 	<div class="addrarr">
 		<ul>
-			<li v-for="(item,index) in addrArr">
+			<li v-for="(item,index) in addrArr" @click="tocarthome(index)">
 				<div>
 					<span>{{item.name}}</span>
 					<p>{{item.phone}}</p>
@@ -10,11 +10,11 @@
 				<div>
 					
 					<div>
-						<div @click="editaddr(index)">
+						<div @click.stop="editaddr(index)">
 							<img src="../../../../static/cart_img/edit.png"/>
 							<span>编辑</span>
 						</div>
-						<div @click="deladdr(index)">
+						<div @click.stop="deladdr(index)">
 							<img src="../../../../static/cart_img/icon_adapter_address_list_delete 2.png"/>
 							<span>删除</span>
 						</div>
@@ -23,7 +23,7 @@
 				</div>
 			</li>
 		</ul>
-		<span class="moren">默认地址</span>
+		<span class="moren" v-show="morenbol">默认地址</span>
 	</div>
 </template>
 
@@ -31,7 +31,7 @@
 	export default {
 		data () {
 			return {
-
+				morenbol: false
 			}
 		},
 		computed: {
@@ -39,9 +39,33 @@
 				return this.$store.state.addrArr
 			}
 		},
+		watch: {
+			addrArr () {
+				if (this.addrArr.length==0) {
+					this.morenbol = false;
+				}else{
+					this.morenbol = true;
+				}
+			}
+		},
+		mounted: function(){
+			this.$store.state.showAddr = this.addrArr[0]
+//			console.log(this.$store.state.addrArr)
+			if (this.addrArr.length==0) {
+				this.morenbol = false;
+			}else{
+				this.morenbol = true;
+			}	
+		},
 		methods: {
+			tocarthome (k) {
+				this.$store.state.showAddr = {};
+				this.$store.state.showAddr = this.addrArr[k];
+//				console.log(this.$store.state.showAddr)
+				this.$router.push({name:"payHome"});
+			},
 			deladdr (k) {
-				this.$store.state.addrArr.splice(k,1)
+				this.addrArr.splice(k,1)
 			},
 			editaddr (k) {
 				this.$router.push({name:"reviseAddr",query:{data:"修改地址",index:k}});

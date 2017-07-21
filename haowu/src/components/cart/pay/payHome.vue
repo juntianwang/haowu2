@@ -8,9 +8,20 @@
 				<img src="../../../../static/cart_img/more.png"/>
 			</div>
 		</div>
-		<div class="haveAdd">
+		<div class="haveAdd" v-show="!addmsg" @click="shopaddr">
+			<div><img src="../../../../static/cart_img/icon_address_list_loading 2.png"/></div>
+			<div>
+				<span>收货人：{{showAddr.name}}</span>
+				<p>{{showAddr.address}}</p>
+			</div>
+			<div><span>{{showAddr.phone}}</span></div>
+			<div>
+				<img src="../../../../static/cart_img/more.png"/>
+			</div>
+
 			
 		</div>
+		<img v-show="!addmsg" src="../../../../static/cart_img/address_divider.png" class="xian"/>
 		<div class="coupon" @click="paycoupon">
 			<span>选择优惠券</span>
 			<div>
@@ -20,7 +31,7 @@
 		</div>
 		<div class="totalprice">
 			<span>商品合计</span>
-			<div><span>￥5580</span></div>
+			<div><span>￥{{aa}}</span></div>
 		</div>
 		<div class="freight">
 			<span>运费</span>
@@ -41,27 +52,63 @@
 		data () {
 			return {
 			    title: '填写订单',
+			    arr: [{"name":"aa","phone":135,"address":"aa"}],
 			    addmsg: true
 			}
 		
 		},
 		computed: {
-			addrarr () {
-//				return this.$store.state.addrArr
-			}				
+			priceSum () {
+				return this.$route.query.data
+			},
+			aa () {
+				return this.$store.state.aa
+			},
+			showAddr () {
+				return this.$store.state.showAddr
+			},
+			addrArr () {
+				return this.$store.state.addrArr
+			}
 		},
 		watch: {
-			addrarr () {
-//				this.countnum = this.$store.state.addrArr;
+			addrArr () {
+
+				if (this.addrArr.length==0) {
+					this.addmsg = true;
+					this.arr = [{"name":"","phone":135,"address":""}];
+
+				}else{
+//					this.showAddr = this.addrArr[0];
+					this.addmsg = false;
+
+				}
 			}
 		},
 		methods: {
 			shopaddr () {
-				console.log("aaa")
+//				console.log("aaa")
 				this.$router.push({name:"shopAddr"})
 			},
+
 			paycoupon () {
 				this.$router.push({name:"payCoupon"})
+			}
+		},
+		mounted: function() {
+
+			
+			console.log(this.$store.state.showAddr)
+			if (this.addrArr.length==0) {
+					this.addmsg = true;
+
+				}else{
+//					this.$store.state.showAddr = {};
+//					this.$store.state.showAddr = this.addrArr[0];
+	
+
+					this.addmsg = false;
+
 			}
 		},
 		components: { payHeader,payGoods,payCoupon }
@@ -110,6 +157,34 @@
 			}	
 		}
 	}
+	.haveAdd{
+		padding-left: 0.26rem;
+		height: 1.7rem;
+		 display: flex;
+		 font-size: 0.4rem;
+		/*justify-content: center;水平居中*/
+		/*flex-wrap: wrap;里面内容超出自动换行*/
+		align-items: center;
+		div:nth-child(2){
+			width: 4rem;
+			margin: 0.4rem 0.4rem;
+			p{
+				margin-top: 0.26rem;
+			}
+		}
+		div:nth-child(3){
+			width: 2.66rem;
+			text-align: right;
+		}
+		img{
+			width: 0.7rem;
+		}
+
+	}
+		.xian{
+			width: 100%;
+		}	
+	
 	.totalprice{
 		height: 1.4rem;
 		display: flex;

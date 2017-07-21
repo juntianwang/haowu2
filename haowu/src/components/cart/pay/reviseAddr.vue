@@ -35,7 +35,7 @@
 			}
 		},
 		mounted: function() {
-			console.log(this.addrArr);
+//			console.log(this.addrArr);
 			var index = this.$route.query.index;
 			var that = this;
 			this.xiabiao = index;
