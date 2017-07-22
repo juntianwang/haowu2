@@ -39,7 +39,7 @@
 		line-height: 1.06rem;
 		color: #818181;
 		font-size: 0.4rem;
-		border-bottom:0.026666rem solid #ededed;
+		border-bottom:0.05rem solid #ededed;
 		background: #fff;
 		z-index: 1000;
 		>div:nth-of-type(1) {

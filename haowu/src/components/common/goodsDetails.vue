@@ -288,9 +288,9 @@
 				}
 			}
 			.content {
+				text-align: center;
 				img {
-					display: block;
-					margin: 0 auto;
+					display: inline-block;
 				}
 			}
 			>div:nth-of-type(3) {
