@@ -13,7 +13,7 @@ export default {
 	data () {
 		return {
 			list:[
-			{txt:'头像',to:'setserve',title:''},
+			{txt:'头像',to:'dome',title:''},
 			{txt:'修改用户名',to:'changingname',title:'修改用户名'},
 //			{txt:'更换手机号',to:'setserve',title:'更换手机号'},
 			{txt:'意见反馈',to:'idea',title:'意见反馈'},

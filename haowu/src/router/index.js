@@ -45,6 +45,7 @@ import commonP from '@/components/my/mychild/commonP'
 import mywithdrawal from '@/components/my/mychild/mywithdrawal'
 import mybookeddetails from '@/components/my/mychild/mybookeddetails'
 import mystrategy from '@/components/my/mychild/mystrategy'
+import dome from '@/components/my/mychild/dome'
 
 
 Vue.use(Router)
@@ -80,41 +81,22 @@ export default new Router({
       component: my,
       children: [
       		{ path: "/my/", component: mychild },
-            { path: "/mychild/setting",name:"setting",component:setting },
-            { path: "/mychild/setserve",name:"setserve",component:setserve },
-            { path: "/mychild/me",name:"me",component:me },
-            { path: "/mychild/idea",name:"idea",component:idea },
-            { path: "/mychild/changingname",name:"changingname",component:changingname },
-            {
-					path: "/my/mychild/myOrder",
-					name: "myOrder",
-					component: myOrder
-				},
-				{
-					path: "/my/mychild/mywallet",
-					name: "mywalletr",
-					component: mywallet,
-				},
-				{
-					path: "/my/mychild/commonP",
-					name: "commonP",
-					component: commonP,
-				},
-				{
-					path: "/my/mychild/mywithdrawal",
-					name: "mywithdrawal",
-					component: mywithdrawal,
-				},
-				{
-					path: "/my/mychild/mybookeddetails",
-					name: "mybookeddetails",
-					component: mybookeddetails,
-				},
-				{
-					path: "/my/mychild/mystrategy",
-					name: "mystrategy",
-					component: mystrategy,
-				}
+            { path: "/my/setting",name:"setting",component:setting },
+            { path: "/my/setserve",name:"setserve",component:setserve },
+            { path: "/my/me",name:"me",component:me },
+            { path: "/my/idea",name:"idea",component:idea },
+            { path: "/my/changingname",name:"changingname",component:changingname},
+            { path: "/my/mychild/myOrder",name: "myOrder",component: myOrder},
+			{ path: "/my/mychild/mywallet",name: "mywalletr",component: mywallet},
+			{ path: "/my/mychild/commonP",name: "commonP",component: commonP},
+			{ path: "/my/mychild/mywithdrawal",name: "mywithdrawal",component: mywithdrawal,},
+			{
+				path: "/my/mychild/mybookeddetails",
+				name:"mybookeddetails",component:mybookeddetails},
+			{ path: "/my/mychild/mystrategy",name: "mystrategy",component: mystrategy},
+			//测试
+			{ path: "/my/dome",name: "dome",component: dome},
+			
             
             
         ]

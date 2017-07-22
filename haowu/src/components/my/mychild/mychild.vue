@@ -86,7 +86,7 @@ export default {
 	},
 	mounted (){
 		if(window.sessionStorage.ures == undefined){
-			this.loginBol = false;
+//			this.loginBol = false;
 		}
 
 		//头部动画
