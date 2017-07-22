@@ -1,122 +1,125 @@
 <template>
 	<div id="shopping">
-		<div class="header">
-			<search-header></search-header>
-		</div>
-		<nav>
-			<div v-for="(item,index) in nav" @click="tabNav(index)" :class="{navOn:item.bol}">{{item.nav}}</div>
-			<div class="nav_tab" :style="{left: tabLeft}"></div>
-		</nav>
-		<mt-tab-container v-model="active" :swipeable="true">
-			<mt-tab-container-item id="tab0">
-				<div class="content" v-show="navBol[0]">
-					<!---->
-					<swiper :swiperSlides="banner" class="banner_swiper"></swiper>
-					<div class="notice">
-						<img src="../../../static/shopping/notice.png" />
-						<span>极客购公告</span>
-						<span>关于退换货服务</span>
-					</div>
-					<!---->
-					<div class="foreignCar">
-						<p>欧美生活直通车</p>
-						<div class="foreignCar_content">
-							<div class="foreignImg_wrap">
-								<img :src="foreignCar[0].pic" alt="" />
-								<p class="forefinCar_content_txt">{{foreignCar[0].txt}}</p>
+		<transition name="shop">
+			<div style="width: 100%;">
+				<div class="header">
+					<search-header></search-header>
+				</div>
+				<nav>
+					<div v-for="(item,index) in nav" @click="tabNav(index)" :class="{navOn:item.bol}">{{item.nav}}</div>
+					<div class="nav_tab" :style="{left: tabLeft}"></div>
+				</nav>
+				<mt-tab-container v-model="active" :swipeable="true">
+					<mt-tab-container-item id="tab0">
+						<div class="content">
+							<!---->
+							<swiper :swiperSlides="banner" class="banner_swiper"></swiper>
+							<div class="notice">
+								<img src="../../../static/shopping/notice.png" />
+								<span>极客购公告</span>
+								<span>关于退换货服务</span>
 							</div>
-							<div>
-								<div class="foreignImg_wrap" style="padding-bottom: 0.11rem;">
-									<img :src="foreignCar[1].pic" alt="" />
-									<p class="forefinCar_content_txt">{{foreignCar[1].txt}}</p>
+							<!---->
+							<div class="foreignCar">
+								<p>欧美生活直通车</p>
+								<div class="foreignCar_content">
+									<div class="foreignImg_wrap">
+										<img :src="foreignCar[0].pic" alt="" />
+										<p class="forefinCar_content_txt">{{foreignCar[0].txt}}</p>
+									</div>
+									<div>
+										<div class="foreignImg_wrap" style="padding-bottom: 0.11rem;">
+											<img :src="foreignCar[1].pic" alt="" />
+											<p class="forefinCar_content_txt">{{foreignCar[1].txt}}</p>
+										</div>
+										<div class="foreignImg_wrap" style="padding-top: 0.11rem;">
+											<img :src="foreignCar[2].pic" alt="" />
+											<p class="forefinCar_content_txt">{{foreignCar[2].txt}}</p>
+										</div>
+									</div>
 								</div>
-								<div class="foreignImg_wrap" style="padding-top: 0.11rem;">
-									<img :src="foreignCar[2].pic" alt="" />
-									<p class="forefinCar_content_txt">{{foreignCar[2].txt}}</p>
+							</div>
+							<!---->
+							<div class="new">
+								<p>周一周四-新品首发</p>
+								<div class="new_content" @touchmove.stop="move()">
+									<div class="new_wrap" v-for="(item,index) in newList" @click="tap(item.name)">
+										<div>
+											<img :src="item.pic" alt="" />
+										</div>
+										<p>{{item.name}}</p>
+										<p>￥{{item.money}}</p>
+									</div>
+								</div>
+								<p>查看所有新品 ></p>
+							</div>
+							<!---->
+							<div class="kill">
+								<p>周五周日 - 零点秒杀</p>
+								<div class="killTime">
+									<img :src="killTime.pic" alt="" />
+									<span>{{killTime.day}}</span>
+									<span>周五</span>
+									<span>0:00-0:30</span>
+								</div>
+								<kill-swiper :swiperSlides="kill" @progress="getProgress"></kill-swiper>
+								<div class="progress">
+									<div class="proLine"></div>
+									<div class="proLine" id="proLine" :style="{width: progress_k + '%',background: killColor}"></div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<!---->
-					<div class="new">
-						<p>周一周四-新品首发</p>
-						<div class="new_content" @touchmove.stop="move()">
-							<div class="new_wrap" v-for="(item,index) in newList">
-								<div>
-									<img :src="item.pic" alt="" />
+							<!---->
+							<div class="show">
+								<p>达人SHOW</p>
+								<show-swiper :swiperSlides="show"></show-swiper>
+								<div class="progress">
+									<div class="proLine"></div>
+									<div class="proLine" id="proLine" :style="{width: progress_s + '%',background: showColor}"></div>
 								</div>
-								<p>{{item.name}}</p>
-								<p>￥{{item.money}}</p>
+							</div>
+							<!---->
+							<div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+								<p>猜你喜欢</p>
+								<div v-for="(item,index) in moreList" class="shopList" @click="tap(item.name)">
+									<swiper :swiperSlides="item.list"></swiper>
+									<p class="list_name">{{item.name}}</p>
+									<p class="list_txt">{{item.txt}}</p>
+									<div class="buy">
+										<span>￥{{item.money}}</span>
+										<div id="buy">购买</div>
+									</div>
+								</div>
+							</div>
+							<!---->
+							<div class="nomore" v-if="moreBol">
+								<span class="text">暂无更多</span>
 							</div>
 						</div>
-						<p>查看所有新品 ></p>
-					</div>
-					<!---->
-					<div class="kill">
-						<p>周五周日 - 零点秒杀</p>
-						<div class="killTime">
-							<img :src="killTime.pic" alt="" />
-							<span>{{killTime.day}}</span>
-							<span>周五</span>
-							<span>0:00-0:30</span>
+					</mt-tab-container-item>
+					<mt-tab-container-item id="tab1">
+						<div class="content">
+							<shop-other :otherContent="decoration"></shop-other>
 						</div>
-						<kill-swiper :swiperSlides="kill" @progress="getProgress"></kill-swiper>
-						<div class="progress">
-							<div class="proLine"></div>
-							<div class="proLine" id="proLine" :style="{width: progress_k + '%',background: killColor}"></div>
+					</mt-tab-container-item>
+					<mt-tab-container-item id="tab2">
+						<div class="content">
+							<shop-other :otherContent="accept"></shop-other>
 						</div>
-					</div>
-					<!---->
-					<div class="show">
-						<p>达人SHOW</p>
-						<show-swiper :swiperSlides="show"></show-swiper>
-						<div class="progress">
-							<div class="proLine"></div>
-							<div class="proLine" id="proLine" :style="{width: progress_s + '%',background: showColor}"></div>
+					</mt-tab-container-item>
+					<mt-tab-container-item id="tab3">
+						<div class="content">
+							<shop-other :otherContent="kitchen"></shop-other>
 						</div>
-					</div>
-					<!---->
-					<div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-						<p>猜你喜欢</p>
-						<div v-for="(item,inex) in moreList" class="shopList">
-							<swiper :swiperSlides="item.list"></swiper>
-							<p class="list_name">{{item.name}}</p>
-							<p class="list_txt">{{item.txt}}</p>
-							<div class="buy">
-								<span>￥{{item.money}}</span>
-								<div id="buy">购买</div>
-							</div>
+					</mt-tab-container-item>
+					<mt-tab-container-item id="tab4">
+						<div class="content">
+							<shop-other :otherContent="textiles"></shop-other>
 						</div>
-					</div>
-					<!---->
-					<div class="nomore" v-if="moreBol">
-			   			 <span class="text">暂无更多</span>
-					</div>
-				</div>
-			</mt-tab-container-item>
-			<mt-tab-container-item id="tab1">
-				<div class="content" v-show="navBol[1]">
-					<shop-other :otherContent="decoration"></shop-other>
-				</div>
-			</mt-tab-container-item>
-			<mt-tab-container-item id="tab2">
-				<div class="content" v-show="navBol[2]">
-					<shop-other :otherContent="accept"></shop-other>
-				</div>
-			</mt-tab-container-item>
-			<mt-tab-container-item id="tab3">
-				<div class="content" v-show="navBol[3]">
-					<shop-other :otherContent="kitchen"></shop-other>
-				</div>
-			</mt-tab-container-item>
-			<mt-tab-container-item id="tab4">
-				<div class="content" v-show="navBol[4]">
-					<shop-other :otherContent="textiles"></shop-other>
-				</div>
-			</mt-tab-container-item>
-		</mt-tab-container>
+					</mt-tab-container-item>
+				</mt-tab-container>
+			</div>
+		</transition>
 	</div>
-
 </template>
 
 <script>
@@ -142,12 +145,12 @@
 	import showHead from '../../../static/shopping/headImg.jpg';
 	import otherBanner from '../../../static/shopping/otherBanner.png';
 	import otherList from '../../../static/shopping/otherList.png';
-	
+
 	export default {
 		data() {
 			return {
 				navBefore: 0,
-				navBol: [true,false,false,false,false],
+				navBol: [true, false, false, false, false],
 				//导航栏
 				tab: [{
 						nav: '推荐',
@@ -205,76 +208,151 @@
 					money: 20
 				}],
 				//秒杀时间
-				killTime: {day:'07月21日',pic:timeOut},
+				killTime: {
+					day: '07月21日',
+					pic: timeOut
+				},
 				kill: {
-					content: [{pic:kill1,name:'羽丝绒枕',money:49,moneyO:89}]
+					content: [{
+						pic: kill1,
+						name: '羽丝绒枕',
+						money: 49,
+						moneyO: 89
+					}]
 				},
 				progress_kill: 0,
 				killColor: '#191919',
 				//展示
 				show: {
-					content: [{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead}]
+					content: [{
+						pic: show1,
+						name: '极客',
+						like: 4,
+						collect: 8,
+						say: 1,
+						headImg: showHead
+					}]
 				},
 				progress_show: 0,
 				showColor: '#191919',
 				//商品列表
 				begin: 0,
 				shopList: [{
-					pic: [show1,show1],
+					pic: [show1, show1],
 					name: '小清新客厅套',
 					money: 200,
 					txt: '用自然的元素点缀，简雅秀气，随处可见心思',
 					list: {
-						content: [show1,show1],
+						content: [show1, show1],
 						pagination: '.swiper-pagination'
 					}
 				}],
 				loading: false,
 				moreShopList: [],
-				moreBol : false,
+				moreBol: false,
 				//其他导航
 				decoration: {
 					index: 1,
 					title: 'decoration',
-					banner:otherBanner,
-					list:[
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					banner: otherBanner,
+					list: [{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						}
 					]
 				},
 				textiles: {
 					index: 4,
 					title: 'textiles',
-					banner:otherBanner,
-					list:[
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					banner: otherBanner,
+					list: [{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						}
 					]
 				},
 				kitchen: {
 					index: 3,
 					title: 'kitchen',
-					banner:otherBanner,
-					list:[
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					banner: otherBanner,
+					list: [{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						}
 					]
 				},
 				accept: {
 					index: 2,
 					title: 'accept',
-					banner:otherBanner,
-					list:[
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28},
-						{pic:otherList,name:'厨房系列柠檬画',money:28}
+					banner: otherBanner,
+					list: [{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						},
+						{
+							pic: otherList,
+							name: '厨房系列柠檬画',
+							money: 28
+						}
 					]
 				}
 			}
@@ -284,7 +362,7 @@
 			searchHeader,
 			killSwiper,
 			showSwiper,
-			shopOther	
+			shopOther
 		},
 		methods: {
 			tabNav(index) {
@@ -296,8 +374,11 @@
 			getProgress(msg) {},
 			//上拉加载
 			loadMore() {
-				var that = this;		
-				if (this.moreBol || this.navBefore != 0) {
+				var that = this;
+				if (this.loading) {
+					return false;
+				}
+				if(this.moreBol || this.navBefore != 0 || this.$store.state.detailBol) {
 					return;
 				}
 				this.loading = true;
@@ -310,11 +391,11 @@
 						begin: this.begin,
 						num: 5
 					}
-				}).then(function(res) {
-					that.shopList = res.data.shopList;
+				}).then(function(res) {	
 					console.log(res)
 					that.begin += 5;
 					setTimeout(() => {
+						that.moreShopList = res.data.shopList;
 						Indicator.close();
 						that.loading = false;
 					}, 1000)
@@ -325,6 +406,22 @@
 						that.loading = false;
 						that.moreBol = true;
 					}, 1000)
+				});
+			},
+			//详情
+			tap(index) {
+				var that = this;
+				axios.get('/api/shop/detail', {
+					params: {
+						search: index
+					}
+				}).then(function(res) {
+					that.$store.state.shopDetail = res.data.list;
+					that.$store.state.detailBol = true;
+					console.log(res.data.list);
+					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+				}).catch(function(error) {
+					console.log(error)
 				});
 			}
 		},
@@ -342,7 +439,7 @@
 			},
 			progress_k() {
 				this.progress_kill = (this.$store.state.progress_kill / this.kill.content.length) * 100;
-				if (this.progress_kill == 100) {
+				if(this.progress_kill == 100) {
 					this.killColor = '#81dcbd';
 				} else {
 					this.killColor = '#191919';
@@ -351,7 +448,7 @@
 			},
 			progress_s() {
 				this.progress_show = (this.$store.state.progress_show / this.show.content.length) * 100;
-				if (this.progress_show == 100) {
+				if(this.progress_show == 100) {
 					this.showColor = '#81dcbd';
 				} else {
 					this.showColor = '#191919';
@@ -359,16 +456,17 @@
 				return this.progress_show;
 			},
 			moreList() {
-				this.moreShopList = this.moreShopList.concat(this.shopList);
-				return this.moreShopList;
+				this.shopList = this.shopList.concat(this.moreShopList);
+				return this.shopList;
 			}
 		},
 		mounted() {
 			var that = this;
+			this.$store.state.detailBol = false;
 			//请求
 			axios.get('/api/shop', {
 				params: {
-					
+
 				}
 			}).then(function(res) {
 				that.newList = res.data.newList;
@@ -378,6 +476,9 @@
 				that.accept = res.data.accept;
 				that.textiles = res.data.textiles;
 				that.kitchen = res.data.kitchen;
+				for (let i = 0; i < that.show.content.length; i ++) {
+					that.$store.state.onBol.push({likeBol: false,collectBol: false})
+				}
 				console.log(that.accept)
 			}).catch(function(error) {
 				console.log(error)
@@ -389,7 +490,6 @@
 				}
 			}).then(function(res) {
 				that.shopList = res.data.shopList;
-				console.log(res)
 				that.begin += 5;
 			}).catch(function(error) {
 				console.log(error)
@@ -398,29 +498,29 @@
 			var nowTime = new Date();
 			var day = nowTime.getDate();
 			var week = nowTime.getDay();
-			nowTime.setDate(day + 7);		
-			if (week == 4) {
+			nowTime.setDate(day + 7);
+			if(week == 4) {
 				nowTime.setDate(day + 7);
-			} else if (week > 4) {
+			} else if(week > 4) {
 				nowTime.setDate(day + 7 - week + 4);
 			} else {
 				nowTime.setDate(4 - week);
 			};
-			this.killTime.day = '0' + (nowTime.getMonth()+1) + '月' + nowTime.getDate() + '日';
-//			//解决触摸bug
-//			this.$el.addEventListener("touchstart",function(e) {
-//				var e = e || window.event;
-//				var startPoint = e.touches[0];
-//				that.$el.addEventListener("touchmove",function(ev) {
-//					var ev = ev || window.event;
-//					var endPoint = ev.touches[0];
-//					var x = endPoint.clientX - startPoint.clientX;
-//					var y = endPoint.clientY - startPoint.clientY;
-//					if (Math.abs(x) >= 100) {
-//						ev.preventDefault();
-//					}
-//				})
-//			})
+			this.killTime.day = '0' + (nowTime.getMonth() + 1) + '月' + nowTime.getDate() + '日';
+			//			//解决触摸bug
+			//			this.$el.addEventListener("touchstart",function(e) {
+			//				var e = e || window.event;
+			//				var startPoint = e.touches[0];
+			//				that.$el.addEventListener("touchmove",function(ev) {
+			//					var ev = ev || window.event;
+			//					var endPoint = ev.touches[0];
+			//					var x = endPoint.clientX - startPoint.clientX;
+			//					var y = endPoint.clientY - startPoint.clientY;
+			//					if (Math.abs(x) >= 100) {
+			//						ev.preventDefault();
+			//					}
+			//				})
+			//			})
 		},
 		created() {
 			var that = this;
@@ -434,7 +534,6 @@
 		height: 0;
 		display: none;
 	}
-	
 	/*导航栏*/
 	
 	nav {
@@ -475,7 +574,6 @@
 		width: 100%;
 		padding-bottom: 1.33rem;
 	}
-	
 	/*公告*/
 	
 	.notice {
@@ -552,7 +650,9 @@
 	}
 	/*新品*/
 	
-	.new,.kill,.show {
+	.new,
+	.kill,
+	.show {
 		background: linear-gradient(#fafafa, #ffffff);
 		padding-bottom: 0.4rem;
 		width: 100%;
@@ -611,9 +711,11 @@
 		overflow: hidden;
 		border-radius: 0.13rem;
 	}
-	
 	/*秒杀*/
-	.kill>p,.show>p,.list>p {
+	
+	.kill>p,
+	.show>p,
+	.list>p {
 		width: 100%;
 		text-align: center;
 		color: #494949;
@@ -629,9 +731,11 @@
 		align-items: center;
 		justify-content: center;
 	}
+	
 	.killTime span {
 		padding: 0 0.05rem;
 	}
+	
 	.killTime img {
 		width: 0.32rem;
 		padding: 0 0.05rem;
@@ -646,6 +750,7 @@
 		top: 0;
 		overflow: hidden;
 	}
+	
 	.proLine {
 		width: 100%;
 		height: 0.13rem;
@@ -655,30 +760,36 @@
 		background: darkgray;
 		border-radius: 0.13rem;
 	}
+	
 	#proLine {
 		width: 0;
 		background: #191919;
 		transition: 0.3s;
 	}
 	/*猜你喜欢*/
+	
 	.list {
 		width: 94%;
 		margin: 0 auto;
-		background: linear-gradient(#fafafa , #ffffff);
+		background: linear-gradient(#fafafa, #ffffff);
 		padding-bottom: 0.4rem;
 	}
+	
 	.shopList {
 		margin-bottom: 0.4rem;
 	}
+	
 	.list_name {
 		color: #494949;
 		font-size: 0.37rem;
 		padding: 0.13rem 0;
 	}
+	
 	.list_txt {
 		color: #5b5b5b;
 		padding: 0.13rem;
 	}
+	
 	.buy {
 		display: -webkit-box;
 		display: -webkit-flex;
@@ -693,10 +804,12 @@
 		height: 0.53rem;
 		margin-top: 0.26rem;
 	}
+	
 	.buy span {
 		color: red;
 		font-size: 0.37rem;
 	}
+	
 	#buy {
 		font-size: 0.37rem;
 		width: 1.6rem;
@@ -705,34 +818,54 @@
 		border-radius: 0.13rem;
 		text-align: center;
 	}
-	
 	/*暂无更多*/
-	.nomore{
-        text-align:center;
-        overflow:hidden;
-        padding: 0.3rem;
-    }
-    .nomore .text{
-        padding:10px 20px;
-        position: relative;
-        font-size: 0.34rem;
-        line-height: 0.4rem;
-        color: gray;
-    }
-    .nomore .text::before,
-    .nomore .text::after{
-        position:absolute;
-        top:50%;
-        border-top:1px solid gray;
-        content:'';
-        height:0;
-        width:2.933333rem;
-    }
-    .nomore .text::before{
-        right:100%;
-    }
-    .nomore .text::after{
-        left:100%;
-    }
 	
+	.nomore {
+		text-align: center;
+		overflow: hidden;
+		padding: 0.3rem;
+	}
+	
+	.nomore .text {
+		padding: 10px 20px;
+		position: relative;
+		font-size: 0.34rem;
+		line-height: 0.4rem;
+		color: gray;
+	}
+	
+	.nomore .text::before,
+	.nomore .text::after {
+		position: absolute;
+		top: 50%;
+		border-top: 1px solid gray;
+		content: '';
+		height: 0;
+		width: 2.933333rem;
+	}
+	
+	.nomore .text::before {
+		right: 100%;
+	}
+	
+	.nomore .text::after {
+		left: 100%;
+	}
+	
+	/*跳详情页*/
+
+	
+	/*.shop-enter-active {
+		transition: all .5s ease;
+	}
+	
+	.shop-leave-active {
+		transition: all .5s ease;
+	}
+	
+	.shop-enter,
+	.shop-leave-to
+	{
+		opacity: 0;
+	}*/
 </style>

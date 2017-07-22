@@ -4,7 +4,7 @@
 			<img :src="otherContent.banner"/>
 		</div>
 		<div class="otherList clear" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-			<div class="list fl" v-for="(item,index) in otherContentList">
+			<div class="list fl" v-for="(item,index) in otherContentList" @click="tap(index)">
 				<div class="img">
 					<img :src="item.pic"/>
 				</div>
@@ -33,9 +33,28 @@
 			}
 		},
 		methods: {
+			tap(index) {
+				var that = this;
+				axios.get('/api/shop/detail', {
+					params: {
+						search: this.otherContentList[index].name
+					}
+				}).then(function(res) {
+					that.$store.state.shopDetail = res.data.list;
+					that.$store.state.detailBol = true;
+					that.$store.state.killBol = false;
+					console.log(res);
+					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+				}).catch(function(error) {
+					console.log(error)
+				});
+			},
 			loadMore() {
 				var that = this;
-				if (this.moreBol || this.$store.state.navBefore != this.otherContent.index) {
+				if (this.loading) {
+					return false;
+				}
+				if (this.moreBol || this.$store.state.navBefore != this.otherContent.index || this.$store.state.detailBol) {
 					return;
 				}
 				this.loading = true;
@@ -50,10 +69,10 @@
 						num: 10
 					}
 				}).then(function(res) {
-					that.contentList = res.data.list;
 					console.log(res)
 					that.begin += 10;
 					setTimeout(() => {
+						that.contentList = res.data.list;
 						Indicator.close();
 						that.loading = false;
 					}, 1000)
@@ -69,13 +88,12 @@
 		},
 		computed: {
 			otherContentList() {
-				this.arr = this.otherContent.list.concat(this.contentList);
+				this.otherContent.list = this.otherContent.list.concat(this.contentList);
 //				console.log(this.contentList)
-				return this.arr;
+				return this.otherContent.list;
 			}
 		},
 		mounted() {
-			console.log(this.arr)
 		}
 	}
 </script>

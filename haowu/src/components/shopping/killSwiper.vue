@@ -1,11 +1,11 @@
 <template>
-	<div id="killSwiper" @touchend="setProgress">
+	<div id="killSwiper">
 		<swiper :options="swiperOption">
 			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides.content" :key="index">
-				<div class="imgWrap">
+				<div class="imgWrap" @click="tap(slide.name)">
 					<img class="slideImg" :src="slide.pic" />
 				</div>
-				<div class="slideContent">
+				<div class="slideContent" @click="tap(slide.name)">
 					<p>{{slide.name}}</p>
 					<p>
 						<span style="font-size: 0.42rem;color: red;">￥{{slide.money}}</span>
@@ -23,6 +23,7 @@
 
 <script>
 	import Vue from 'vue';
+	import axios from 'axios';
 	import VueAwesomeSwiper from 'vue-awesome-swiper';
 	Vue.use(VueAwesomeSwiper);
 	import { swiper, swiperSlide } from 'vue-awesome-swiper';
@@ -51,6 +52,23 @@
 		},
 		methods: {
 			setProgress() {
+			},
+			tap(index) {
+				console.log(index)
+				var that = this;
+				axios.get('/api/shop/detail', {
+					params: {
+						search: index
+					}
+				}).then(function(res) {
+					that.$store.state.shopDetail = res.data.list;
+					that.$store.state.detailBol = true;
+					that.$store.state.killBol = true;
+					console.log(res.data.list);
+					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+				}).catch(function(error) {
+					console.log(error)
+				});
 			}
 		}
 	}
@@ -101,7 +119,7 @@
 		height: 0;
 		border: 0.02rem solid #494949;
 		left: 1.13rem;
-		top: 67.5%;
+		top: 63.5%;
 	}
 	.begin {
 		width: 2.66rem;

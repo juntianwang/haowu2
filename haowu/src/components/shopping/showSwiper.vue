@@ -9,9 +9,9 @@
 					<img :src="slide.pic" alt="" />
 				</div>
 				<div class="comment">
-					<div class="fl"><img src="../../../static/community/good.png" alt="" /><span>{{slide.like}}</span></div>
-					<div class="fl"><img src="../../../static/community/collect.png" alt="" /><span>{{slide.collect}}</span></div>
-					<div class="fl"><img src="../../../static/community/talk.png" alt="" /><span>{{slide.say}}</span></div>
+					<div class="fl" @click="tapLike(index)"><img :src="onBol[index].likeBol?pic.goods:pic.good" alt="" /><span>{{slide.like}}</span></div>
+					<div class="fl" @click="tapCollect(index)"><img :src="onBol[index].collectBol?pic.collects:pic.collect" alt="" /><span>{{slide.collect}}</span></div>
+					<div class="fl" @click="tapSay(index)"><img src="../../../static/community/talk.png" alt="" /><span>{{slide.say}}</span></div>
 				</div>
 				<p class="txt">{{slide.txt}}</p>
 			</swiper-slide>
@@ -24,6 +24,11 @@
 	import VueAwesomeSwiper from 'vue-awesome-swiper';
 	Vue.use(VueAwesomeSwiper);
 	import { swiper, swiperSlide } from 'vue-awesome-swiper';
+	//图片
+	import good from '../../../static/community/good.png';
+	import goods from '../../../static/community/good-s.png';
+	import collect from '../../../static/community/collect.png';
+	import collects from '../../../static/community/collect-s.png';
 
 	export default {
 		props: ['swiperSlides'],
@@ -44,7 +49,32 @@
                         this.$store.state.progress_show = this.count;
                     } 
 				},
-				count: 1
+				count: 1,
+				pic: {
+					good: good,
+					goods: goods,
+					collect: collect,
+					collects: collects
+				}
+			}
+		},
+		methods: {
+			tapLike(index) {
+				this.onBol[index].likeBol = true;
+			},
+			tapCollect(index) {
+				this.onBol[index].collectBol = true;
+			},
+			tapSay(index) {
+				
+			}
+		},
+		mounted() {
+			console.log(this.onBol)
+		},
+		computed: {
+			onBol () {
+				return this.$store.state.onBol
 			}
 		}
 	}

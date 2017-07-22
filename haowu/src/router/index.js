@@ -5,6 +5,7 @@ import shopping from '@/components/shopping/shopping'
 import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
+import goodsDetails from '@/components/common/goodsDetails'
 
 Vue.use(Router)
 
@@ -13,7 +14,12 @@ export default new Router({
     {
       path: '/',
       name: 'shopping',
-      component: shopping,
+      component: shopping
+//    children: [{
+//    	path:'/goodsDetails',
+//    	name: 'goodsDetails',
+//    	component: goodsDetails
+//    }]
     },
     {
       path: '/cart',
@@ -30,5 +36,10 @@ export default new Router({
       name: 'community',
       component: community
     },
+    {
+    		path:'/goodsDetails',
+      	name: 'goodsDetails',
+      	component: goodsDetails
+    }
   ]
 })
