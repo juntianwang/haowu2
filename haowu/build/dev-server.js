@@ -90,8 +90,3 @@ module.exports = {
     server.close()
   }
 }
-var url_1 ="mongodb://root:reyxf1hOUOeZQRnx3nCBnOxh50MiNUli51o9zsLY@cfxflkpcuvzx.mongodb.sae.sina.com.cn:10247,fhotuaocgulx.mongodb.sae.sina.com.cn:10247";
-MongoClient.connect(url_1, function(err, db) {
-    if(err) throw err;
-    console.log(1);
-});
