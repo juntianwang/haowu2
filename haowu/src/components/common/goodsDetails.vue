@@ -289,6 +289,7 @@
 			}
 			.content {
 				text-align: center;
+				overflow: hidden;
 				img {
 					display: inline-block;
 				}

@@ -34,12 +34,12 @@ methods:{
 			  params:{user:ipt[0].value,pwd:ipt[1].value}
 		}).then((res) => {
       		if(err == 1){
-      			this.$router.push({name:'shopping',params:{}})
+//    			this.$router.push({name:'shopping',params:{}})
       		}
 		})
 		
 		
-		this.$router.push({name:'shopping',params:{}})
+//		this.$router.push({name:'shopping',params:{}})
 	}
 	
 	

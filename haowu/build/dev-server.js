@@ -90,3 +90,9 @@ module.exports = {
     server.close()
   }
 }
+
+
+/*     登录       */
+//app.post("/debark",function(res,req){
+//	console.log(res.query)
+//})
