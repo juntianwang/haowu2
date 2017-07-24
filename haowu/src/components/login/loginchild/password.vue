@@ -29,20 +29,28 @@ export default {
 			window.history.go(-1)
 		},
 		accomplish () {
-			
 			var ipt = document.getElementsByTagName("input")[0]
+			var qs = require('qs');	
 			if(ipt.value.length < 6 || ipt.value.length > 16){
 				return
 			}
 			var ptxt = document.getElementsByClassName("pwd")[0].getElementsByTagName("p")[0]
 			axios({
-			  url: '/password',
+			  url: 'http://1.momi.applinzi.com/php_1/registered.php',
 			  method: 'post',
-			  params:{user:ptxt.innerText,pwd:ipt.value}
+			  data:qs.stringify({user:ptxt.innerText,pwd:ipt.value})
 			}).then((res) => {
-      			
+      			this.$router.push({name:'shopping',params:{data:res.data}})
+      			if(res.err=="0"){
+      				alert("用户名已存在");
+      			}else if(res.err=="1"){
+      				alert("注册成功");
+      				this.$router.push({name:'shopping',params:{data:res.data}})
+      			}
 			})
-			this.$router.push({name:'shopping'})
+			.catch((error) =>{
+	    	})
+			
 		}
 	},
 	mounted () {

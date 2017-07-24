@@ -9,6 +9,7 @@
 
 <script>
 import AppNav from "../common/AppNav"
+import axios from 'axios'
 export default {
 	data () {
 		return {
@@ -52,10 +53,16 @@ export default {
 		}
 	}
 	,
+	mounted () {
+	
+		// axios.post('http://localhost/user.php', qs.stringify({name: 'bar' }));
+	}
+	,
 	components: {
 		AppNav,
 	}
-}</script>
+}
+</script>
 
 <style lang="scss" scoped="" type="text/css">
 	.test{

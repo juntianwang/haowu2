@@ -28,20 +28,24 @@ methods:{
 		if(ipt[0].value.length == 0||ipt[1].value.length == 0){
 			return
 		}
+		//登录请求
+		var qs = require('qs');	
 		axios({
-			  url: '/debark',
+			  url: 'http://1.momi.applinzi.com/php_1/user.php',
 			  method: 'post',
-			  params:{user:ipt[0].value,pwd:ipt[1].value}
-		}).then((res,err) => {
-      		if(err == 1){
-//    			this.$router.push({name:'shopping',params:{}})
-      		}else{
-      			console.log(res)
+			  data: qs.stringify({user:ipt[0].value,pwd:ipt[1].value})
+		}).then((res) => {
+      		if(res.err=="0"){
+      			alert("密码错误或者用户名不存在");
+      		}else if(res.err=="1"){
+      			alert("登录成功");
+      			this.$router.push({name:'shopping',params:{data:res.data}})
       		}
 		})
-		
-		
-//		this.$router.push({name:'shopping',params:{}})
+		.catch((error) =>{
+
+    	})
+
 	}
 	
 	

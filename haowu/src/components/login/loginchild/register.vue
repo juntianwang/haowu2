@@ -28,18 +28,18 @@ methods:{
 	},
 	blur () {
 		var ipt = document.getElementsByTagName("input")[0]
-		console.log(ipt.value)
+		var qs = require('qs');	
 		axios({
-			  url: '/register',
+			  url: 'http://1.momi.applinzi.com/php_1/registered.php',
 			  method: 'post',
-			  params:{user:ipt.value}
-		}).then((res) => {
-      		if(err == 1){
-      			
-      		}else{
-      			
-      		}
+			  data:qs.stringify({user:ipt.value})
 		})
+		.then((res) => {
+      		console.log(res.data);
+		})
+		.catch((error) =>{
+
+    	})
 	},
 	pwd () {
 		var ipt = document.getElementsByTagName("input")[0]
