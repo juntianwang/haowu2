@@ -95,7 +95,7 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/22",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 			},
 			{
 				head: "../static/community/people.png", //头像
@@ -121,7 +121,7 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/25",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 			},
 			{
 				head: "../static/community/people.png", //头像
@@ -185,9 +185,21 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/22",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 			},
-			{
+			
+		],
+	}
+})
+mock.onGet('/community/recommend', {
+	params: {
+		classes: "recommend",
+		num:4,
+		begin:4
+	}
+}).reply(200,{
+	recommend:{
+		elect: [{
 				head: "../static/community/people.png", //头像
 				name: "vnient", //名字
 				goods: ["../static/community/test2.png", "../static/community/test3.png", "../static/community/test2.png", "../static/community/test3.png"], //轮播图片
@@ -211,7 +223,7 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/25",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 			},
 			{
 				head: "../static/community/people.png", //头像
@@ -237,7 +249,7 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/25",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 			},
 			{
 				head: "../static/community/people.png", //头像
@@ -263,12 +275,11 @@ mock.onGet('/community/recommend', {
 						time: "2017/6/25",
 					},
 				],
-				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-			}
-		],
+				mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+			}]
 	}
+	
 })
-
 //最新
 mock.onGet('/community/newest', {
 	params: {
@@ -301,7 +312,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -327,7 +338,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -353,7 +364,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -378,7 +389,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -403,7 +414,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -428,7 +439,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}
 	]
 })
@@ -464,7 +475,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -490,7 +501,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -516,7 +527,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -541,7 +552,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -566,7 +577,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user4.png", //头像
 			name: "vnient", //名字
@@ -591,7 +602,7 @@ mock.onGet('/community/newest', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}
 	]
 })
@@ -627,7 +638,7 @@ mock.onGet('/community/decoration', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user2.png", //头像
@@ -653,7 +664,7 @@ mock.onGet('/community/decoration', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user2.png", //头像
@@ -679,7 +690,7 @@ mock.onGet('/community/decoration', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user2.png", //头像
@@ -705,211 +716,120 @@ mock.onGet('/community/decoration', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},
-		{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},
-		{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},{
-			head: "../static/community/user2.png", //头像
-			name: "vnient", //名字
-			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/people.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/people.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/people.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}
 	]
+})
+//家饰
+mock.onGet('/community/decoration', {
+	params: {
+		classes: "decoration",
+		num:4,
+		begin:4
+	}
+}).reply(200,{
+	decoration:[{
+			head: "../static/community/user2.png", //头像
+			name: "vnient", //名字
+			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/people.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/people.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/people.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user2.png", //头像
+			name: "vnient", //名字
+			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/people.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/people.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/people.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},{
+			head: "../static/community/user2.png", //头像
+			name: "vnient", //名字
+			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/people.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/people.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/people.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},{
+			head: "../static/community/user2.png", //头像
+			name: "vnient", //名字
+			goods: ["../static/community/test4.png", "../static/community/test5.png", "../static/community/test4.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/people.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/people.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/people.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}]
 })
 //收纳
 mock.onGet('/community/accept', {
@@ -943,7 +863,7 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user3.png", //头像
@@ -969,7 +889,7 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user3.png", //头像
 			name: "vnient", //名字
@@ -994,7 +914,7 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user3.png", //头像
 			name: "vnient", //名字
@@ -1019,8 +939,19 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		}, {
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}, 
+	]
+})
+mock.onGet('/community/accept', {
+	params: {
+		classes: "accept",
+		num:4,
+		begin:4
+	}
+}).reply(200, {
+	accept: [
+	{
 			head: "../static/community/user3.png", //头像
 			name: "james", //名字
 			goods: ["../static/community/test5.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test5.png"], //轮播图片
@@ -1044,7 +975,7 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}, {
 			head: "../static/community/user3.png", //头像
 			name: "在水一方", //名字
@@ -1069,10 +1000,9 @@ mock.onGet('/community/accept', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},
-	]
-})
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}]
+	})
 //餐厨
 mock.onGet('/community/meal', {
 	params: {
@@ -1105,7 +1035,7 @@ mock.onGet('/community/meal', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user1.png", //头像
@@ -1131,7 +1061,7 @@ mock.onGet('/community/meal', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user1.png", //头像
@@ -1157,7 +1087,7 @@ mock.onGet('/community/meal', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user1.png", //头像
@@ -1183,63 +1113,74 @@ mock.onGet('/community/meal', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
-		{
-			head: "../static/community/user1.png", //头像
-			name: "益丰", //名字
-			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/user2.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/user2.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/user2.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},
-		{
-			head: "../static/community/user1.png", //头像
-			name: "轩炀", //名字
-			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
-			good: [{
-				name: "Mark",
-				head: "../static/community/user2.png"
-			}, {
-				name: "Amy",
-				head: "../static/community/user2.png"
-			}, {
-				name: "Linda",
-				head: "../static/community/user2.png"
-			}], //点赞人数
-			goodbol: false, //是否已点赞
-			collect: false, //是否已收藏
-			talk: [ //评论
-				{
-					name: "james",
-					head: "../static/community/user3.png",
-					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
-					time: "2017/6/25",
-				},
-			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
-		},
+		
 
 	]
 })
+mock.onGet('/community/meal', {
+	params: {
+		classes: "meal",
+		num:4,
+		begin:4
+	}
+}).reply(200, {
+	meal: [
+	{
+			head: "../static/community/user1.png", //头像
+			name: "张三", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user1.png", //头像
+			name: "张三", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+	]
+	})
 //家纺
 mock.onGet('/community/textiles', {
 	params: {
@@ -1272,7 +1213,7 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -1298,7 +1239,7 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -1324,7 +1265,7 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -1350,7 +1291,7 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -1376,7 +1317,7 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		},
 		{
 			head: "../static/community/user4.png", //头像
@@ -1402,8 +1343,295 @@ mock.onGet('/community/textiles', {
 					time: "2017/6/25",
 				},
 			],
-			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。"
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
 		}
 	]
 
 })
+mock.onGet('/community/textiles', {
+	params: {
+		classes: "textiles",
+		num:4,
+		begin:4
+	}
+}).reply(200,{
+	textiles: [{
+			head: "../static/community/user1.png", //头像
+			name: "益丰", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user1.png", //头像
+			name: "轩炀", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}]
+})
+//最热
+mock.onGet('/community/solicitation-hot', {
+	params: {
+		classes: "solicitation-hot",
+		num:4,
+	}
+}).reply(200,{
+	hot:[
+	{
+			head: "../static/community/user1.png", //头像
+			name: "益丰", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user1.png", //头像
+			name: "轩炀", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},{
+			head: "../static/community/user1.png", //头像
+			name: "益丰", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user1.png", //头像
+			name: "轩炀", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}
+	]
+})
+mock.onGet('/community/solicitation-last', {
+	params: {
+		classes: "solicitation-last",
+		num:4,
+	}
+}).reply(200,{
+	last:[
+	{
+			head: "../static/community/user3.png", //头像
+			name: "益丰", //名字
+			goods: ["../static/community/test7.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user3.png", //头像
+			name: "轩炀", //名字
+			goods: ["../static/community/test3.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},{
+			head: "../static/community/user1.png", //头像
+			name: "益丰", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		},
+		{
+			head: "../static/community/user1.png", //头像
+			name: "轩炀", //名字
+			goods: ["../static/community/test6.png", "../static/community/test3.png", "../static/community/test4.png", "../static/community/test6.png"], //轮播图片
+			good: [{
+				name: "Mark",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Amy",
+				head: "../static/community/user2.png"
+			}, {
+				name: "Linda",
+				head: "../static/community/user2.png"
+			}], //点赞人数
+			goodbol: false, //是否已点赞
+			collect: false, //是否已收藏
+			talk: [ //评论
+				{
+					name: "james",
+					head: "../static/community/user3.png",
+					mes: "1左:hm home洗碗巾 2.右:自己设计的年历  3.右:宜家相框装的西西弗买的mini 拼图 已经不指望中奖😂借着活动推荐合适的小物件",
+					time: "2017/6/25",
+				},
+			],
+			mes: "用红色的单品点缀客厅,撒上一整年喜气,点滴处可见心思。",time:"2017/07/02",
+		}
+	]
+
+})
+

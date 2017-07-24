@@ -1,25 +1,14 @@
 <template>
-	<div class="recommend">
-		<div class="recommend-head">
-			<p><img src="../../../static/community/camera.png" /> 正在征集</p>
-			<div v-on:touchmove.stop="move()">
-				<ul>
-					<li v-for="(item,index) in collect" v-on:click="solicitation(index)">
-						<img :src="item.head" />
-						<p>{{item.title}}</p>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="recommend-content">
-			<ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-				<li v-for="(item,index) in initial" class="recommend-content-li" v-on:click="detail(index)">
-					<div class="recommend-content-head">
+	<div class="hot">
+		<div class="hot-content">
+			<ul>
+				<li v-for="(item,index) in initial" class="hot-content-li" v-on:click="detail(index)">
+					<div class="hot-content-head">
 						<div><img :src="item.head" /></div>
 						<p>{{item.name}}</p>
 					</div>
-					<app-swiper :swiperSlides="item.goods" class="recommend-content-img"></app-swiper>
-					<ul class="clear recommend-content-foot">
+					<app-swiper :swiperSlides="item.goods" class="hot-content-img"></app-swiper>
+					<ul class="clear hot-content-foot">
 						<li class="fl">
 							<div v-on:click.stop="dogood(index)"><img :src="item.goodbol?good[1]:good[0]" /></div>
 							<p>{{item.good.length}}</p>
@@ -33,23 +22,22 @@
 							<p>{{item.talk.length}}</p>
 						</li>
 					</ul>
-					<div class="recommend-content-mes">
+					<div class="hot-content-mes">
 						<p>{{item.mes}}</p>
 					</div>
 				</li>
 			</ul>
-			<div class="nomore" v-if="nomore">
-				<span class="text">暂无更多</span>
-			</div>
 		</div>
+	</div>
+
 	</div>
 </template>
 
 <script>
 	import { Indicator } from 'mint-ui';
+	import axios from 'axios'; //引入模块
 	import { InfiniteScroll } from 'mint-ui' //上拉加载
 	import AppSwiper from "./communitySwiper"
-	import axios from 'axios'; //引入模块
 	import { Toast } from 'mint-ui';
 	export default {
 		components: {
@@ -59,15 +47,9 @@
 			return {
 				good: ["../../../static/community/good.png", "../../../static/community/good-s.png"], //点赞
 				enshrine: ["../../../static/community/collect.png", "../../../static/community/collect-s.png"], //收集
-				nomore: false,
-				loading: false,
 				count: 0,
-				collect: [],
-				elect: [],
+				hot: [],
 				initial: [],
-				num: 0,
-				finish: false,
-				loading: false
 			}
 		},
 		methods: {
@@ -89,56 +71,6 @@
 				//				}).catch(function(error) {
 				//					console.log(error)
 				//				});
-			},
-			move() {
-				//阻止走马灯冒泡
-			},
-			loadMore() {
-				var that = this;
-				if(this.loading) {
-					return false
-				}
-				if((this.finish) || (this.$store.state.community_col) || (this.$store.state.selected != 0)) {
-					return
-				}
-				this.loading = true;
-				Indicator.open({
-					text: '加载中...',
-					spinnerType: 'fading-circle'
-				});
-				//有数据时
-				axios.get('/community/recommend', {
-					params: {
-						classes: "recommend",
-						num: 4,
-						begin: that.count
-					}
-				}).then(function(res) {
-					//推荐
-					that.elect = res.data.recommend.elect;
-					setTimeout(() => {
-						if(that.elect.length >= 4) {
-							for(let i = 0; i < 4; i++) {
-								that.initial.push(that.elect[i])
-							}
-							that.count += 4;
-						} else {
-							for(let i = 0; i < that.elect.length; i++) {
-								that.initial.push(that.elect[i])
-							}
-							that.count += that.elect.length;
-						}
-						Indicator.close();
-						that.loading = false;
-					}, 1000)
-				}).catch(function(error) {
-					setTimeout(() => {
-						Indicator.close();
-						that.loading = false;
-						that.finish = true;
-						that.nomore = true;
-					}, 1000)
-				});
 			},
 			dogood(index) {
 				this.initial[index].goodbol = !this.initial[index].goodbol;
@@ -165,34 +97,15 @@
 						className: "tip"
 					});
 				}
-			},
-			solicitation(index){
-				this.$store.state.detailsolicitation = this.collect[index];
-				console.log(this.$store.state.detailsolicitation)
-				this.$router.push({path:'/solicitation'})	
 			}
 		},
 		mounted: function() {
-			var that = this;
-			this.$store.state.community_col = false;
-			axios.get('/community/recommend', {
-				params: {
-					classes: "recommend",
-					num: 4,
-					begin: that.count
-				}
-			}).then(function(res) {
-				//推荐
-				that.collect = res.data.recommend.collect;
-				that.elect = res.data.recommend.elect;
-				//有数据时
-				for(let i = 0; i < 4; i++) {
-					that.initial.push(that.elect[i])
-				}
-				that.count += 4;
-			}).catch(function(error) {
-				console.log(error)
-			});
+				setTimeout(()=>{
+					this.hot =this.$store.state.hot;
+					console.log(this.hot)
+					this.initial=this.hot;
+				},100)
+				
 		}
 	}
 </script>
@@ -219,13 +132,13 @@
 		display: none;
 	}
 	
-	.recommend-content-li {
+	.hot-content-li {
 		margin-top: 0.26rem;
 	}
 	
-	.recommend {
+	.hot {
 		padding: 0.133333rem 0 1.36rem;
-		.recommend-head {
+		.hot-head {
 			padding: 0 0.4rem 0.15rem;
 			border-bottom: 0.02rem solid #e8e7e7;
 			p {
@@ -268,9 +181,9 @@
 				}
 			}
 		}
-		.recommend-content {
+		.hot-content {
 			margin-top: 0.13rem;
-			.recommend-content-head {
+			.hot-content-head {
 				padding: 0 0.4rem;
 				display: flex;
 				justify-content: flex-start;
@@ -286,11 +199,11 @@
 					font-size: 0.32rem;
 				}
 			}
-			.recommend-content-img {
+			.hot-content-img {
 				padding: 0 0.4rem;
 				margin-top: 0.20rem;
 			}
-			.recommend-content-foot {
+			.hot-content-foot {
 				padding: 0 0.4rem;
 				margin-top: 0.15rem;
 				margin-bottom: 0.15rem;
@@ -308,7 +221,7 @@
 					}
 				}
 			}
-			.recommend-content-mes {
+			.hot-content-mes {
 				border-top: 0.02rem solid #e8e7e7;
 				border-bottom: 0.13rem solid #dbdada;
 				p {
@@ -316,38 +229,5 @@
 				}
 			}
 		}
-	}
-	/*暂无更多*/
-	
-	.nomore {
-		text-align: center;
-		overflow: hidden;
-		padding: 0.3rem;
-	}
-	
-	.nomore .text {
-		padding: 10px 20px;
-		position: relative;
-		font-size: 0.34rem;
-		line-height: 0.4rem;
-		color: gray;
-	}
-	
-	.nomore .text::before,
-	.nomore .text::after {
-		position: absolute;
-		top: 50%;
-		border-top: 1px solid gray;
-		content: '';
-		height: 0;
-		width: 2.933333rem;
-	}
-	
-	.nomore .text::before {
-		right: 100%;
-	}
-	
-	.nomore .text::after {
-		left: 100%;
 	}
 </style>

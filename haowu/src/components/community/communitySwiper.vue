@@ -2,7 +2,7 @@
 	<div class="sorterwrap">
 		<swiper :options="swiperOption">
 			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides" :key="index" v-if="bol">
-				<img class="slideImg" :src="slide" />	
+				<img class="slideImg" :src="slide"/>	
 			</swiper-slide>
 			<div class="divS" v-else><img class="slideImg" :src="src"/></div>	
 		</swiper>
@@ -12,6 +12,7 @@
 
 <script>
 	import Vue from 'vue';
+	import { Lazyload } from 'mint-ui';
 	import VueAwesomeSwiper from 'vue-awesome-swiper';
 	Vue.use(VueAwesomeSwiper);
 	import { swiper, swiperSlide } from 'vue-awesome-swiper';

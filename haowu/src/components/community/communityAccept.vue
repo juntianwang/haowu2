@@ -2,7 +2,7 @@
 	<div class="accept">
 		<div class="accept-content">
 			<ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-				<li v-for="(item,index) in initial" class="accept-content-li">
+				<li v-for="(item,index) in initial" class="accept-content-li" v-on:click="detail(index)">
 					<div class="accept-content-head">
 						<div><img :src="item.head" /></div>
 						<p>{{item.name}}</p>
@@ -10,12 +10,12 @@
 					<app-swiper :swiperSlides="item.goods" class="accept-content-img"></app-swiper>
 					<ul class="clear accept-content-foot">
 						<li class="fl">
-							<div><img :src="item.goodbol?good[1]:good[0]" /></div>
+							<div v-on:click.stop="dogood(index)"><img :src="item.goodbol?good[1]:good[0]" /></div>
 							<p>{{item.good.length}}</p>
 						</li>
 						<li class="fl">
-							<div><img :src="item.collect?enshrine[1]:enshrine[0]" /></div>
-							<p>收藏</p>
+							<div v-on:click.stop="docollect(index)"><img :src="item.collect?enshrine[1]:enshrine[0]" /></div>
+							<p>{{item.collect?"已收藏":"收藏"}}</p>
 						</li>
 						<li class="fl">
 							<div><img src="../../../static/community/talk.png" /></div>
@@ -37,9 +37,11 @@
 </template>
 
 <script>
+	import { Indicator } from 'mint-ui';
 	import axios from 'axios'; //引入模块
 	import { InfiniteScroll } from 'mint-ui' //上拉加载
 	import AppSwiper from "./communitySwiper"
+	import { Toast } from 'mint-ui';
 	export default {
 		components: {
 			AppSwiper
@@ -51,41 +53,123 @@
 				nomore: false,
 				count:0,
 				accept:[],
-				initial:[]
+				initial:[],
+				num:0,
+				finish:false,
+				loading:false
 			}
 		},
 		methods: {
 			loadMore() {
-				if(!this.accept.length) {
-					this.loading = false;
-					this.nomore = true;
+				var that = this;
+				if(this.loading){
+					return false
+				}
+				if((this.finish) || (this.$store.state.community_col) || (this.$store.state.selected!=3)) {
+					
 					return
 				}
 				this.loading = true;
-				if(this.accept.length >= 4) {
-					//每次加载4个
-					for(let i = 0; i < 4; i++) {
-						this.initial.push(this.accept.splice(0, 1)[0])
+				Indicator.open({
+					text: '加载中...',
+					spinnerType: 'fading-circle'
+				});
+				//有数据时
+				axios.get('/community/accept', {
+					params: {
+						classes: "accept",
+						num: 4,
+						begin: that.count
 					}
-				} else if(this.accept.length < 4) {
-					for(let i = 0; i < this.accept.length; i++) {
-						this.initial.push(this.accept.splice(0, 1)[0])
+				}).then(function(res) {
+					that.accept= res.data.accept;
+					setTimeout(() => {
+						if(that.accept.length >= 4) {
+						for(let i = 0; i < 4; i++) {
+							that.initial.push(that.accept[i])
+						}
+						that.count += 4;
+					} else {
+						for(let i = 0; i < that.accept.length; i++) {
+							that.initial.push(that.accept[i])
+						}
+						that.count += that.accept.length;
 					}
+						Indicator.close();
+						that.loading = false;
+					}, 1000)
+					
+				}).catch(function(error) {
+					setTimeout(() => {
+						Indicator.close();
+						that.loading = false;
+						that.finish = true;
+						that.nomore = true;
+					}, 1000)
+				});
+			},
+			detail(index){
+				this.$store.state.detailcommunity = this.initial[index];
+				this.$store.state.community_col = true;
+				this.$router.push({path:'/communitydetail'})	
+//				axios.get('/api/shop/detail', {
+//					params: {
+//						search: this.otherContentList[index].name
+//					}
+//				}).then(function(res) {
+//					that.$store.state.shopDetail = res.data.list;
+//					that.$store.state.detailBol = true;
+//					console.log(res.data.list);
+//					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+//				}).catch(function(error) {
+//					console.log(error)
+//				});
+			},
+			dogood(index){
+				this.initial[index].goodbol = !this.initial[index].goodbol;
+				if(this.initial[index].goodbol) {
+					this.initial[index].good.push(this.$store.state.me)
+				} else {
+					this.initial[index].good.splice(this.initial[index].good.length - 1, 1)
+				}
+			},
+			docollect(index){
+				this.initial[index].collect = !this.initial[index].collect;
+				if(this.initial[index].collect){
+					Toast({
+					  message: '收藏成功',
+					  iconClass:"mintui mintui-field-success",
+					  duration: 1000,
+					  className:"tip"
+					});
+				}else{
+					Toast({
+					  message: '已取消',
+					  iconClass:"mintui mintui-field-move",
+					  duration: 1000,
+					  className:"tip"
+					});
 				}
 			}
 		},
 		mounted:function(){
 			//收纳
 			var that = this;
+			this.$store.state.community_col = false;
 			axios.get('/community/accept', {
 				params: {
 					classes: "accept",
-					num:4,
-					begin:that.count
+					begin:that.count,
+					num:4	
 				}
 			}).then(function(res) {
+				//家饰
 				that.accept = res.data.accept;
-				that.initial = that.accept.splice(0,4);
+				//有数据时
+					for(let i = 0; i < 4; i++) {
+						that.initial.push(that.accept[i])
+					}
+					that.count += 4;
 				}).catch(function(error) {
 				console.log(error)
 			});

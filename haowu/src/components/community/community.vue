@@ -1,42 +1,50 @@
 <template>
 	<div class="wrap">
-		<!--头部-->
-		<div class="head">
-			<!--头部搜索-->
-			<app-header></app-header>
-			<!--头部导航-->
-			<ul class="nav">
-				<li v-for="(item,index) in nav" v-on:click="select(index)" :class="selected==index?'selected':''">{{item.name}}</li>
-				<li class="slider"><span></span></li>
-			</ul>
-		</div>
-		<!--页面-->
-		<mt-tab-container v-model="active" :swipeable="true" class="content" >
-			<!--推荐-->
-			<mt-tab-container-item id="recommend">
-				<recommend></recommend>
-			</mt-tab-container-item>
-			<!--最新-->
-			<mt-tab-container-item id="newest">
-				<newest></newest>
-			</mt-tab-container-item>
-			<!--家饰-->
-			<mt-tab-container-item id="decoration">
-				<decoration></decoration>
-			</mt-tab-container-item>
-			<!--收纳-->
-			<mt-tab-container-item id="accept">
-				<accept></accept>
-			</mt-tab-container-item>
-			<!--餐厨-->
-			<mt-tab-container-item id="meal">
-				<meal></meal>
-			</mt-tab-container-item>
-			<!--家纺-->
-			<mt-tab-container-item id="textiles">
-				<textiles></textiles>
-			</mt-tab-container-item>
-		</mt-tab-container>
+		<transition name="change">
+			<div v-show="!community_col">
+				<!--头部-->
+				<div class="head">
+					<!--头部搜索-->
+					<app-header></app-header>
+					<!--头部导航-->
+					<ul class="nav">
+						<li v-for="(item,index) in nav" v-on:click="select(index)" :class="selected==index?'selected':''">{{item.name}}</li>
+						<li class="slider"><span></span></li>
+					</ul>
+				</div>
+				<!--页面-->
+				<mt-tab-container v-model="active" :swipeable="true" class="content" >
+					<!--推荐-->
+					<mt-tab-container-item id="recommend">
+						<recommend></recommend>
+					</mt-tab-container-item>
+					<!--最新-->
+					<mt-tab-container-item id="newest">
+						<newest></newest>
+					</mt-tab-container-item>
+					<!--家饰-->
+					<mt-tab-container-item id="decoration">
+						<decoration></decoration>
+					</mt-tab-container-item>
+					<!--收纳-->
+					<mt-tab-container-item id="accept">
+						<accept></accept>
+					</mt-tab-container-item>
+					<!--餐厨-->
+					<mt-tab-container-item id="meal">
+						<meal></meal>
+					</mt-tab-container-item>
+					<!--家纺-->
+					<mt-tab-container-item id="textiles">
+						<textiles></textiles>
+					</mt-tab-container-item>
+				</mt-tab-container>
+			</div>
+		</transition>		
+		<!--路由-->
+		<transition name="move">
+			<router-view class="view" v-if="community_col"></router-view>
+		</transition>
 		<app-nav></app-nav>
 	</div>
 </template>
@@ -53,6 +61,11 @@
 	import Meal from "./communityMeal"//餐厨
 	import Textiles from "./communityTextiles"//家纺
 	export default {
+		computed: {
+		   	community_col () {
+		     return this.$store.state.community_col
+		  }
+		 },
 		components: {
 			AppHeader,
 			Recommend,
@@ -118,6 +131,7 @@
 					if(this.arr[i] === val) {
 						index = i
 						this.selected = i
+						this.$store.state.selected = this.selected;
 					}
 				}
 				var timer = null;
@@ -178,6 +192,7 @@
 	}
 	.wrap {
 		width: 100%;
+		position: relative;
 	}
 	/*头部*/
 	.head{
@@ -217,5 +232,35 @@
 	.content {
 		width: 100%;
 		margin-top: 2.93rem;
+	}
+	/*动画*/
+	.change-enter-active,.change-leave-active{
+		transition: all 0.5s ease-out; 
+	}
+	.change-enter{
+		opacity: 0;
+	}
+	.change-leave-active{
+		opacity: 0;
+	}
+	.move-enter-active,.move-leave-active{
+		transition: all 0.5s ease-out; 
+	}
+	.move-enter{
+		transform:translateX(10rem);
+		opacity: 0;
+	}
+	.move-leave-active{
+		transform:translateX(10rem);
+		opacity: 0;
+	}
+	.view{
+		padding-bottom: 1.36rem;
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 110;
+		height: 17.78rem;
+		overflow: scroll;
 	}
 </style>
