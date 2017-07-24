@@ -93,6 +93,6 @@ module.exports = {
 
 
 /*     登录       */
-//app.post("/debark",function(res,req){
-//	console.log(res.query)
-//})
+app.post("/debark",function(res,req){
+	req.send(res.query);
+})

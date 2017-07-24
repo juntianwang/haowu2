@@ -32,9 +32,11 @@ methods:{
 			  url: '/debark',
 			  method: 'post',
 			  params:{user:ipt[0].value,pwd:ipt[1].value}
-		}).then((res) => {
+		}).then((res,err) => {
       		if(err == 1){
 //    			this.$router.push({name:'shopping',params:{}})
+      		}else{
+      			console.log(res)
       		}
 		})
 		

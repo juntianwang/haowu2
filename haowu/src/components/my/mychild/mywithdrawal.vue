@@ -4,7 +4,7 @@
 		<header-go></header-go>
 		<div id="content_k">
 			<div class="default-box">
-				<img src="../../../../default_cash_detail.png" alt="" />
+				<div><img src="../../../../static/community/default_cash_detail.png" alt="" /></div>
 				<p>还没不能提现？快去催朋友收获</p>
 			</div>
 		</div>
