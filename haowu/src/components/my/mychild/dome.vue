@@ -12,6 +12,8 @@
 import { InfiniteScroll } from 'mint-ui';
 import data from '../../../../test/shopping.json';
 
+
+
 export default {
 		data() {
 			return {

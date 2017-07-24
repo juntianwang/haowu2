@@ -169,7 +169,7 @@
 
 <style lang="scss" scoped="" type="text/css">
 .selected{
-	background-color: rgb(251,204,5);
+	background-color: #ffcd00;
 }
 .clear:after{
 	clear: both;
@@ -181,7 +181,7 @@
 		position: relative;
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 0.02rem solid darkgray;
+		border-bottom: 0.04rem solid #ececec;
 		div{
 			float: left;
 		}
@@ -191,13 +191,13 @@
 		align-items: center;
 		div:nth-child(1){	
 			margin-left: 0.17rem;		
-			width: 0.8rem;
-			height: 0.8rem;
-			border: 0.02rem solid black;
+			width: 0.7rem;
+			height: 0.7rem;
+			border: 0.02rem solid #afafaf;
 			border-radius: 50%;
 			p{
-				width: 0.6rem;
-				height: 0.6rem;
+				width: 0.5rem;
+				height: 0.5rem;
 				margin: 0.1rem;		
 				border-radius: 50%;
 				/*background-color: rgb(251,204,5);*/
@@ -212,23 +212,35 @@
 		}
 		div:nth-child(3){
 			color: darkgray;
+			
+			p:nth-child(1){
+				color: #656565;
+			}
 			p{
 				color: black;
 				font-size: 0.4rem;
 			}
 			p:nth-child(2){
-				color: rgb(172,173,174);
+				color: #9e9e9e;
 				margin: 0.26rem 0 0.4rem;
 			}
 			div{
+				color: #4d4d4d;
 				span:nth-child(1){
 					font-size: 1rem;
+					border-right:none ;
+					color: #a1a1a1;
+				}
+				span:nth-child(2){
+					/*font-size: 1rem;*/
+					border-right:none ;
+					color: #737373;
 				}
 				span{
 					width: 0.8rem;
 					height: 0.8rem;
 					font-size: 0.6rem;
-					border: 1px solid darkgray;
+					border: 0.02rem solid #a4a4a4;
 					float: left;
 					text-align: center;
 					line-height: 0.8rem;
@@ -236,11 +248,13 @@
 			}
 		}
 		div:nth-child(4){
-			color: darkgray;
+			color: #ee6769;
 			position: absolute;
 			right: 0.2rem;
 			font-size: 0.5rem;
 			img{
+				position: relative;
+				right: -0.5rem;
 				margin-bottom: 1rem;
 				width: 0.66rem;
 			}

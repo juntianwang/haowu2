@@ -16,7 +16,7 @@ const store = new Vuex.Store({
 		
 		],
 		aa:0,
-		showAddr: {"name":"fd","phone":135,"address":"ds"},
+		showAddr: {"name":"","phone":135,"address":"ds"},
 		addrArr: [
 //			{"name":"zhang","phone":1882335,"address":"北京市"}
 		],
