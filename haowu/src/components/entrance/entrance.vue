@@ -25,36 +25,45 @@ export default {
 		boxMove (e) {
 			var box = document.getElementsByClassName("entrance-box")[0];
 			var img = document.getElementById("entrance-animate")
-			
-//			var x = e.touches[0].clientX + img.offsetLeft;	
-//			var boxx = e.touches[0].clientX - box.offsetLeft;
-//			box.addEventListener("touchmove",function(ev){
-//				var imgX = (x - ev.touches[0].clientX)/75
-//				var boxX = (ev.touches[0].clientX - boxx)/75;
-//				img.style.left = imgX + "rem";
-//				box.style.left = boxX + "rem";			
-//				ev.preventDefault()
-//			})
+
 			var boxx = e.touches[0].clientX - box.offsetLeft;
 			box.addEventListener("touchmove",function(ev){
 				var boxX = (ev.touches[0].clientX - boxx)/75;
-//				boxX/
 				if (boxX>0){
 					boxX = 0
 				}
 				if(boxX<-30){
 					boxX = -30
+//					this.$router.push("/")
+					window.location.href = "/#/shopping"
 				}
-							
-				img.style.left = 2.2+(1.933333-2.2)/10*boxX + "rem";
-				img.style.width = 5.573333+(5.573333-6.106666)/10*boxX + "rem";
-				img.style.height = 5.026666+(5.026666-5.44)/10*boxX + "rem";
-				img.style.top = 7.933333+(7.933333-3.786666)/10*boxX + "rem";
-				box.style.left = boxX + "rem";
+				if(boxX >= -10){
+					img.style.left = 2.2+(1.933333-2.2)*boxX/(-10) + "rem";
+					img.style.width = 5.573333+(6.106666-5.573333)*boxX/(-10) + "rem";
+					img.style.height = 5.026666+(5.44-5.026666)*boxX/(-10) + "rem";
+					img.style.top = 7.933333+(3.786666-7.933333)*boxX/(-10) + "rem";
+					box.style.left = boxX + "rem";
+				}else if(boxX >= -20){
+					img.style.left = 1.933333+(5.066666-1.933333)*(boxX+10)/(-10) + "rem";
+					img.style.width = 6.106666+(2.8-6.106666)*(boxX+10)/(-10) + "rem";
+					img.style.height = 5.44+(2.506666-5.44)*(boxX+10)/(-10) + "rem";
+					img.style.top = 3.786666+(3.973333-3.786666)*(boxX+10)/(-10) + "rem";
+					box.style.left = boxX + "rem";
+				}else if(boxX >= -30){
+					img.style.left = 5.066666+(2-5.066666)*(boxX+20)/(-10) + "rem";
+					img.style.width = 2.8+(6.026666-2.8)*(boxX+20)/(-10) + "rem";
+					img.style.height = 2.506666+(5.333333-2.506666)*(boxX+20)/(-10) + "rem";
+					img.style.top = 3.973333+(4.133333-3.973333)*(boxX+20)/(-10) + "rem";
+					box.style.left = boxX + "rem";
+					
+				}
+
 				
 				
-				
-				
+
+
+
+
 				ev.preventDefault()
 			})
 			box.addEventListener("touchend",function(ev){

@@ -53,7 +53,7 @@ Vue.use(Router)
 export default new Router({
 	routes: [
 		{
-			path: '/',
+			path: '/shopping',
 			name: 'shopping',
 			component: shopping,
 		},
@@ -191,7 +191,7 @@ export default new Router({
 			}]
 		},
 		{
-			path: '/entrance',
+			path: '/',
 			name: 'entrance',
 			component: entrance
 		},

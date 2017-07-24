@@ -2,7 +2,9 @@
 	<div id="mychild">
 		<div class="my-bg" v-if="loginBol">
 			<p>&nbsp;</p>
-			<div class="portrait"></div>
+			<div class="portrait">
+				<img :src="headsrc"/>
+			</div>
 			<p class="name">{{ures}}</p>
 			<p class="fans">
 				<span>{{attention}}关注</span> | <span>{{fans}}粉丝</span>
@@ -13,7 +15,9 @@
 		</div>
 		<div class="my-bg1" v-else="loginBol">
 			<p>&nbsp;</p>
-			<div class="portrait"></div>
+			<div class="portrait">
+				<img src="../../../../static/my/name-bg.png"/>
+			</div>
 			<span @click="login">点击登录</span>
 			<div class="setting1">
 				<em @click="set2"></em>
@@ -44,6 +48,7 @@ import AppNav from "../../common/AppNav"
 export default {
 	data () {
 		return {
+			headsrc:"../../../../static/my/name-bg.jpeg",
 			list:[
 			{txt:'退货 / 售后',span:"",to:"/1"},
 			{txt:'商城客服',span:"",to:"/2"},
@@ -86,7 +91,14 @@ export default {
 	},
 	mounted (){
 		if(window.sessionStorage.ures == undefined){
-			this.loginBol = false;
+//			this.loginBol = false;
+		}else{
+			axios({
+			  url: '/',
+			  method: 'get',
+			}).then((res) => {
+	      		this.headsrc == "../../../../static/my/name-bg.jpeg"
+			})
 		}
 
 		//头部动画
@@ -300,9 +312,12 @@ export default {
 			width: 1.866666rem;
 			height: 1.866666rem;
 			border-radius: 50%;
-			background: #eaeaea url(../../../../static/my/name-bg.png) no-repeat;
-			background-size: 1.866666rem 1.866666rem;
 			margin: 1.333333rem auto 0rem;
+			overflow: hidden;
+			img{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 	.my-bg{
@@ -330,9 +345,12 @@ export default {
 			width: 1.866666rem;
 			height: 1.866666rem;
 			border-radius: 50%;
-			background: #eaeaea url(../../../../static/my/name-bg.png) no-repeat;
-			background-size: 1.866666rem 1.866666rem;
 			margin: 1.333333rem auto 0rem;
+			overflow: hidden;
+			img{
+				width: 100%;
+				height: 100%;
+			}
 		}
 		.name{
 			text-align: center;

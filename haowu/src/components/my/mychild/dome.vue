@@ -33,7 +33,7 @@ export default {
 				}
 		},
 		mounted (){
-			console.log(data.shopping.likeList.length)
+			console.log(data.detail.length)
 		}	
 	}
 </script>
