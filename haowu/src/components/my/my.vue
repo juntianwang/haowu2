@@ -1,11 +1,19 @@
 <template>
 	<div>
-		my
+		<router-view></router-view>	
 	</div>
 </template>
-
 <script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		components: {
+		}
+	}
 </script>
 
-<style>
+<style lang="scss" scoped type="text/css">
 </style>

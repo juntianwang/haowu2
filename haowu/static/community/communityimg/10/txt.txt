@@ -1,0 +1,9 @@
+      name:”NORTH MINT”
+	
+     mes:”家的样子”
+	
+    talk:[]
+
+
+
+	

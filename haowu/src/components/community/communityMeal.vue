@@ -170,7 +170,8 @@
 				}
 				that.count += 4;
 			}).catch(function(error) {
-				console.log(error)
+				console.log(that.count)
+//				that.count += 4;
 			});
 		}
 	}

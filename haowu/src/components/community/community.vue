@@ -42,13 +42,15 @@
 			</div>
 		</transition>		
 		<!--路由-->
-		<transition name="move">
+		<!--<transition name="move">
 			<router-view class="view" v-if="community_col"></router-view>
-		</transition>
+		</transition>-->
+		<app-nav></app-nav>
 	</div>
 </template>
 
 <script>
+	import AppNav from "../common/AppNav"
 	import axios from 'axios'; //引入模块
 	import { TabContainer, TabContainerItem } from 'mint-ui'//左右切换
 	import AppHeader from "./communityHeader"
@@ -71,7 +73,8 @@
 			Decoration,
 			Accept,
 			Meal,
-			Textiles,
+			AppNav,
+			Textiles
 		},
 		data: function() {
 			return {

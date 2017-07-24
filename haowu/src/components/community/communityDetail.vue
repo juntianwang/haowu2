@@ -1,5 +1,5 @@
 <template>
-	<!--<transition name="move"  v-if="community_col">-->
+	<transition name="move"  v-if="community_col">
 		<div class="detail-wrap">
 		<div class="detail-head">
 			<app-swiper :swiperSlides="del.goods"></app-swiper>
@@ -82,14 +82,13 @@
 			</div>
 		</mt-popup>
 	</div>
-	<!--</transition>-->
+	</transition>
 	
 </template>
 
 <script>
 	import AppSwiper from "./communitySwiper"
 	import { Toast } from 'mint-ui';
-	import { Popup } from 'mint-ui';
 	export default {
 		components: {
 			AppSwiper
@@ -171,7 +170,6 @@
 <style lang="scss" scoped="scoped">
 	.detail-wrap {
 		width: 100%;
-		background: white;
 		.detail-head {
 			.return {
 				width: 0.8rem;

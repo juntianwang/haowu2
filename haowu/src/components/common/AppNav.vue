@@ -55,6 +55,7 @@
 			}
 		},
 		mounted: function() {
+
 			var that = this;
 			for(let i = 0; i < this.arr.length; i++) {
 				this.arr[i].bol = false;

@@ -3,24 +3,12 @@
 		<div clas="solicitation-head">
 			<div class="img-head">
 				<img :src="detailsolicitation.head" />
-				<p>{{detailsolicitation.title}}</p>
 			</div>
 			<div class="return" v-on:click="back"><img src="../../../static/community/return.png" /></div>
 			<div class="load" v-on:click="share"><img src="../../../static/community/load.png" /></div>
 		</div>
 		<ul class="solicitation-content">
-			<li>
-				近期好物上新了一大波的装饰画~~颜色极度小清新，很适合做夏日的装饰~~你家中的装饰画是什么样子呢？不管是油画、书法，还是自己创作的有趣的画，都来晒晒吧~
-			</li>
-			<li>
-				奖项设置:
-			</li>
-			<li>
-				<p>1.点赞数第一名将获得Hook 真皮墙面挂钩两件套</p>
-				<p>2.带三张图以上＋20字以上晒单，即获得好物商城全场包邮券一张!</p>
-			</li>
-			<li>参与方式：点击下方相机按钮，参与晒单</li>
-			<li>活动时间：7.19-7.25</li>
+			<li v-for="item in detailsolicitation.content">{{item}}</li>
 		</ul>
 		<div class="more"><div v-on:click="dropdown"><img :src="drop?more[1]:more[0]"/> {{drop?"收起":"更多"}}</div></div>
 		<div class="solicitation-foot">
@@ -160,7 +148,7 @@
 			},
 			back(){
 				this.$router.push({
-					path: history.go(-1)
+					path: "/community"
 				})
 				this.$store.state.community_col = false;
 
@@ -262,22 +250,12 @@
 	}
 	.img-head{
 		width: 100%;
-		height: 6.66rem;
 		overflow: hidden;
 	}
 	.img-head{
 		img{width: 100%;
 			height: 100%;
 			}
-		p{
-			line-height: 6.66rem;
-			font-size:0.58rem;
-			text-align: center;
-			width: 100%;
-			top: 0;
-			position: absolute;
-			color: white;
-		}
 	}
 	.solicitation-content{
 		padding: 0.4rem;

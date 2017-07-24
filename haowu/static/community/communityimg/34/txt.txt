@@ -1,0 +1,9 @@
+      name:临冬城的二丫
+	
+     mes:正午
+	
+    talk:[{name:””,talk:””,date:””},{name:””,talk:””,date:””}]
+
+
+
+	
