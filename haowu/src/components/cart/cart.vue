@@ -37,7 +37,7 @@
 	export default {
 		data () {
 			return {
-				cartArr: ["30天无忧退货","24小时快速发货","全场88包邮"],
+				cartArr: ["30天无忧退货","24小时快速发货","满88包邮"],
 				cartbol: false,
 				cartshowpic: []
 			}
@@ -85,7 +85,7 @@
 		height: 2.1rem;
 	}
 	h6{
-		color: rgb(116,117,118);
+		color: #111111;
 		position: fixed;
 		background-color: white;
 		width: 100%;
@@ -93,6 +93,9 @@
 		text-align: center;
 		line-height: 1rem;
 		font-size: 0.533333rem;
+	}
+	.u1{
+		color: #a7a7a7;
 	}
 	.cart_head ul:nth-of-type(1){
 		position: fixed;

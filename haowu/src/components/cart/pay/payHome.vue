@@ -17,9 +17,7 @@
 			<div><span>{{showAddr.phone}}</span></div>
 			<div>
 				<img src="../../../../static/cart_img/more.png"/>
-			</div>
-
-			
+			</div>			
 		</div>
 		<img v-show="!addmsg" src="../../../../static/cart_img/address_divider.png" class="xian"/>
 		<div class="coupon" @click="paycoupon">
@@ -52,7 +50,7 @@
 		data () {
 			return {
 			    title: '填写订单',
-			    arr: [{"name":"aa","phone":135,"address":"aa"}],
+//			    arr: [{"name":"aa","phone":135,"address":"aa"}],
 			    addmsg: true
 			}
 		
@@ -73,15 +71,11 @@
 		},
 		watch: {
 			addrArr () {
-
 				if (this.addrArr.length==0) {
 					this.addmsg = true;
-					this.arr = [{"name":"","phone":135,"address":""}];
-
+//					this.showAddr = {"name":"","phone":135,"address":""};
 				}else{
-//					this.showAddr = this.addrArr[0];
 					this.addmsg = false;
-
 				}
 			}
 		},
@@ -98,17 +92,12 @@
 		mounted: function() {
 
 			
-			console.log(this.$store.state.showAddr)
-			if (this.addrArr.length==0) {
-					this.addmsg = true;
-
-				}else{
-//					this.$store.state.showAddr = {};
-//					this.$store.state.showAddr = this.addrArr[0];
-	
-
-					this.addmsg = false;
-
+			console.log(this.showAddr)
+			if (this.addrArr==0) {
+				this.addmsg = true;
+//				this.showAddr = {"name":"a","phone":135,"address":""};
+			}else{
+				this.addmsg = false;
 			}
 		},
 		components: { payHeader,payGoods,payCoupon }

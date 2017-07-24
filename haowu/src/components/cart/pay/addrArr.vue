@@ -49,7 +49,13 @@
 			}
 		},
 		mounted: function(){
-			this.$store.state.showAddr = this.addrArr[0]
+			console.log(this.addrArr.length)
+			if (this.addrArr.length==0) {
+				this.$store.state.showAddr = {"name":"","phone":135,"address":"ds"};
+			}else{
+				this.$store.state.showAddr = this.addrArr[0]
+			}
+			
 //			console.log(this.$store.state.addrArr)
 			if (this.addrArr.length==0) {
 				this.morenbol = false;
