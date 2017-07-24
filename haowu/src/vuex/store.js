@@ -30,6 +30,14 @@ const store = new Vuex.Store({
 	  	detailsolicitation:{},//晒晒
 	  	hot:[],//最热
 	  	last:[],//最新
+	  	progress_kill: 1,
+		progress_show: 1,
+		navBefore: 0,
+		shopDetail: {},
+		detailBol: false,
+		killBil: false,
+		onBol: []
+
 	}
 })
 

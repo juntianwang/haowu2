@@ -1,7 +1,12 @@
 <template>
-	<div id="goodsDetails">
-		<div v-for="(o,key) in list" class="title">
+	<transition name="goDetail">
+	<div id="goodsDetails" v-if="detailBol">
+		<div v-for="(o,key) in list" class="title" :key="key">
 			<point-swiper :banner="o.src"></point-swiper>
+			<div class="kill" v-if="killBol">
+				<img class="fl" :src="o.src[0]" alt="" />
+				<p class="fl">限时秒杀,客官可以等一等哦~</p>
+			</div>
 			<h1>{{o.title}}</h1>
 			<p>{{o.price}}&nbsp;￥</p>
 			<div style="margin-bottom: 0.37rem;">
@@ -16,7 +21,7 @@
 				</div>
 			</div>
 			<div @click="tip">
-				<p>数量规格</p>
+				<p style="width: 93%;margin: 0 auto;">数量规格</p>
 			</div>
 			<p>推荐理由</p>
 			<p> 皮质挂钩，一个装饰性的实用品。从整理内心开始，打造独属于你的舒适生活。 ——《收纳的艺术》</p>
@@ -53,15 +58,17 @@
 
 				</div>
 			</div>
-			<div class="content">
-				<img v-for="a in o.content" :src="a" alt="" />
+			<p class="upLoad" @click="up">↑点击查看图文详情</p>
+			<div class="content" v-show="upBol" style="width: 100%;">
+				<img style="width: 100%;" v-for="a in o.content" :src="a" alt="" />
 			</div>
 		</div>
 		<div class="footer">
-			<input type="button" name="" id="" value="加入购物车" @click = "shopcart"/>
-			<input type="button" name="" id="" value="立即购买" @click = "buy"/>
+			<input type="button" name="" id="" value="加入购物车" @click="shopcart" />
+			<input type="button" name="" id="" value="立即购买" @click="buy" />
 		</div>
 	</div>
+	</transition>
 </template>
 
 <script>
@@ -70,10 +77,19 @@
 		data() {
 			return {
 				list: [],
-				i:0
+				i: 0,
+				upBol: false,
+				timer: null
 			}
 		},
-		computed: {},
+		computed: {
+			detailBol() {
+				return this.$store.state.detailBol;
+			},
+			killBol() {
+				return this.$store.state.killBol;
+			}
+		},
 		watch: {},
 		methods: {
 			tip() {
@@ -95,7 +111,7 @@
 			},
 			add(a) {
 				var num = document.getElementsByClassName("number")[0];
-				if((num.value*1) < a.select_tip[this.i].num) {
+				if((num.value * 1) < a.select_tip[this.i].num) {
 					num.value++
 				}
 			},
@@ -123,16 +139,44 @@
 				shopimg.src = this.list[0].src[key];
 
 			},
-			shopcart () {
-				this.$router.push({name:"",params:{}})
+			shopcart() {
+				this.$router.push({
+					name: "",
+					params: {}
+				})
 			},
-			buy () {
-				this.$router.push({name:"",params:{}})              
+			buy() {
+				this.$router.push({
+					name: "",
+					params: {}
+				})
+			},
+			//
+			up() {
+				var that = this;
+				this.upBol = true;
+				setTimeout(() => {
+					clearInterval(this.timer);
+					this.timer = setInterval(function() {
+						var scorl = document.documentElement.scrollTop || document.body.scrollTop;
+						var speed = (1200 - scorl) / 8;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						if(scorl >= 1200) {
+							clearInterval(that.timer);
+							document.body.scrollTop = document.documentElement.scrollTop = 1200;
+						} else {
+							document.body.scrollTop = document.documentElement.scrollTop = scorl + speed;
+						}
+					}, 17)
+				}, 50)
 			}
-
 		},
 		mounted() {
-			this.list.push(this.$route.params.data);
+			var that = this;
+			//			this.list.push(this.$route.params.data);
+			console.log(this.list)
+			this.list.push(this.$store.state.shopDetail);
+			this.upBol = false;
 		},
 		components: {
 			pointSwiper
@@ -141,7 +185,19 @@
 </script>
 
 <style lang="scss" type="text/css">
+	.upLoad {
+		width: 100%;
+		border-bottom: 0.02rem solid lightgrey;
+		border-top: 0.02rem solid lightgray;
+		text-align: center;
+		line-height: 0.64rem;
+		color: #5b5b5b;
+		margin: 0.26rem 0;
+	}
+	
 	#goodsDetails {
+		width: 100%;
+		overflow: hidden;
 		.title {
 			margin-bottom: 2rem;
 			>h1 {
@@ -340,5 +396,35 @@
 				margin-left: 0.26rem;
 			}
 		}
+	}
+	.goDetail-enter{
+		transform:translateX(10rem);
+		opacity: 0;
+	}
+	.goDetail-leave-active{
+		transform:translateX(10rem);
+		opacity: 0;
+	}
+	
+	.goDetail-enter-active,.goDetail-leave-active{
+		transition: all 0.3s ease-out; 
+	}
+	.kill {
+		width: 100%;
+		overflow: hidden;
+		background: #D3D3D3;
+		img {
+			width: 0.66rem;
+			height: 0.66rem;
+			margin-left: 5%;
+		}
+		p {
+			line-height: 0.66rem;
+			margin-left: 10%;
+			color: orangered;
+		}
+	}
+	.fl {
+		float: left;
 	}
 </style>

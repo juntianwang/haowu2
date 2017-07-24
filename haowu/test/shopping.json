@@ -1,12 +1,11 @@
 {
-	"shopping":{
+"shopping":{
 		"car":[
 		{},
 		{},
 		{}
 		],
-		
-		
+
 		"newList": [
 		{"pic":"../../../static/jsonimg/shopping/recommend/new1.jpg","money":29,"name1":"Since","name":"竹签维字母餐具"},
 		{"pic":"../../../static/jsonimg/shopping/recommend/new2.jpg","money":29,"name1":"Since","name":"竹签维字母餐具"},
@@ -571,6 +570,7 @@
 				}					
 		]	
 	}
+	
 	
 	
 	

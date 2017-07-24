@@ -1,8 +1,10 @@
 <template>
 	<div>
 		<swiper :options="swiperOption">
-			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides" :key="index"><img class="slideImg" :src="slide" /></swiper-slide>
-			<div class="swiper-pagination" slot="pagination"></div>
+			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides.content" :key="index">
+				<img class="slideImg" :src="slide" />
+			</swiper-slide>
+			<div class="swiper-pagination" slot="pagination"></div>		
 		</swiper>
 	</div>
 </template>
@@ -23,29 +25,37 @@
 		data() {
 			return {
 				swiperOption: {
-					autoplay: 3500,
+					//自动
+//					autoplay: 3500,
 					setWrapperSize: true,
-					pagination: '.swiper-pagination',
+					//分页器
+					pagination: this.swiperSlides.pagination,
+					//分页器控制
 					paginationClickable: true,
+					//鼠标滑轮控制
 					mousewheelControl: true,
+					//将变化应用于父元素
 					observeParents: true,
+					//手动滑动后自动滑动
 					autoplayDisableOnInteraction: false,
+					//循环
 					loop: true
 				},
 			}
+		},
+		mounted() {
 		}
 	}
 </script>
 
-<style>
-	/*如果要引入一些css样式，也是通过import引入*/
+<style lang="scss" scoped="scoped">
 	
 	.slideImg {
 		width: 100%;
 	}
 	
 	.divS {
-		height: 6rem;
+		/*height: 6rem;*/
 		overflow: hidden;
 		display: flex;
 		justify-content: center;

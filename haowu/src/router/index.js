@@ -5,8 +5,8 @@ import shopping from '@/components/shopping/shopping'
 import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
+import goodsDetails from '@/components/common/goodsDetails'
 
-import goodsDetails from '@/components/common/goodsDetails';
 
 import entrance from '@/components/entrance/entrance'
 
@@ -51,7 +51,8 @@ import communitylast from '@/components/community/communitylast'
 Vue.use(Router)
 
 export default new Router({
-	routes: [{
+	routes: [
+		{
 			path: '/',
 			name: 'shopping',
 			component: shopping,

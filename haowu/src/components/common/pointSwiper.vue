@@ -1,7 +1,7 @@
 <template>
 	<div id="pointSwiper">
 		<swiper :options="swiperOption">
-			<swiper-slide v-for="a in banner">
+			<swiper-slide v-for="(a,index) in banner" :key="index">
 				<img :src="a" alt="" />
 			</swiper-slide>
 			<div class="swiper-pagination" slot="pagination"></div>
@@ -29,7 +29,7 @@
 		},
 		methods:{
 			btn () {
-				window.history.go(-1);
+				this.$router.push({path:history.go(-1)});
 			}
 		}
 		,
