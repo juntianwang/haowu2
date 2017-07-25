@@ -40,13 +40,13 @@ export default {
 					img.style.left = 2.2+(1.933333-2.2)*boxX/(-10) + "rem";
 					img.style.width = 5.573333+(6.106666-5.573333)*boxX/(-10) + "rem";
 					img.style.height = 5.026666+(5.44-5.026666)*boxX/(-10) + "rem";
-					img.style.top = 7.933333+(3.786666-7.933333)*boxX/(-10) + "rem";
+					img.style.top = 7.933333+(4-7.933333)*boxX/(-10) + "rem";
 					box.style.left = boxX + "rem";
 				}else if(boxX >= -20){
 					img.style.left = 1.933333+(5.066666-1.933333)*(boxX+10)/(-10) + "rem";
 					img.style.width = 6.106666+(2.8-6.106666)*(boxX+10)/(-10) + "rem";
 					img.style.height = 5.44+(2.506666-5.44)*(boxX+10)/(-10) + "rem";
-					img.style.top = 3.786666+(3.973333-3.786666)*(boxX+10)/(-10) + "rem";
+					img.style.top = 4+(3.973333-3.786666)*(boxX+10)/(-10) + "rem";
 					box.style.left = boxX + "rem";
 				}else if(boxX >= -30){
 					img.style.left = 5.066666+(2-5.066666)*(boxX+20)/(-10) + "rem";

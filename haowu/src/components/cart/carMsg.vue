@@ -134,11 +134,20 @@
 					for (var i = 0;i<this.goodsArr.length;i++) {
 						this.goodsArr[i].goodsbol = false;					
 					}	
-
 				}
 				
 			},
 			del (k) {
+				$.ajax({
+				type:"get",
+				url:"http://1.momi.applinzi.com/php_1/remove.php",
+				data: {user:window.sessionStorage.user,img:this.goodsArr[k].img },
+				datatype:"jsonp",
+				success: (res) =>{
+					
+					console.log(res)
+				}
+			})				
 				if (this.goodsArr[k].goodsbol) {
 					this.allPrice -= this.goodsArr[k].price*this.goodsArr[k].num;
 					this.countnum--;
