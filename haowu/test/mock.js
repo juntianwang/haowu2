@@ -1,5 +1,4 @@
 //引入需要用到的模块
-
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 

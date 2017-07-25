@@ -11,7 +11,7 @@
 <script>
 import { InfiniteScroll } from 'mint-ui';
 import data from '../../../../test/shopping.json';
-
+import axios from 'axios'
 
 
 export default {
@@ -34,6 +34,13 @@ export default {
 		},
 		mounted (){
 			console.log(data.detail.length)
+//			axios({
+//			  url: 'http://1.momi.applinzi.com/php_1/cart.php',
+//			  method: 'get',
+//			  params: {user: "123"}
+//			}).then((res) => {
+//    			console.log(res)
+//			})
 		}	
 	}
 </script>
