@@ -1,7 +1,7 @@
 <template>
 	<div id="killSwiper">
 		<swiper :options="swiperOption">
-			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides.content" :key="index">
+			<swiper-slide class="divK" v-for="(slide,index) in swiperSlides.content" :key="index">
 				<div class="imgWrap" @click="tap(slide.name)">
 					<img class="slideImg" :src="slide.pic" />
 				</div>
@@ -82,7 +82,7 @@
 		height: 4.4rem;
 	}
 	
-	.divS {
+	.divK {
 		overflow: hidden;
 		display: flex;
 		justify-content: center;

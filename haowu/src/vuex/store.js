@@ -12,9 +12,7 @@ const store = new Vuex.Store({
 			{"cartsrc":"../../../static/cart_img/cart_1.png","cartgoods":"绿色系列装饰画","goodssel":"分类","goodsclassify":"小组和哈哈哈","num":1,"price":445,"goodsbol":false}
 		
 		],
-		payGoods: [
 		
-		],
 		aa:0,
 		showAddr: {"name":"","phone":135,"address":"ds"},
 		addrArr: [
@@ -36,8 +34,11 @@ const store = new Vuex.Store({
 		shopDetail: {},
 		detailBol: false,
 		killBil: false,
-		onBol: []
-
+		onBol: [],
+		shopShow: {},
+		detailcommunity: {},
+		community_col: false,
+		carNum: 0
 	}
 })
 

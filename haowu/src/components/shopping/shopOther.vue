@@ -44,7 +44,7 @@
 					that.$store.state.detailBol = true;
 					that.$store.state.killBol = false;
 					console.log(res);
-					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+					that.$router.push({path:"/goodsDetails"})
 				}).catch(function(error) {
 					console.log(error)
 				});

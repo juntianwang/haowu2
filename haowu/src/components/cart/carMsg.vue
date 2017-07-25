@@ -144,8 +144,8 @@
 				data: {user:window.sessionStorage.user,img:this.goodsArr[k].img },
 				datatype:"jsonp",
 				success: (res) =>{
+//					this.goodsArr
 					
-					console.log(res)
 				}
 			})				
 				if (this.goodsArr[k].goodsbol) {

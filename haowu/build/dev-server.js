@@ -11,7 +11,7 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
-var MongoClient = require('mongodb').MongoClient;
+
 
 
 // default port where dev server listens for incoming traffic

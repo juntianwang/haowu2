@@ -8,6 +8,9 @@ import cart from '@/components/cart/cart'
 
 //公共
 import goodsDetails from '@/components/common/goodsDetails'
+import carDetail from '@/components/shopping/carDetail'
+import moreDetail from '@/components/shopping/moreDetail'
+
 
 
 
@@ -286,6 +289,22 @@ export default new Router({
 			path: '/goodsDetails',
 			name: 'goodsDetails',
 			component: goodsDetails
-		}
+		},
+    {
+    		path:'/carDetail',
+      	name: 'carDetail',
+      	component: carDetail
+    },
+    {
+    		path:'/moreDetail',
+      	name: 'moreDetail',
+      	component: moreDetail
+    },
+    {
+		path: "/communitydetail",
+		name: "communitydetail",
+		component: communitydetail
+	}
 	]
+
 })

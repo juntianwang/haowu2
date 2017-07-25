@@ -1,8 +1,8 @@
 <template>
 	<div class="sorterwrap">
 		<swiper :options="swiperOption">
-				<swiper-slide class="divS" v-for="(slide,index) in swiperSlides" :key="index" v-if="bol">
-					<img class="slideImg" :src="slide"/>	
+			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides" :key="index" v-if="bol">
+				<img class="slideImg" :src="slide"/>	
 			</swiper-slide>
 			<div class="divS" v-else><img class="slideImg" :src="src"/></div>	
 		</swiper>
@@ -66,7 +66,7 @@
 	
 	.divS {
 		width: 100%;
-		height: 7rem;
+		height: 7.66rem;
 		overflow: hidden;
 		display: flex;
 		justify-content: center;

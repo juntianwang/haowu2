@@ -1,126 +1,125 @@
 <template>
 	<div id="shopping">
-		<transition name="shop">
-			<div style="width: 100%;">
-				<div class="header">
-					<search-header></search-header>
-				</div>
-				<nav>
-					<div v-for="(item,index) in nav" @click="tabNav(index)" :class="{navOn:item.bol}">{{item.nav}}</div>
-					<div class="nav_tab" :style="{left: tabLeft}"></div>
-				</nav>
-				<mt-tab-container v-model="active" :swipeable="true">
-					<mt-tab-container-item id="tab0">
-						<div class="content">
-							<!---->
-							<swiper :swiperSlides="banner" class="banner_swiper"></swiper>
-							<div class="notice">
-								<img src="../../../static/shopping/notice.png" />
-								<span>极客购公告</span>
-								<span>关于退换货服务</span>
-							</div>
-							<!---->
-							<div class="foreignCar">
-								<p>欧美生活直通车</p>
-								<div class="foreignCar_content">
-									<div class="foreignImg_wrap">
-										<img :src="foreignCar[0].pic" alt="" />
-										<p class="forefinCar_content_txt">{{foreignCar[0].txt}}</p>
-									</div>
-									<div>
-										<div class="foreignImg_wrap" style="padding-bottom: 0.11rem;">
-											<img :src="foreignCar[1].pic" alt="" />
-											<p class="forefinCar_content_txt">{{foreignCar[1].txt}}</p>
-										</div>
-										<div class="foreignImg_wrap" style="padding-top: 0.11rem;">
-											<img :src="foreignCar[2].pic" alt="" />
-											<p class="forefinCar_content_txt">{{foreignCar[2].txt}}</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!---->
-							<div class="new">
-								<p>周一周四-新品首发</p>
-								<div class="new_content" @touchmove.stop="move()">
-									<div class="new_wrap" v-for="(item,index) in newList" @click="tap(item.name)">
-										<div>
-											<img :src="item.pic" alt="" />
-										</div>
-										<p>{{item.name}}</p>
-										<p>￥{{item.money}}</p>
-									</div>
-								</div>
-								<p>查看所有新品 ></p>
-							</div>
-							<!---->
-							<div class="kill">
-								<p>周五周日 - 零点秒杀</p>
-								<div class="killTime">
-									<img :src="killTime.pic" alt="" />
-									<span>{{killTime.day}}</span>
-									<span>周五</span>
-									<span>0:00-0:30</span>
-								</div>
-								<kill-swiper :swiperSlides="kill" @progress="getProgress"></kill-swiper>
-								<div class="progress">
-									<div class="proLine"></div>
-									<div class="proLine" id="proLine" :style="{width: progress_k + '%',background: killColor}"></div>
-								</div>
-							</div>
-							<!---->
-							<div class="show">
-								<p>达人SHOW</p>
-								<show-swiper :swiperSlides="show"></show-swiper>
-								<div class="progress">
-									<div class="proLine"></div>
-									<div class="proLine" id="proLine" :style="{width: progress_s + '%',background: showColor}"></div>
-								</div>
-							</div>
-							<!---->
-							<div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-								<p>猜你喜欢</p>
-								<div v-for="(item,index) in moreList" class="shopList" @click="tap(item.name)">
-									<swiper :swiperSlides="item.list"></swiper>
-									<p class="list_name">{{item.name}}</p>
-									<p class="list_txt">{{item.txt}}</p>
-									<div class="buy">
-										<span>￥{{item.money}}</span>
-										<div id="buy">购买</div>
-									</div>
-								</div>
-							</div>
-							<!---->
-							<div class="nomore" v-if="moreBol">
-								<span class="text">暂无更多</span>
-							</div>
-						</div>
-					</mt-tab-container-item>
-					<mt-tab-container-item id="tab1">
-						<div class="content">
-							<shop-other :otherContent="decoration"></shop-other>
-						</div>
-					</mt-tab-container-item>
-					<mt-tab-container-item id="tab2">
-						<div class="content">
-							<shop-other :otherContent="accept"></shop-other>
-						</div>
-					</mt-tab-container-item>
-					<mt-tab-container-item id="tab3">
-						<div class="content">
-							<shop-other :otherContent="kitchen"></shop-other>
-						</div>
-					</mt-tab-container-item>
-					<mt-tab-container-item id="tab4">
-						<div class="content">
-							<shop-other :otherContent="textiles"></shop-other>
-						</div>
-					</mt-tab-container-item>
-				</mt-tab-container>
+		<div style="width: 100%;">
+			<div class="header">
+				<search-header></search-header>
 			</div>
-		</transition>
+			<nav>
+				<div v-for="(item,index) in nav" @click="tabNav(index)" :class="{navOn:item.bol}">{{item.nav}}</div>
+				<div class="nav_tab" :style="{left: tabLeft}"></div>
+			</nav>
+			<mt-tab-container v-model="active" :swipeable="true">
+				<mt-tab-container-item id="tab0">
+					<div class="content">
+						<!---->
+						<swiper :swiperSlides="banner" class="banner_swiper"></swiper>
+						<div class="notice">
+							<img src="../../../static/shopping/notice.png" />
+							<span>极客购公告</span>
+							<span>关于退换货服务</span>
+						</div>
+						<!---->
+						<div class="foreignCar">
+							<p>欧美生活直通车</p>
+							<div class="foreignCar_content">
+								<div class="foreignImg_wrap" @click="tapCar1">
+									<img :src="foreignCar[0].pic" alt="" />
+									<!--<p class="forefinCar_content_txt">{{foreignCar[0].txt}}</p>-->
+								</div>
+								<div>
+									<div class="foreignImg_wrap" style="padding-bottom: 0.11rem;" @click="tapCar2">
+										<img :src="foreignCar[1].pic" alt="" />
+										<!--<p class="forefinCar_content_txt">{{foreignCar[1].txt}}</p>-->
+									</div>
+									<div class="foreignImg_wrap" style="padding-top: 0.11rem;" @click="tapCar3">
+										<img :src="foreignCar[2].pic" alt="" />
+										<!--<p class="forefinCar_content_txt">{{foreignCar[2].txt}}</p>-->
+									</div>
+								</div>
+							</div>
+						</div>
+						<!---->
+						<div class="new">
+							<p>周一周四-新品首发</p>
+							<div class="new_content" @touchmove.stop="move()">
+								<div class="new_wrap" v-for="(item,index) in newList" @click="tap(item.name)">
+									<div>
+										<img :src="item.pic" alt="" />
+									</div>
+									<p>{{item.name}}</p>
+									<p>￥{{item.money}}</p>
+								</div>
+							</div>
+							<p @click="tapMore">查看所有新品 ></p>
+						</div>
+						<!---->
+						<div class="kill">
+							<p>周五周日 - 零点秒杀</p>
+							<div class="killTime">
+								<img :src="killTime.pic" alt="" />
+								<span>{{killTime.day}}</span>
+								<span>周五</span>
+								<span>0:00-0:30</span>
+							</div>
+							<kill-swiper :swiperSlides="kill" @progress="getProgress"></kill-swiper>
+							<div class="progress">
+								<div class="proLine"></div>
+								<div class="proLine" id="proLine" :style="{width: progress_k + '%',background: killColor}"></div>
+							</div>
+						</div>
+						<!---->
+						<div class="show">
+							<p>达人SHOW</p>
+							<show-swiper :swiperSlides="show"></show-swiper>
+							<div class="progress">
+								<div class="proLine"></div>
+								<div class="proLine" id="proLine" :style="{width: progress_s + '%',background: showColor}"></div>
+							</div>
+						</div>
+						<!---->
+						<div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+							<p>猜你喜欢</p>
+							<div v-for="(item,index) in moreList" class="shopList" @click="tap(item.name)">
+								<swiper :swiperSlides="item.list"></swiper>
+								<p class="list_name">{{item.name}}</p>
+								<p class="list_txt">{{item.txt}}</p>
+								<div class="buy">
+									<span>￥{{item.money}}</span>
+									<div id="buy">购买</div>
+								</div>
+							</div>
+						</div>
+						<!---->
+						<div class="nomore" v-if="moreBol">
+							<span class="text">暂无更多</span>
+						</div>
+					</div>
+				</mt-tab-container-item>
+				<mt-tab-container-item id="tab1">
+					<div class="content">
+						<shop-other :otherContent="decoration"></shop-other>
+					</div>
+				</mt-tab-container-item>
+				<mt-tab-container-item id="tab2">
+					<div class="content">
+						<shop-other :otherContent="accept"></shop-other>
+					</div>
+				</mt-tab-container-item>
+				<mt-tab-container-item id="tab3">
+					<div class="content">
+						<shop-other :otherContent="kitchen"></shop-other>
+					</div>
+				</mt-tab-container-item>
+				<mt-tab-container-item id="tab4">
+					<div class="content">
+						<shop-other :otherContent="textiles"></shop-other>
+					</div>
+				</mt-tab-container-item>
+			</mt-tab-container>
+		</div>
 		<app-nav></app-nav>
 	</div>
+	
 </template>
 
 <script>
@@ -134,6 +133,7 @@
 	//引入tab-container和Indicator
 	import { Indicator } from 'mint-ui';
 	import { TabContainer, TabContainerItem } from 'mint-ui';
+	import shopJson from '../../../test/shopping.json';
 
 	//引入图片资源
 	import banner from '../../../static/shopping/banner.png';
@@ -365,7 +365,7 @@
 			killSwiper,
 			showSwiper,
 			shopOther,
-			AppNav,
+			AppNav
 		},
 		methods: {
 			tabNav(index) {
@@ -378,7 +378,7 @@
 			//上拉加载
 			loadMore() {
 				var that = this;
-				if (this.loading) {
+				if(this.loading) {
 					return false;
 				}
 				if(this.moreBol || this.navBefore != 0 || this.$store.state.detailBol) {
@@ -394,8 +394,7 @@
 						begin: this.begin,
 						num: 5
 					}
-				}).then(function(res) {	
-					console.log(res)
+				}).then(function(res) {
 					that.begin += 5;
 					setTimeout(() => {
 						that.moreShopList = res.data.shopList;
@@ -422,10 +421,39 @@
 					that.$store.state.shopDetail = res.data.list;
 					that.$store.state.detailBol = true;
 					console.log(res.data.list);
-					that.$router.push({name:"goodsDetails",params:{data:res.data.list}})
+					that.$router.push({
+						name: "goodsDetails",
+						params: {
+							data: res.data.list
+						}
+					})
 				}).catch(function(error) {
 					console.log(error)
 				});
+			},
+			tapMore() {
+				this.$store.state.detailBol = true;
+				this.$router.push({
+					path: '/moreDetail'
+				})
+			},
+			tapCar1() {
+				this.$store.state.detailBol = true;
+				this.$router.push({
+					path: '/carDetail'
+				})
+			},
+			tapCar2() {
+				this.$store.state.detailBol = true;
+				this.$router.push({
+					path: '/carDetail'
+				})
+			},
+			tapCar3() {
+				this.$store.state.detailBol = true;
+				this.$router.push({
+					path: '/carDetail'
+				})
 			}
 		},
 		computed: {
@@ -467,6 +495,14 @@
 			var that = this;
 			this.$store.state.detailBol = false;
 			//请求
+			axios({
+				method: 'get',
+				url: '/api'
+			}).then(function(res) {
+				console.log(res)
+			}).catch(function(err) {
+				console.log(err)
+			});
 			axios.get('/api/shop', {
 				params: {
 
@@ -475,14 +511,18 @@
 				that.newList = res.data.newList;
 				that.kill.content = res.data.killList;
 				that.show.content = res.data.showList;
+				that.$store.state.shopShow = res.data.showList;
 				that.decoration = res.data.decoration;
 				that.accept = res.data.accept;
 				that.textiles = res.data.textiles;
 				that.kitchen = res.data.kitchen;
-				for (let i = 0; i < that.show.content.length; i ++) {
-					that.$store.state.onBol.push({likeBol: false,collectBol: false})
+				for(let i = 0; i < that.show.content.length; i++) {
+					that.$store.state.onBol.push({
+						likeBol: false,
+						collectBol: false
+					})
 				}
-				console.log(that.accept)
+				console.log(res)
 			}).catch(function(error) {
 				console.log(error)
 			});
@@ -525,18 +565,10 @@
 			//				})
 			//			})
 		},
-	created() {
+		created() {
 			var that = this;
-	},
-	mounted () {
-	
-		// axios.post('http://localhost/user.php', qs.stringify({name: 'bar' }));
+		}
 	}
-	,
-	components: {
-		AppNav,
-	}
-}
 </script>
 
 <style lang="scss" scoped="scoped">
@@ -787,7 +819,7 @@
 	}
 	
 	.shopList {
-		margin-bottom: 0.4rem;
+		margin-bottom: 0.5rem;
 	}
 	
 	.list_name {
@@ -799,6 +831,7 @@
 	.list_txt {
 		color: #5b5b5b;
 		padding: 0.13rem;
+		line-height: 0.42rem;
 	}
 	
 	.buy {
@@ -813,7 +846,7 @@
 		-ms-flex-align: center;
 		align-items: center;
 		height: 0.53rem;
-		margin-top: 0.26rem;
+		margin-top: 0.33rem;
 	}
 	
 	.buy span {
@@ -862,10 +895,7 @@
 	.nomore .text::after {
 		left: 100%;
 	}
-	
 	/*跳详情页*/
-
-	
 	/*.shop-enter-active {
 		transition: all .5s ease;
 	}
