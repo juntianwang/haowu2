@@ -1,11 +1,11 @@
 <template>
 	<div id="show">
 		<swiper :options="swiperOption">
-			<swiper-slide class="divS" v-for="(slide,index) in swiperSlides.content" :key="index">
-				<div class="header">
+			<swiper-slide class="" v-for="(slide,index) in showList" :key="index">
+				<div class="header" @click="tapDetail(index)">
 					<img :src="slide.headImg" alt="" /><span class="name">{{slide.name}}</span>
 				</div>
-				<div class="img">
+				<div class="img" @click="tapDetail(index)">
 					<img :src="slide.pic" alt="" />
 				</div>
 				<div class="comment">
@@ -22,6 +22,7 @@
 <script>
 	import Vue from 'vue';
 	import VueAwesomeSwiper from 'vue-awesome-swiper';
+	import { Toast } from 'mint-ui';
 	Vue.use(VueAwesomeSwiper);
 	import { swiper, swiperSlide } from 'vue-awesome-swiper';
 	//图片
@@ -60,21 +61,87 @@
 		},
 		methods: {
 			tapLike(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
+				if (!this.onBol[index].likeBol) {
+					this.$store.state.shopShow[index].like += 1;
+				}
 				this.onBol[index].likeBol = true;
+				console.log(this.$store.state.shopShow[index].like)
 			},
 			tapCollect(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
+				if (!this.onBol[index].collectBol) {
+					this.$store.state.shopShow[index].collect += 1;
+				}
 				this.onBol[index].collectBol = true;
 			},
 			tapSay(index) {
 				
+			},
+			tapDetail(index) {
+				console.log(index)
+				this.$store.state.detailcommunity = {
+					index: index,
+					head: this.showList[index].headImg,
+					name: this.showList[index].name,
+					goods: [this.showList[index].pic],
+					good :[
+						{
+							head: "../static/community/communityimg/36/head/1.png"
+						}, {
+							head: "../static/community/communityimg/36/head/2.png"
+						}, {
+							head: "../static/community/communityimg/36/head/3.png"
+						}, {
+							head: "../static/community/communityimg/36/head/4.png"
+						}, {
+							head: "../static/community/communityimg/36/head/5.png"
+						}, {
+							head: "../static/community/communityimg/36/head/6.png"
+						}, {
+							head: "../static/community/communityimg/36/head/7.png"
+						}
+					],
+					goodbol: this.onBol[index].likeBol ? true : false,
+					collect: this.onBol[index].collectBol ? true : false,
+					talk: [{
+						name: "Glenn🌱",
+						head: "../static/community/communityimg/36/talk/1.png",	
+						mes: "头上一片草原",
+						time: "2017-07-17"
+					}],
+					mes: this.showList[index].txt,
+					time: "2017-07-17"
+				}
+				this.$store.state.community_col = true;
+				this.$router.push({
+					path: '/communitydetail'
+				})
 			}
 		},
 		mounted() {
-			console.log(this.onBol)
+			console.log(this.$store.state.shopShow)
 		},
 		computed: {
 			onBol () {
 				return this.$store.state.onBol
+			},
+			showList() {
+				return this.$store.state.shopShow;
 			}
 		}
 	}

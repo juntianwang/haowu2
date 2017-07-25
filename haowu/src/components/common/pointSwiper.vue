@@ -7,7 +7,7 @@
 			<div class="swiper-pagination" slot="pagination"></div>
 		</swiper>
 		<div class="fallback" @click="btn">
-			
+			<img src="../../../static/community/chat_headArrowLeft.png"/>
 		</div>
 	</div>
 </template>
@@ -29,6 +29,8 @@
 		},
 		methods:{
 			btn () {
+				this.$store.state.killBol = false;
+				this.$store.state.detailBol = false;
 				this.$router.push({path:history.go(-1)});
 			}
 		}
@@ -40,32 +42,27 @@
 	}
 </script>
 
-<style lang="scss" type="text/css">
+<style lang="scss" type="text/css" scoped="scoped">
+
 #pointSwiper{
 	position: relative;
 	.swiper-pagination-bullet-active{
 		background-color: #FFD914;
 	}
 	.fallback{
-		width: 0.8rem;
-		height: 0.8rem;
+		width: 0.6rem;
+		height: 0.6rem;
 		border-radius: 0.4rem;
 		background-color: rgba(0,0,0,0.2);
-		position: absolute;
+		position: fixed;
 		top: 0.4rem;
 		left:0.33rem;
+		border: 0.02rem solid white;
 		z-index: 3;
-	}
-	>div:nth-child(2):after{
-		content: "";
-		display:inline-block;
-		width: 0.8rem;
-		height: 0.8rem;
-		text-align: center;
-		background: url(../../../static/community/chat_headArrowLeft.png) no-repeat;
-		background-position: center;
-		background-size: 75% 75%;
-		
+		img {
+			width: 80%;
+			margin: 10% 0 0 10%;
+		}
 	}
 }
 #pointSwiper  .swiper-container>div>div>img{

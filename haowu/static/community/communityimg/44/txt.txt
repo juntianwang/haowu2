@@ -1,0 +1,9 @@
+      name:”Hooooooray”
+	
+     mes:”很有质感，就是小贵啊”
+	
+    talk:[{name:””,talk:””,date:””},{name:””,talk:””,date:””}]
+
+
+
+	

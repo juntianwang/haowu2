@@ -13,7 +13,11 @@ const store = new Vuex.Store({
 		shopDetail: {},
 		detailBol: false,
 		killBil: false,
-		onBol: []
+		onBol: [],
+		shopShow: {},
+		detailcommunity: {},
+		community_col: false,
+		carNum: 0
 	}
 })
 

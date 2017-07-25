@@ -16,6 +16,12 @@ mock.onGet('/cart/pic').reply(200, {
 	]
 });
 /*******************/
+import shopJson from './shopping.json'
+
+mock.onGet('/api').reply(200, {
+	shop: shopJson.killList
+})
+
 //商城页
 import new1 from '../static/shopping/new1.png';
 import kill1 from '../static/shopping/kill1.png';
@@ -26,26 +32,12 @@ import otherList from '../static/shopping/otherList.png';
 mock.onGet('/api/shop').reply(200, {
 	//新品
 	//pic 图片 money 价格 name ：名字  detail 详情
-	newList: [
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'},
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'},
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'},
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'},
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'},
-		{pic:new1,money:20,name:'真皮墙面挂钩两件套'}
-	],
+	newList: shopJson.shopping.newList,
 	// 限时秒杀
-	killList: [
-		{pic:kill1,name:'羽丝绒枕',money:49,moneyO:89}
-	],
+	killList: shopJson.shopping.killList,
 	
 	//达人show
-	showList: [
-		{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead,txt:'小清新，小倾心,小清新，小倾心,小清新，小倾心,小清新，小倾心,小清新，小倾心,小清新，小倾心'},
-		{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead,txt:'小清新，小倾心'},
-		{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead,txt:'小清新，小倾心'},
-		{pic:show1,name:'极客',like:49,collect:89,say:1,headImg:showHead,txt:'小清新，小倾心'}
-	],
+	showList: shopJson.shopping.showList,
 	//家饰
 	// index 就写1  title 就写decoration    banner 顶部图片  list 商品列表
 	decoration: {
@@ -122,24 +114,42 @@ mock.onGet('/api/shop').reply(200, {
 });
 	// 推荐  和上面一样 这里用comment 
 	//推荐中的 猜你喜欢商品列表   
-mock.onGet('/api/shop/list',{ params: { begin: 0 ,num: 5} }).reply(200, {
-	shopList: [
-		{pic: [show1,show1],name: '小清新客厅套大',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}}
-	]
-});
-mock.onGet('/api/shop/list',{ params: { begin: 5 ,num: 5} }).reply(200, {
-	shopList: [
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
-		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}}
-	]
-});
+//mock.onGet('/api/shop/list',{ params: { begin: 0 ,num: 5} }).reply(200, {
+//	shopList: [
+//		{pic: [show1,show1],name: '小清新客厅套大',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}}
+//	]
+//});
+//mock.onGet('/api/shop/list',{ params: { begin: 5 ,num: 5} }).reply(200, {
+//	shopList: [
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}},
+//		{pic: [show1,show1],name: '小清新客厅套',money: 200,txt: '用自然的元素点缀，简雅秀气，随处可见心思',list: {content: [show1,show1],pagination: '.swiper-pagination'}}
+//	]
+//});
+mock.onGet('/api/shop/list').reply(function(req) {
+	var sList = shopJson.shopping.likeList;
+	for (var j = 0;j < sList.length; j ++) {
+		sList[j].list = {
+			content: sList[j].pic,
+			pagination: '.swiper-pagination'
+		}
+	}
+	var arr = [];
+	for (var i = req.params.begin; i < req.params.begin + 5; i++) {
+		if (i >= 45) {
+			return [404]
+		}
+		arr.push(sList[i])
+	}
+	return [200,{shopList:arr}]
+})
+//
 mock.onGet('/api/shop/other',{ params: {shopClass: 'decoration',begin: 10 ,num: 10} }).reply(200, {
 	list:[
 			{pic:otherList,name:'厨房系列柠檬画',money:28},
@@ -175,22 +185,30 @@ mock.onGet('/api/shop/other',{ params: {shopClass: 'accept',begin: 10 ,num: 10} 
 	//商品详情 detail：{}
 mock.onGet('/api/shop/detail').reply(function(req) {
 	var list = {
-					title: "Hook 铁艺五头挂钩",
-					price:"76",
-					select_tip:[{
+					name: "Hook 铁艺五头挂钩",
+					money:"76",
+					selects:[{
+						money: 45,
+						src: show1,
 						title:"磨砂黑色",
 						num:"11"
 					},{
+						money: 45,
+						src: kill1,
 						title:"磨砂白色",
 						num:"3"
 					},{
+						money: 45,
+						src: show1,
 						title:"磨砂青色",
 						num:"0"
 					},{
+						money: 11,
+						src: show1,
 						title:"磨砂蓝色",
 						num:"8"
 					}],
-					src: [
+					pic: [
 						show1,
 						show1,
 						show1,
@@ -208,7 +226,7 @@ mock.onGet('/api/shop/detail').reply(function(req) {
 							kill1
 					]
 				}
-	if (req.params.search == '厨房系列柠檬画' || req.params.search == '羽丝绒枕' ) {
+	if (req.params.search == '厨房系列柠檬画' || req.params.search == '条纹花纹' ) {
 		console.log(list)
 		return [200,{list:list}]
 	}

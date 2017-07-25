@@ -1,0 +1,9 @@
+      name:”DAISYLEE”
+	
+     mes:”这种沙发哪里可以买到”
+	
+    talk:[{name:”T7”,talk:”求链接”,date:”2017-07-19”}]
+
+
+
+	

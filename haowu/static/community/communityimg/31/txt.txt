@@ -1,0 +1,9 @@
+      name:河童Coo
+	
+     mes:无印风的床品
+	
+    talk:[{name:”河童Coo”,talk:”【日式水洗棉麻四件套纯色格子床单被套床笠】，点击链接再选择浏览器打开http://c.b1yt.com/h.Nblkv5?cv=oPB100QxXBE&sm=f0b52d ，或复制这条信息￥oPB100QxXBE￥后打开👉手机淘宝👈”,date:”2017-07-16”}]
+
+
+
+	
