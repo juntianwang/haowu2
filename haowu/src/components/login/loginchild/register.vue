@@ -8,7 +8,7 @@
 			<p>HAVE</p>
 		</div>
 		<div class="ipt">
-			<input type="" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入你的手机号码" @blur="blur"/>
+			<input type="" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入你的手机号码" @input="blur"/>
 			<p>注册代表您同意 <a @click="deal">用户协议</a></p>
 			<span @click="pwd">下一步</span>
 		</div>
@@ -18,7 +18,11 @@
 <script>
 import axios from 'axios'
 export default {
-	
+	data () {
+		return {
+			bol:true,
+		}
+	},
 methods:{
 	goback () {
 		window.history.go(-1)
@@ -28,20 +32,27 @@ methods:{
 	},
 	blur () {
 		var ipt = document.getElementsByTagName("input")[0]
-		console.log(ipt.value)
-		axios({
-			  url: '/register',
-			  method: 'get',
-			  params:{user:ipt.value}
-		}).then((res) => {
-      		if(err == 1){
-      			
-      		}else{
-      			
-      		}
-		})
+		$.ajax({
+			type:"post",
+			url:"http://1.momi.applinzi.com/php_1/registered.php",
+			data:{user:ipt.value},
+			datatype:"jsonp",
+			success:(res) =>{
+				res = JSON.parse(res)
+				console.log(res)
+				if(res.err == '0'){
+					this.bol = true
+				}else{
+					this.bol = false
+				}
+			}
+		});
 	},
 	pwd () {
+		if(this.bol){
+			alert("账号已存在或不能为空")
+			return
+		}
 		var ipt = document.getElementsByTagName("input")[0]
 		if(ipt.value.length == 0){
 			return

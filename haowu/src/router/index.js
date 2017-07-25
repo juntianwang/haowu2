@@ -5,9 +5,13 @@ import shopping from '@/components/shopping/shopping'
 import my from '@/components/my/my'
 import community from '@/components/community/community'
 import cart from '@/components/cart/cart'
+
+//公共
 import goodsDetails from '@/components/common/goodsDetails'
 
 
+
+//
 import entrance from '@/components/entrance/entrance'
 
 //注册
@@ -41,12 +45,22 @@ import commonP from '@/components/my/mychild/commonP'
 import mywithdrawal from '@/components/my/mychild/mywithdrawal'
 import mybookeddetails from '@/components/my/mychild/mybookeddetails'
 import mystrategy from '@/components/my/mychild/mystrategy'
+
 import dome from '@/components/my/mychild/dome'
 
 import communitydetail from '@/components/community/communitydetail'
 import solicitation from '@/components/community/communitySolicitation'
 import communityhot from '@/components/community/communityhot'
 import communitylast from '@/components/community/communitylast'
+
+import myintegral from '@/components/my/mychild/myintegral'
+import mycollection from '@/components/my/mychild/mycollection'
+import mycoupons from '@/components/my/mychild/mycoupons'
+import myDraft from '@/components/my/mychild/myDraft'
+import myReturn from '@/components/my/mychild/myReturn'
+import myPosting from '@/components/my/mychild/myPosting'
+import myshare from '@/components/my/mychild/myshare'
+
 
 Vue.use(Router)
 
@@ -168,6 +182,44 @@ export default new Router({
 					component: dome
 				},
 
+					
+				{
+					path: "/my/mychild/myintegral",
+					name: "myintegral",
+					component: myintegral,
+				},
+				
+				{
+					path: "/my/mychild/mycollection",
+					name: "mycollection",
+					component: mycollection,
+				},
+				{
+					path: "/my/mychild/mycoupons",
+					name: "mycoupons",
+					component: mycoupons,
+				},
+				{
+					path: "/my/mychild/myDraft",
+					name: "myDraft",
+					component: myDraft ,
+				},
+				{
+					path: "/my/mychild/myReturn",
+					name: "myReturn",
+					component: myReturn,
+				},
+				{
+					path: "/my/mychild/myPosting",
+					name: "myPosting",
+					component: myPosting,
+				},
+				{
+					path: "/my/mychild/myshare",
+					name: "myshare",
+					component: myshare,
+				},
+				
 			]
 		},
 		{

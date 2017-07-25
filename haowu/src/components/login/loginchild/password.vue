@@ -29,20 +29,43 @@ export default {
 			window.history.go(-1)
 		},
 		accomplish () {
-			
 			var ipt = document.getElementsByTagName("input")[0]
 			if(ipt.value.length < 6 || ipt.value.length > 16){
 				return
 			}
 			var ptxt = document.getElementsByClassName("pwd")[0].getElementsByTagName("p")[0]
-			axios({
-			  url: '/password',
-			  method: 'post',
-			  params:{user:ptxt.innerText,pwd:ipt.value}
-			}).then((res) => {
-      			
-			})
-			this.$router.push({name:'shopping'})
+			$.ajax({
+					type:"post",
+					url:"http://1.momi.applinzi.com/php_1/registered.php",
+					data:{user:ptxt.innerText,pwd:ipt.value},
+					datatype:"jsonp",
+					success:(res) =>{
+						res = JSON.parse(res)
+						this.$router.push({name:'shopping'})
+		      			if(res.err=="0"){
+		      				alert("用户名已存在");
+		      			}else if(res.err=="1"){
+		      				alert("注册成功");
+		      				this.$router.push({name:'shopping'})
+		      			}
+					}
+				});
+//			axios({
+//			  url: 'http://1.momi.applinzi.com/php_1/registered.php',
+//			  method: 'post',
+//			  data:qs.stringify({user:ptxt.innerText,pwd:ipt.value})
+//			}).then((res) => {
+//    			this.$router.push({name:'shopping',params:{data:res.data}})
+//    			if(res.err=="0"){
+//    				alert("用户名已存在");
+//    			}else if(res.err=="1"){
+//    				alert("注册成功");
+//    				this.$router.push({name:'shopping',params:{data:res.data}})
+//    			}
+//			})
+//			.catch((error) =>{
+//	    	})
+			
 		}
 	},
 	mounted () {

@@ -11,6 +11,8 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+var MongoClient = require('mongodb').MongoClient;
+
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -89,3 +91,9 @@ module.exports = {
     server.close()
   }
 }
+
+
+/*     登录       */
+app.post("/debark",function(res,req){
+	req.send(res.query);
+})

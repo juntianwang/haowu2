@@ -344,9 +344,10 @@
 				}
 			}
 			.content {
+				text-align: center;
+				overflow: hidden;
 				img {
-					display: block;
-					margin: 0 auto;
+					display: inline-block;
 				}
 			}
 			>div:nth-of-type(3) {

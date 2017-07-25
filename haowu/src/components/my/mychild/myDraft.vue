@@ -1,11 +1,11 @@
 <template>
-	<!--提现明细-->
+	<!--我的草稿箱-->
 	<div>
 		<header-go></header-go>
 		<div id="content_k">
 			<div class="default-box">
-				<div><img src="../../../../static/community/default_cash_detail.png" alt="" /></div>
-				<p>还没不能提现？快去催朋友收获</p>
+				<img src="../../../../static/my/default_draft.png" alt="" />
+				<p>你真的是有飞一般的网速！</p>
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 	}
 </script>
 
-<style lang="scss" type="text/css">
+<style lang="scss" scoped type="text/css">
 	.default-box {
 		height: 100%;
 		text-align: center;

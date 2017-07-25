@@ -50,22 +50,22 @@ export default {
 		return {
 			headsrc:"../../../../static/my/name-bg.jpeg",
 			list:[
-			{txt:'退货 / 售后',span:"",to:"/1"},
-			{txt:'商城客服',span:"",to:"/2"},
+			{txt:'退货 / 售后',span:"",to:"myReturn"},
+			{txt:'商城客服',span:"",to:""},
 			{txt:'',span:"",to:""},
 			{txt:'我的钱包',span:"￥0.00",to:"mywalletr"},
-			{txt:'我的积分',span:"0",to:"/4"},
-			{txt:'我的优惠卷',span:"2张",to:"/5"},
+			{txt:'我的积分',span:"0",to:"myintegral"},
+			{txt:'我的优惠卷',span:"2张",to:"mycoupons"},
 			{txt:'',span:"",to:""},
-			{txt:'边分享边赚钱',span:"定金金额的5%归你",to:"/6"},
-			{txt:'分享赢优惠劵',span:"立减50元",to:"/7"},
+			{txt:'边分享边赚钱',span:"定金金额的5%归你",to:"myshare"},
+			{txt:'分享赢优惠劵',span:"立减50元",to:""},
 			{txt:'',span:"",to:""},
-			{txt:'我的收藏',span:"",to:"/8"},
-			{txt:'我的草稿箱',span:"",to:"/9"},
-			{txt:'我的发帖',span:"",to:"/10"},
+			{txt:'我的收藏',span:"",to:"mycollection"},
+			{txt:'我的草稿箱',span:"",to:"myDraft"},
+			{txt:'我的发帖',span:"",to:"myPosting"},
 			],
 			order:['待付款','待发货','已发货','已完成'],
-			ures:"尚未取名",
+			ures:"",
 			attention:0,
 			fans:0,
 			loginBol:true,
@@ -90,16 +90,22 @@ export default {
 		}
 	},
 	mounted (){
-		if(window.sessionStorage.ures == undefined){
-//			this.loginBol = false;
+		if(window.sessionStorage.user == undefined){
+			this.loginBol = false;
 		}else{
-			axios({
-			  url: '/',
-			  method: 'get',
-			}).then((res) => {
-	      		this.headsrc == "../../../../static/my/name-bg.jpeg"
-			})
-
+			this.loginBol = true;
+			var a = window.sessionStorage.user
+			$.ajax({
+			type:"get",
+			url:"http://1.momi.applinzi.com/php_1/info.php",
+			data:{user:a},
+			datatype:"jsonp",
+			success:(res) =>{
+				res = JSON.parse(res)
+				this.ures = res[0].id;
+				console.log(this.ures)
+			}
+		});
 		}
 
 		//头部动画

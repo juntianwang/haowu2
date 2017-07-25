@@ -1,11 +1,12 @@
 <template>
-	<!--提现明细-->
+	<!--我的发帖-->
 	<div>
 		<header-go></header-go>
 		<div id="content_k">
 			<div class="default-box">
-				<div><img src="../../../../static/community/default_cash_detail.png" alt="" /></div>
-				<p>还没不能提现？快去催朋友收获</p>
+				<img src="../../../../static/my/default_user_release_question2.png" alt="" />
+				<p>不发帖，我咋知道你是有品位的</p>
+				<span>脱离低级趣味的银呢！</span>
 			</div>
 		</div>
 	</div>
@@ -23,7 +24,7 @@
 			var default_box = document.getElementsByClassName("default-box")[0];
 			if(this.content.length == 0) {
 				default_box.style.display = "block"
-			}else{
+			} else {
 				default_box.style.display = "none"
 			}
 		},
@@ -33,7 +34,7 @@
 	}
 </script>
 
-<style lang="scss" type="text/css">
+<style lang="scss" scoped type="text/css">
 	.default-box {
 		height: 100%;
 		text-align: center;
@@ -48,6 +49,10 @@
 			padding-top: 0.53rem;
 			line-height: 0.6rem;
 			text-align: center;
+			font-size: 0.32rem;
+			color: #4A4A4A;
+		}
+		>span{
 			font-size: 0.32rem;
 			color: #4A4A4A;
 		}

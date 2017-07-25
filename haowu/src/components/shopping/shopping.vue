@@ -525,10 +525,18 @@
 			//				})
 			//			})
 		},
-		created() {
+	created() {
 			var that = this;
-		}
+	},
+	mounted () {
+	
+		// axios.post('http://localhost/user.php', qs.stringify({name: 'bar' }));
 	}
+	,
+	components: {
+		AppNav,
+	}
+}
 </script>
 
 <style lang="scss" scoped="scoped">

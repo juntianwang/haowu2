@@ -74,7 +74,7 @@
 				var s = document.getElementsByClassName("mint-tab-container")[0];
 				if(this["nav_listcontent_" + key].length <= 0) {
 					s.style.display = "none";
-					content_k.innerHTML = '<div class="default-box"><img src="../../../static/cart_img/default_cash_detail 2.png" alt="" /><p>最近一周没有剁手额</p><span @click = "shop">快去商城剁手吧</span>';
+					content_k.innerHTML = '<div class="default-box"><img src="../../../static/cart_img/default_cash_detail2.png" alt="" /><p>最近一周没有剁手额</p><span @click = "shop">快去商城剁手吧</span>';
 				} else {
 					s.style.display = "block";
 					content_k.innerHTML = "";
@@ -123,7 +123,7 @@
 					s.style.display = "none";
 					content_k.style.display = "block";
 					this.active = "tab-container"+this.tab_index;
-					content_k.innerHTML = '<div class="default-box"><img src="../../../static/cart_img/default_cash_detail 2.png" alt="" /><p>最近一周没有剁手额</p><span @click = "shop">快去商城剁手吧</span>';
+					content_k.innerHTML = '<div class="default-box"><img src="../../../static/cart_img/default_cash_detail2.png" alt="" /><p>最近一周没有剁手额</p><span @click = "shop">快去商城剁手吧</span>';
 				} else {
 					s.style.display = "block";
 					content_k.innerHTML = "";

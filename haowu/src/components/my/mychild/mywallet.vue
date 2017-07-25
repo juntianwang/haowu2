@@ -58,7 +58,7 @@
 	}
 </script>
 
-<style lang="scss" type="text/css">
+<style lang="scss" scoped type="text/css">
 	#inner {
 		width: 100%;
 		margin-top: 1.06rem;

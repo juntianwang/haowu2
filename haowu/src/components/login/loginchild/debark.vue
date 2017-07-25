@@ -9,7 +9,7 @@
 		</div>
 		<div class="ipt">
 			<input type="text" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入手机号"/>
-			<input type="text" placeholder="请输入密码"/>
+			<input type="password" placeholder="请输入密码"/>
 			<span @click="pwd">登录</span>
 		</div>
 	</div>
@@ -28,18 +28,25 @@ methods:{
 		if(ipt[0].value.length == 0||ipt[1].value.length == 0){
 			return
 		}
-		axios({
-			  url: '/debark',
-			  method: 'post',
-			  params:{user:ipt[0].value,pwd:ipt[1].value}
-		}).then((res) => {
-      		if(err == 1){
-      			this.$router.push({name:'shopping',params:{}})
+		//登录请求
+		var qs = require('qs');
+		$.ajax({
+			type:"post",
+			url:"http://1.momi.applinzi.com/php_1/user.php",
+			data:{user:ipt[0].value,pwd:ipt[1].value},
+			datatype:"jsonp",
+			success:(res) =>{
+				res = JSON.parse(res)
+				console.log(res)
+				if(res.err=="0"){
+      			alert("密码错误或者用户名不存在");
+      		}else if(res.err=="1"){
+      			alert("登录成功");
+      			this.$router.push({name:'shopping'})
+      			window.sessionStorage.user = ipt[0].value;
       		}
-		})
-		
-		
-		this.$router.push({name:'shopping',params:{}})
+			}
+		});
 	}
 	
 	

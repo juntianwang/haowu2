@@ -19,13 +19,16 @@ export default {
 		changing () {
 			var txt = document.getElementsByTagName("textarea")[0];
 			console.log(txt.value)
-				axios({
-				  url: '/changing',
-				  method: 'post',
-				  params:{name:txt.value}
-				}).then((res) => {
-	      			
-				})
+				$.ajax({
+					type:"get",
+					url:"http://1.momi.applinzi.com/php_1/info.php",
+					data:{user:window.sessionStorage.user,name:txt.value},
+					datatype:"jsonp",
+					success:(res) =>{
+						res = JSON.parse(res)
+						console.log(res)
+					}
+				});
 				txt.value = "";		
 		}
 	},
