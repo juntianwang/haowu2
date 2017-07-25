@@ -130,9 +130,25 @@
 				this.popupVisible=false;
 			},
 			dogood(){
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.gooded = !this.gooded;
 			},
 			docollect(){
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.collected = !this.collected;
 				if(this.collected){					
 					Toast({

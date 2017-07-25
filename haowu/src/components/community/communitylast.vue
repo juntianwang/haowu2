@@ -102,6 +102,14 @@
 				//				});
 			},
 			dogood_one(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.last_initial_one[index].goodbol = !this.last_initial_one[index].goodbol;
 				if(this.last_initial_one[index].goodbol) {
 					this.last_initial_one[index].good.push(this.$store.state.me)
@@ -110,6 +118,14 @@
 				}
 			},
 			dogood_two(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.last_initial_two[index].goodbol = !this.last_initial_two[index].goodbol;
 				if(this.last_initial_two[index].goodbol) {
 					this.last_initial_two[index].good.push(this.$store.state.me)

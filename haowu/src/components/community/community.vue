@@ -41,10 +41,6 @@
 				</mt-tab-container>
 			</div>
 		</transition>		
-		<!--路由-->
-		<!--<transition name="move">
-			<router-view class="view" v-if="community_col"></router-view>
-		</transition>-->
 		<app-nav></app-nav>
 	</div>
 </template>
