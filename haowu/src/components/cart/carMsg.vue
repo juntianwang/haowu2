@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<ul class="goods">
-			<li class="clear" v-for="(item,index) in goodsArr" @click="gotodetail">
+			<li class="clear" v-for="(item,index) in goodsArr" :key="index" @click="gotodetail">
 				<div @click.stop="select(index)"><p :class="{selected:item.goodsbol}"></p></div>
-				<div><img :src="item.cartsrc"/></div>
+				<div><img :src="item.img"/></div>
 				<div>
-					<p>{{item.cartgoods}}</p>
-					<p><span>{{item.goodssel}}</span>: <span>{{item.goodsclassify}}</span></p>
+					<p>{{item.name}}</p>
+					<p><span>分类</span>: <span>{{item.model}}</span></p>
 					<div class="clear">
 						<span @click.stop="exp(index)">-</span>
 						<span>{{item.num}}</span>
@@ -159,10 +159,36 @@
 			
 		},
 		mounted: function(){
-			this.goodsArr = this.$store.state.cargoods;
 			for (var i = 0; i < this.goodsArr.length;i++) {
 				this.goodsArr[i].goodsbol = false;					
 			}
+			$.ajax({
+				type:"get",
+				url:"http://1.momi.applinzi.com/php_1/cart.php",
+				data: {user: "1"},
+				success: (res) =>{	
+					console.log(res)
+					var a = JSON.parse(res);
+					console.log(a)
+					if (a=="undefined") {
+						console.log("aa")
+						return;
+					}
+					for(var i = 0 ; i < a.length-1;i++){
+						
+						for(var j = 1 ; j <a.length;j++){
+							if(a[i].img == a[j].img){
+						a[i].num = Number(a[i].num)+ Number(a[j].num);
+								a.splice(j,1);
+							}
+						}
+					}
+					this.goodsArr = a;
+				}
+			})
+//			this.goodsArr = this.$store.state.cargoods;
+
+			
 		}
 	}
 </script>

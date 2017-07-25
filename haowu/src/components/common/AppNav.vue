@@ -15,7 +15,7 @@
 			return {
 				arr: [{
 						"name": "商城",
-						url: "/",
+						url: "/shopping",
 						src: "../static/img/shopping.png",
 						sel: "../static/img/shopping-s.png",
 						bol: true

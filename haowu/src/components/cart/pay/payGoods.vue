@@ -2,10 +2,10 @@
 	<div class="paygoods">
 		<ul>
 			<li class="clear" v-for="item in payGoods">
-				<div><img :src="item.cartsrc"/></div>
+				<div><img :src="item.img"/></div>
 				<div>
-					<p>{{item.cartgoods}}</p>
-					<p><span>{{item.goodssel}}</span>: <span>{{item.goodsclassify}}</span></p>
+					<p>{{item.name}}</p>
+					<p><span>分类</span>: <span>{{item.model}}</span></p>
 					<p>￥{{item.price}}</p>
 				</div>
 				<div>

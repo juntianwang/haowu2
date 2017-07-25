@@ -2,7 +2,7 @@
 	<div id="setting">
 		<header-d></header-d>
 		<div class="setting">
-			<p v-for="item in list" @click="setto(item.to,item.title)">{{item.txt}}<em></em></p>
+			<p v-for="(item,i) in list" @click="setto(item.to,item.title,i)">{{item.txt}}<em></em></p>
 		</div>
 	</div>
 </template>
@@ -19,13 +19,19 @@ export default {
 			{txt:'意见反馈',to:'idea',title:'意见反馈'},
 			{txt:'关于我们',to:'me',title:''},
 			{txt:'服务条款及隐私政策',to:'setserve',title:''},
-			{txt:'登出',to:'setserve',title:''},
+			{txt:'登出',to:'my',title:''},
 			]
 		}
 	},
 	methods:{
-		setto (to,title) {
+		setto (to,title,i) {
+			if(i == 5){
+				window.sessionStorage.removeItem('user')
+				this.$router.push({name:to})
+				return
+			}
 			this.$router.push({name:to,params:{name:title}})
+			
 		}
 	},
 	mounted () {
