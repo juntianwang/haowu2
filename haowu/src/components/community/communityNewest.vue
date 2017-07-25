@@ -121,6 +121,14 @@
 				//				});
 			},
 			dogood_one(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.newest_initial_one[index].goodbol = !this.newest_initial_one[index].goodbol;
 				if(this.newest_initial_one[index].goodbol) {
 					this.newest_initial_one[index].good.push(this.$store.state.me)
@@ -129,6 +137,14 @@
 				}
 			},
 			dogood_two(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.newest_initial_two[index].goodbol = !this.newest_initial_two[index].goodbol;
 				if(this.newest_initial_two[index].goodbol) {
 					this.newest_initial_two[index].good.push(this.$store.state.me)
@@ -165,11 +181,9 @@
 				var windowHeight = that.clientH() + that.scollY();
 				var UlHeight = minHeightUl.offsetHeight + minHeightUl.offsetTop;
 				if(UlHeight <= windowHeight) {
-					if(that.count > 6) {
-						that.count = 0
-					}
-					if(index == 0) {
-						//最新				
+//					if(that.count>48){
+//						return
+//					}
 						axios.get('/community/newest', {
 							params: {
 								classes: "newest",
@@ -177,32 +191,33 @@
 								num: 6
 							}
 						}).then(function(res) {
-							for(let i = 0; i < 3; i++) {
-								that.newest_initial_one.push(that.newest[i]);
-								that.newest_initial_two.push(that.newest[i + 3])
+							if(res.data.newest.length<6){
+								for(let i = 0; i < res.data.newest.length; i++) {
+									if(i%2==0){
+										that.newest_initial_one.push(that.newest[i])
+									}else{
+										that.newest_initial_two.push(that.newest[i])
+									}
+									
+								}
+								return
 							}
-
-						}).catch(function(error) {
-							console.log(error)
-						});
-					} else {
-						axios.get('/community/newest', {
-							params: {
-								classes: "newest",
-							}
-						}).then(function(res) {
+							that.newest = res.data.newest
 							for(let i = 0; i < 3; i++) {
 								that.newest_initial_two.push(that.newest[i]);
 								that.newest_initial_one.push(that.newest[i + 3])
 							}
+							that.count += 6
 						}).catch(function(error) {
-							console.log(error)
+//							console.log(error)
+							console.log(that.count)
+							
 						});
 					}
-					that.count += 6
+					
 				}
 			}
-		}
+		
 	}
 </script>
 

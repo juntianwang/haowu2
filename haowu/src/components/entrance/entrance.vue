@@ -25,7 +25,6 @@ export default {
 		boxMove (e) {
 			var box = document.getElementsByClassName("entrance-box")[0];
 			var img = document.getElementById("entrance-animate")
-
 			var boxx = e.touches[0].clientX - box.offsetLeft;
 			box.addEventListener("touchmove",function(ev){
 				var boxX = (ev.touches[0].clientX - boxx)/75;
@@ -57,13 +56,6 @@ export default {
 					box.style.left = boxX + "rem";
 					
 				}
-
-				
-				
-
-
-
-
 				ev.preventDefault()
 			})
 			box.addEventListener("touchend",function(ev){

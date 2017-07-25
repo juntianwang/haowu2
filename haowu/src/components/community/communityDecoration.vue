@@ -128,6 +128,14 @@
 				//				});
 			},
 			dogood(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.initial[index].goodbol = !this.initial[index].goodbol;
 				if(this.initial[index].goodbol) {
 					this.initial[index].good.push(this.$store.state.me)
@@ -136,6 +144,14 @@
 				}
 			},
 			docollect(index) {
+				if (!sessionStorage.user) {
+					Toast({
+  						message: '请先登陆',
+  						position: 'middle',
+  						duration: 1000
+					});
+					return
+				}
 				this.initial[index].collect = !this.initial[index].collect;
 				if(this.initial[index].collect) {
 					Toast({

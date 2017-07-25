@@ -99,6 +99,7 @@ export default {
 			}).then((res) => {
 	      		this.headsrc == "../../../../static/my/name-bg.jpeg"
 			})
+
 		}
 
 		//头部动画

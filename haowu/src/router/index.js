@@ -174,11 +174,16 @@ export default new Router({
 			path: '/community',
 			name: 'community',
 			component: community,
-			children: [{
-				path: "/communitydetail",
-				name: "communitydetail",
-				component: communitydetail
-			}]
+//			children: [{
+//				path: "/communitydetail",
+//				name: "communitydetail",
+//				component: communitydetail
+//			}]
+		},
+		{
+			path: "/communitydetail",
+			name: "communitydetail",
+			component: communitydetail
 		},
 		{
 			path: '/solicitation',

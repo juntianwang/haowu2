@@ -1,0 +1,9 @@
+      name:BOstudio独立设计师
+	
+     mes:作品样片
+	
+    talk:[{name:”君风悦”,talk:”我喜欢”,date:”2017-07-15”},{name:”肉松姑娘”,talk:”满满的性冷淡风”,date:”2017-07-19”}]
+
+
+
+	
